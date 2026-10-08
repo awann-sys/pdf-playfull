@@ -93,6 +93,72 @@ def rect_from_obj(op, page):
     return r
 
 
+def _is_scanned_page(page) -> bool:
+    """Conservatively detect a page mostly covered by a raster scan."""
+    area = max(1, page.rect.get_area())
+    try:
+        return any(fitz.Rect(info["bbox"]).get_area() / area >= .68 for info in page.get_image_info())
+    except Exception:
+        return False
+
+
+def _ink_color_near(page, rect, fallback):
+    """Estimate ink color from neighboring scan pixels without changing background."""
+    try:
+        from PIL import Image
+        import numpy as np
+        margin = max(15, min(65, rect.width * .15))
+        sample = (fitz.Rect(rect.x0-margin, rect.y0-margin, rect.x1+margin, rect.y1+margin) & page.rect)
+        pix = page.get_pixmap(matrix=fitz.Matrix(.7,.7), clip=sample, colorspace=fitz.csRGB, alpha=False)
+        arr = np.asarray(Image.frombytes("RGB", [pix.width,pix.height], pix.samples), dtype=np.float32)
+        gray = arr.mean(axis=2)
+        baseline = float(np.percentile(gray, 85))
+        dark = arr[gray < min(170.0, baseline-35.0)]
+        if len(dark) >= 5:
+            v=np.median(dark,axis=0)/255.0
+            return tuple(float(x) for x in v)
+    except Exception:
+        pass
+    return fallback
+
+
+def _soft_scan_text(page, rect, value, fontsize, family, bold, italic, ink, align):
+    """Slightly soften only NEW text on scan-like pages, leave all other PDF objects untouched.
+
+    Text is embedded as transparent PNG, with an invisible searchable layer if it fits.
+    Scan source lettering already burned into the image is NOT magically erased.
+    """
+    from PIL import Image, ImageDraw, ImageFont, ImageFilter
+    scale = 1.75
+    w, h = max(2, int(rect.width*scale)), max(2, int(rect.height*scale))
+    if w*h > 2_500_000:
+        raise ValueError("Kotak teks terlalu besar untuk penyamaan kualitas scan.")
+    fontfile = ('DejaVuSerif' if family=='serif' else 'DejaVuSansMono' if family=='mono' else 'DejaVuSans')
+    fontfile += ('-BoldOblique' if bold and italic else '-Bold' if bold else '-Oblique' if italic else '') + '.ttf'
+    try:
+        font = ImageFont.truetype(fontfile, max(8, int(fontsize*scale)))
+    except OSError:
+        font = ImageFont.load_default()
+    overlay = Image.new('RGBA',(w,h),(0,0,0,0))
+    draw=ImageDraw.Draw(overlay)
+    rgba=tuple(max(0,min(255,round(x*255))) for x in ink)+(220,)
+    spacing=max(0,round(fontsize*scale*.2))
+    align_map={0:'left',1:'center',2:'right'}
+    try:
+        draw.multiline_text((0,0), value, font=font, fill=rgba,spacing=spacing,align=align_map.get(align,'left'))
+    except ValueError:
+        draw.text((0,0),value.splitlines()[0],font=font,fill=rgba)
+    overlay=overlay.filter(ImageFilter.GaussianBlur(radius=.42))
+    bio=io.BytesIO();overlay.save(bio,format='PNG')
+    page.insert_image(rect,stream=bio.getvalue(),overlay=True,keep_proportion=False)
+    # Keep inserted wording searchable; invisible text has no sharper visual footprint.
+    try:
+        face={'sans':'helv','serif':'tiro','mono':'cour'}[family]
+        page.insert_textbox(rect,value,fontsize=fontsize,fontname=face,render_mode=3,align=align,overlay=True)
+    except Exception:
+        pass
+
+
 def apply_edits(data: bytes, opts: dict) -> bytes:
     """Actual PDF text removal uses redact annotations, never only paints white rectangles."""
     operations = opts.get("operations", [])
@@ -129,12 +195,18 @@ def apply_edits(data: bytes, opts: dict) -> bytes:
                 }
                 font = faces[family][int(bold) + 2 * int(italic)]
                 alignment = {"left": 0, "center": 1, "right": 2}.get(op.get("align"), 0)
-                available = p.insert_textbox(rect, value, fontsize=fontsize, fontname=font,
-                                             color=color(op.get("color", "#17324d")), align=alignment, overlay=True)
-                if available < 0:
-                    # Single-line fallback prevents complete loss when the text block has tight bounding box.
-                    p.insert_text((rect.x0, min(rect.y1, rect.y0 + fontsize * 0.95)), value.splitlines()[0],
-                                  fontsize=fontsize, fontname=font, color=color(op.get("color")), overlay=True)
+                ink=color(op.get("color", "#17324d"))
+                # Quality Match applies only to scans and to newly rendered text,
+                # not the original page. Native PDFs retain sharp selectable vectors.
+                if opts.get("quality_match", False) and _is_scanned_page(p):
+                    ink=_ink_color_near(p,rect,ink)
+                    _soft_scan_text(p,rect,value,fontsize,family,bold,italic,ink,alignment)
+                else:
+                    available = p.insert_textbox(rect, value, fontsize=fontsize, fontname=font,
+                                                 color=ink, align=alignment, overlay=True)
+                    if available < 0:
+                        p.insert_text((rect.x0, min(rect.y1, rect.y0 + fontsize * .95)), value.splitlines()[0],
+                                      fontsize=fontsize, fontname=font, color=ink, overlay=True)
             elif kind == "move_original_image":
                 orig = op.get("original", {})
                 old_rect = rect_from_obj(orig, p)
@@ -600,7 +672,7 @@ def batch_edit(fs, opts):
     doc_opts = opts.get("documents", [])
     groups = opts.get("groups", [])
     style = opts.get("style", "combined")
-    if style not in ("combined", "range", "page"):
+    if style not in ("combined", "range", "page", "document"):
         raise ValueError("Mode hasil tidak valid.")
     if not isinstance(doc_opts, list) or len(doc_opts) != len(fs):
         raise ValueError("Pilihan dokumen tidak cocok dengan unggahan.")
@@ -617,7 +689,7 @@ def batch_edit(fs, opts):
             operations = spec.get("operations", [])
             password = str(spec.get("password", ""))
             if operations:
-                edited_bytes = apply_edits(f.data, {"password": password, "operations": operations})
+                edited_bytes = apply_edits(f.data, {"password": password, "operations": operations, "quality_match": bool(opts.get("quality_match", False))})
                 pdf = open_pdf(edited_bytes)
             else:
                 pdf = open_pdf(f.data, password)
