@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: pdf-toolkit
+    name: pdf-playfull
     runtime: docker
     plan: free
     region: singapore
