@@ -9,7 +9,7 @@ main{max-width:1440px;margin:auto;padding:20px}.layout{display:grid;grid-templat
 .panel h2{font-size:17px;margin:0 0 10px}.panel h3{font-size:14px;margin:18px 0 8px}.small{font-size:12px;color:#607587}label{display:block;font-weight:600;font-size:13px;margin:12px 0 6px}
 input,select,textarea,button{font:inherit}input[type=file],input[type=text],input[type=number],input[type=password],input[type=color],select,textarea{width:100%;padding:9px;border:1px solid #cbdde9;border-radius:8px;background:#fff}
 input[type=color]{height:42px;padding:4px}input[type=range]{width:100%}button{border:1px solid #c8dee9;background:#f5fbfe;padding:9px 12px;border-radius:9px;cursor:pointer;color:#17324d;font-weight:600}button:hover{background:#e6f4fb}button:disabled{opacity:.55;cursor:not-allowed}.primary{background:linear-gradient(120deg,#0284c7,#0d9488);color:#fff;border:none}.primary:hover{background:#036d91}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.bar button{flex:1 0 auto}.sep{height:1px;background:#e5eef2;margin:16px 0}.stagehead{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}.viewer{overflow:auto;min-height:240px;max-height:70vh;background:#d7e4ee;border:1px solid #b8cbd8;border-radius:10px;padding:20px;display:flex;justify-content:center;align-items:flex-start}
-.paper{position:relative;box-shadow:0 8px 24px #37516d55;background:white;flex-shrink:0}#pdfCanvas{display:block}#konvaOverlay{position:absolute;left:0;top:0;touch-action:none}
+.paper{position:relative;box-shadow:0 8px 24px #37516d55;background:white;flex-shrink:0;overflow:hidden}#pdfCanvas{display:block}#konvaOverlay{position:absolute;left:0;top:0;touch-action:none}
 #result{min-height:36px;margin-top:10px}.msg{padding:12px;border-radius:8px;background:#e9f8ee;color:#186442}.msg.error{background:#fff0f0;color:#b21b32}
 .download{display:inline-block;background:#0d9488;color:white;padding:12px 16px;border-radius:10px;font-weight:600;margin-top:8px}.hide{display:none!important}.pill{display:inline-block;font-size:11px;background:#e4f3fa;border-radius:20px;padding:5px 9px;color:#12618f}
 .toolgroup{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.toolgroup button{text-align:left;font-size:13px}.toolgroup button.chosen{background:#d7f6ea;border:2px solid #0d9488}
@@ -33,7 +33,17 @@ input[type=color]{height:42px;padding:4px}input[type=range]{width:100%}button{bo
 input[type=checkbox]{accent-color:#0d9488}
 #notice{padding:8px 10px;background:#eaf7fb;border-radius:8px;color:#136481;font-size:12px;margin:7px 0}
 @media(max-width:1100px){.editorrow{grid-template-columns:1fr}.properties{max-height:none}}
-.selection-entry{border:1px solid #d6e6ed;border-radius:9px;padding:8px;margin:6px 0;background:#fff;display:flex;align-items:center;gap:7px}.selection-entry button{padding:5px 8px}.selection-entry small{font-size:11px;color:#5c7484}.selection-entry .jump{flex:1;text-align:left;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.choice-actions{display:flex;gap:6px;flex-wrap:wrap}.choice-actions button{font-size:12px}#chosenList{max-height:260px;overflow-y:auto}.select-current{background:#edfdf6;border-color:#0e9d79}.export-help{font-size:12px;color:#436c7d;background:#eff8fc;padding:10px;border-radius:8px}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}
+.selection-entry{border:1px solid #d6e6ed;border-radius:9px;padding:8px;margin:6px 0;background:#fff;display:flex;align-items:center;gap:7px}.selection-entry button{padding:5px 8px}.selection-entry small{font-size:11px;color:#5c7484}.selection-entry .jump{flex:1;text-align:left;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.choice-actions{display:flex;gap:6px;flex-wrap:wrap}.choice-actions button{font-size:12px}#chosenList{max-height:260px;overflow-y:auto}.select-current{background:#edfdf6;border-color:#0e9d79}#targetPanel{padding:12px;background:#edf8fe;border:1px solid #c3e0ef;border-radius:10px;margin-top:12px}
+#targetPanel .fieldgrid{margin-top:9px}
+.targetfile{padding:8px;border:1px solid #d0e5ee;border-radius:8px;margin-top:8px;background:white}
+.targetfile label{display:flex;gap:8px;align-items:center;margin:0 0 6px}
+.targetfile input[type=checkbox]{width:17px;height:17px}
+#targetSummary{font-size:12px;padding:9px;background:white;border-radius:8px;margin-top:9px;color:#265a75}
+#historyList{font-size:12px;max-height:155px;overflow:auto;margin:8px 0 0;padding-left:20px}
+#historyList li{margin:5px 0}
+#cropGuide{position:absolute;pointer-events:none;border:2px dashed #d97706;z-index:2;display:none;box-shadow:0 0 0 2000px #142a3e35}
+#draftStatus{font-size:12px;color:#175d79;margin:8px 0}
+.export-help{font-size:12px;color:#436c7d;background:#eff8fc;padding:10px;border-radius:8px}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}
 @media(max-width:1180px){.layout{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}#exportAside{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}}@media(max-width:820px){#exportAside{display:block}.layout{grid-template-columns:1fr}.viewer{max-height:57vh}header{position:relative}}
 </style></head><body>
 <header><a href="/">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
@@ -43,12 +53,20 @@ input[type=checkbox]{accent-color:#0d9488}
 <div class="small">Untuk Edit PDF, pilih beberapa berkas PDF sekaligus (maksimal 12). Klik nama file untuk berpindah editor; perubahan tetap tersimpan selama tab ini terbuka.</div>
 <div id="workspace"></div><label for="upload2">Dokumen kedua (khusus Bandingkan)</label><input id="upload2" type="file" accept=".pdf"/>
 <div id="fileInfo" class="small">Pilih PDF untuk menampilkan editor.</div><div class="sep"></div><div id="singleNameField"><label for="filename">Nama hasil (alat selain Edit Visual)</label><input id="filename" type="text" placeholder="Mengikuti nama dokumen"/></div><label for="password">Password PDF jika terkunci</label><input id="password" type="password" autocomplete="off"/></div>
-<div class="panel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div><button class="primary" style="width:100%;margin-top:12px" id="process">Buat Hasil</button></div>
+<div class="panel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div>
+<div id="targetPanel" class="hide"><strong>🎯 Terapkan tindakan ke halaman</strong>
+<label for="targetScope">Target tindakan</label><select id="targetScope"><option value="current">Halaman yang sedang dibuka (default)</option><option value="basket">Semua halaman di keranjang</option><option value="range">Rentang per dokumen</option><option value="all">Seluruh halaman dokumen pilihan</option></select>
+<div id="targetDocs" class="hide"></div><label id="redactConfirmRow" class="hide" style="font-size:12px"><input type="checkbox" id="redactConfirm"> Saya memahami redaksi permanen menghapus informasi dari PDF hasil.</label><div id="targetSummary">Pilih PDF untuk melihat target.</div>
+<button id="applyDraft" class="primary" type="button" style="width:100%;margin-top:9px">✓ Terapkan ke Draft (tanpa download)</button>
+</div>
+<div id="historyPanel" class="hide"><div class="sep"></div><b>↶ Riwayat tindakan halaman</b><div class="choice-actions bar"><button type="button" id="undoStage">Batalkan terakhir</button><button type="button" id="redoStage">Ulangi tindakan</button></div><ol id="historyList"></ol></div>
+<label id="keepWorkspaceRow" class="hide" style="font-size:12px"><input type="checkbox" id="keepWorkspace" checked> Simpan hasil PDF sebagai dokumen baru di workspace (tanpa harus download)</label>
+<button class="primary" style="width:100%;margin-top:12px" id="process">Proses Alat Dokumen</button></div>
 </aside><section>
 <div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button><button id="selectPage" class="select-current" type="button">☐ Pilih halaman ini</button></div></div>
 <p class="small">Klik objek untuk memilih, lalu tarik untuk memindahkannya. Gambar/teks yang dipindah langsung terlihat pada posisi baru. Edit otomatis tersimpan sebagai draft selama tab terbuka. Centang halaman yang ingin diekspor; hanya halaman terpilih yang masuk hasil.</p>
 <div class="bar" id="editbar"><button id="addtext">✎ Tambah teks</button><button id="addimage">▧ Tambah gambar</button><button id="addrect">▢ Kotak</button><button id="addhighlight">🖍 Sorot</button><button id="delobj">🗑 Hapus pilihan</button><button id="undo">↶ Undo</button><button id="redo">↷ Redo</button></div><input type="file" id="imgInput" accept="image/png,image/jpeg" hidden/>
-<div class="editorrow"><div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="konvaOverlay"></div></div></div>
+<div class="editorrow"><div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="cropGuide"></div><div id="konvaOverlay"></div></div></div>
 <div class="properties" id="properties"><h3>🔤 Properti objek</h3><p class="small" id="propsHint">Klik teks atau gambar pada halaman. Panel ini menggantikan popup teks.</p>
 <div id="propsForm" class="hide">
 <div id="textProps"><label for="propText">Isi teks</label><textarea id="propText" rows="4" placeholder="Tulis isi teks di sini"></textarea>
@@ -56,7 +74,7 @@ input[type=checkbox]{accent-color:#0d9488}
 <div class="toggles"><label><input type="checkbox" id="propBold"> Tebal</label><label><input type="checkbox" id="propItalic"> Miring</label></div>
 <div class="fieldgrid"><label>Warna teks<input id="propColor" type="color" value="#17324d"></label><label>Perataan<select id="propAlign"><option value="left">Kiri</option><option value="center">Tengah</option><option value="right">Kanan</option></select></label></div>
 </div><div class="sep"></div><strong class="small">Letak dan ukuran (pt)</strong><div class="fieldgrid"><label>X<input id="propX" type="number" step="1"></label><label>Y<input id="propY" type="number" step="1"></label><label>Lebar<input id="propW" type="number" min="2" step="1"></label><label>Tinggi<input id="propH" type="number" min="2" step="1"></label></div>
-<p class="small">Perubahan properti langsung tampil pada preview. Edit otomatis tercatat sebagai draft; unduh menggunakan panel Ekspor Halaman Terpilih.</p></div></div></div><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
+<p class="small">Perubahan properti langsung tampil pada preview. Edit otomatis tercatat sebagai draft; unduh menggunakan panel Ekspor Halaman Terpilih.</p></div></div></div><p id="draftStatus" aria-live="polite">Tindakan halaman disimpan sebagai draft, belum diunduh.</p><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
 <div class="panel"><h2>📱 Scan dari kamera</h2><p class="small">Pada ponsel, ambil foto lewat kamera lalu simpan sebagai PDF. Memerlukan HTTPS dan izin kamera.</p><button id="camera">📷 Ambil foto → PDF</button><video id="vid" playsinline autoplay muted class="hide" style="width:100%;max-height:300px"></video><button id="shot" class="hide primary">Jepret & konversi</button></div>
 <div class="panel"><h2>📥 Hasil pemrosesan</h2><div id="result">Belum ada hasil.</div></div>
 </section><aside id="exportAside"><div class="panel hide" id="selectionPanel">
@@ -88,6 +106,8 @@ const TOOLS=[
  ['edit','✏️ Edit Teks & Gambar',1,'Tambah, geser, ubah ukuran, ganti atau hapus teks/gambar. Redaksi teks asli dilakukan dalam PDF, bukan sekadar menutup dengan kotak.'],
  ['watermark','💧 Watermark',1,'Tulisan transparan sebagai tanda air.'],
  ['crop','✂️ Potong Margin',1,'Mengubah crop box (area tampilan), bukan menghapus data di luar crop.'],
+ ['rotate_page','🔄 Putar Halaman',1,'Putar halaman pilihan 90°, 180°, atau 270°.'],
+ ['page_number','🔢 Nomor Halaman',1,'Tambah nomor halaman pada target pilihan.'],
  ['office_pdf','📄 Word/PPT/Excel → PDF',2,'Konversi Office via LibreOffice. Untuk PowerPoint dan Excel, layout dapat berubah menurut font.'],
  ['pdf_word','📘 PDF → Word',2,'Konversi dengan pdf2docx; tidak menjamin ketepatan tata letak 100%.'],
  ['pdf_pptx','📊 PDF → PowerPoint',2,'Setiap halaman dijadikan gambar satu slide, objek di dalam slide tidak editable.'],
@@ -108,16 +128,21 @@ const TOOLS=[
 ];
 let choice='edit',pdfDoc=null,pdfFile=null,page=1,scale=1,kwStage=null,layer=null,tr=null,nodes=[],hist=[],picked=null,blocks=[],pageWidth=0,pageHeight=0,readVersion=0;let pageOps=new Map(),redos=[];
 let documents=[],activeIndex=-1,nameOverrides=new Map(),plannedGroups=[],selectedQueue=[],rangeCounter=0;
+const STAGED_TOOLS=new Set(['watermark','crop','rotate_page','page_number','sign_visual','redact','form']);
+let stageHistory=[],stageRedo=[],draftPreviewVersion=0;
+
 function cfg(){for(const [id,n,g,desc] of TOOLS){const btn=document.createElement('button');btn.textContent=n;btn.dataset.tool=id;btn.onclick=()=>choose(id);$('#group'+g).appendChild(btn)}choose('edit')}
 const extraParams={
- watermark:[['text','Teks watermark','DRAFT'],['fontSize','Ukuran tulisan','42'],['color','Warna (#hex)','#777777'],['angle','Rotasi (0,90,180,270)','0'],['pages','Halaman (mis. 1-5)','semua']],
- crop:[['left','Potong kiri (pt)','20'],['top','Potong atas (pt)','20'],['right','Potong kanan (pt)','20'],['bottom','Potong bawah (pt)','20'],['pages','Halaman','semua']],
- redact:[['phrase','Teks yang dihapus permanen','RAHASIA'],['pages','Halaman','semua']],
+ watermark:[['text','Teks watermark','DRAFT'],['fontSize','Ukuran tulisan','42'],['color','Warna (#hex)','#777777'],['angle','Rotasi (0,90,180,270)','0'],['opacity','Transparansi (0.05–1)','0.32'],['x','X posisi (%)','15'],['y','Y posisi (%)','52']],
+ crop:[['left','Potong kiri (pt)','20'],['top','Potong atas (pt)','20'],['right','Potong kanan (pt)','20'],['bottom','Potong bawah (pt)','20']],
+ rotate_page:[['angle','Derajat putaran (90,180,270)','90']],
+ page_number:[['start','Nomor awal','1'],['position','Posisi: bottom_center / bottom_left / bottom_right / top_center / top_left / top_right','bottom_center'],['fontSize','Ukuran nomor','11'],['color','Warna (#hex)','#222222']],
+ redact:[['phrase','Teks yang dihapus permanen','RAHASIA']],
  ocr:[['lang','Bahasa OCR (eng/ind/ind+eng)','ind+eng']],
- form:[['field_name','Nama field','nama_lengkap'],['page','Halaman','1'],['x','X (pt)','100'],['y','Y (pt)','120'],['w','Lebar (pt)','210'],['h','Tinggi (pt)','26'],['default','Isi default','']],
+ form:[['field_name','Nama field','nama_lengkap'],['x','X (pt)','100'],['y','Y (pt)','120'],['w','Lebar (pt)','210'],['h','Tinggi (pt)','26'],['default','Isi default','']],
  sign_certificate:[['certificate_password','Password file sertifikat P12','']],
  form_fill:[['fields','JSON isian, contoh: {\"nama_lengkap\":\"Adi\"}','{"nama_lengkap":"Adi"}']],
- sign_visual:[['page','Halaman','1'],['x','X (pt)','100'],['y','Y (pt)','150'],['w','Lebar (pt)','200'],['h','Tinggi (pt)','75']],
+ sign_visual:[['x','X (pt)','100'],['y','Y (pt)','150'],['w','Lebar (pt)','200'],['h','Tinggi (pt)','75']],
  extract_images:[['pages','Halaman','semua']],
 };
 function choose(id){choice=id;for(const b of document.querySelectorAll('.toolgroup button'))b.classList.toggle('chosen',b.dataset.tool===id);
@@ -125,7 +150,16 @@ function choose(id){choice=id;for(const b of document.querySelectorAll('.toolgro
  const p=$('#params');p.replaceChildren();for(const [key,label,def] of (extraParams[id]||[])){const l=document.createElement('label');l.textContent=label;const el=document.createElement('input');el.type='text';el.value=def;el.dataset.key=key;l.appendChild(el);p.appendChild(l)}
  if(id==='sign_certificate'){const l=document.createElement('label');l.textContent='Berkas sertifikat .p12 / .pfx';const e=document.createElement('input');e.type='file';e.accept='.p12,.pfx';e.id='certFile';l.appendChild(e);p.appendChild(l)}
  if(id==='sign_visual'){const l=document.createElement('label');l.textContent='Gambar tanda tangan PNG/JPG';const e=document.createElement('input');e.type='file';e.accept='image/png,image/jpeg';e.id='sigImage';l.appendChild(e);p.appendChild(l)}
- $('#selectionPanel').classList.toggle('hide',id!=='edit');$('#selectPage').classList.toggle('hide',id!=='edit');$('#editbar').classList.toggle('hide',id!=='edit');$('#batchPanel').classList.toggle('hide',id!=='edit');$('#properties').classList.toggle('hide',id!=='edit');$('#singleNameField').classList.toggle('hide',id==='edit');$('#process').classList.toggle('hide',id==='edit');$('#process').textContent=id==='edit'?'⬇ Unduh halaman terpilih':'Proses: '+t[1];
+ const staged=STAGED_TOOLS.has(id);
+ $('#selectionPanel').classList.remove('hide');$('#selectPage').classList.remove('hide');
+ $('#editbar').classList.toggle('hide',id!=='edit');$('#batchPanel').classList.remove('hide');
+ $('#properties').classList.toggle('hide',id!=='edit');
+ $('#singleNameField').classList.toggle('hide',id==='edit'||staged);
+ $('#process').classList.toggle('hide',id==='edit'||staged);$('#keepWorkspaceRow').classList.toggle('hide',id==='edit'||staged);
+ $('#targetPanel').classList.toggle('hide',!staged);$('#redactConfirmRow').classList.toggle('hide',id!=='redact');$('#redactConfirm').checked=false;
+ $('#historyPanel').classList.remove('hide');
+ $('#process').textContent='Proses: '+t[1];
+ renderTargetDocs();renderStageHistory();
  renderWorkspace();renderNames();
  $('#upload2').parentElement.querySelector('label[for="upload2"]').classList.toggle('hide',id!=='compare');$('#upload2').classList.toggle('hide',id!=='compare');
  $('#upload').accept=id==='office_pdf'?'.doc,.docx,.odt,.ppt,.pptx,.odp,.xls,.xlsx,.ods':id==='html_pdf'?'.html,.htm':'.pdf';
@@ -202,9 +236,9 @@ function currentDoc(){return documents[activeIndex]||null}
 function renderWorkspace(){const wrap=$('#workspace');wrap.replaceChildren();if(!documents.length)return;
  documents.forEach((d,i)=>{const row=document.createElement('div');row.className='workspace-row'+(i===activeIndex?' active':'');const cb=document.createElement('span');cb.className='pill';cb.textContent=selectedQueue.filter(x=>x.fileIndex===i).length+' ✓';cb.title='Jumlah halaman terpilih dari file ini';const btn=document.createElement('button');btn.className='edit-file';btn.textContent=`${i+1}. ${d.file.name} (${d.numPages||'…'} hal)`;btn.title='Edit dokumen ini';btn.onclick=()=>switchDocument(i);row.append(cb,btn);
   wrap.append(row)});
- $('#fileInfo').textContent=`${documents.length} dokumen. ${selectedQueue.length} halaman dipilih untuk hasil. Edit tetap ada di draft sampai tab ditutup.`}
-async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();selectedQueue=[];rangeCounter=0;
- documents=fs.slice(0,12).map(f=>({file:f,pdfDoc:null,page:1,ops:new Map(),included:true,ranges:'',numPages:0,password:$('#password').value||''}));activeIndex=-1;nameOverrides.clear();renderSelectedQueue();
+ $('#fileInfo').textContent=`${documents.length} dokumen. ${selectedQueue.length} halaman dipilih untuk hasil. Edit tetap ada di draft sampai tab ditutup.`;renderTargetDocs()}
+async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();selectedQueue=[];rangeCounter=0;stageHistory=[];stageRedo=[];
+ documents=fs.slice(0,12).map(f=>({file:f,pdfDoc:null,page:1,ops:new Map(),pageActions:[],included:true,ranges:'',numPages:0,password:$('#password').value||''}));activeIndex=-1;nameOverrides.clear();renderSelectedQueue();
  $('#combinedName').value=documents.length===1?stemName(documents[0].file.name)+'_edited.pdf':'PDF_Playfull_gabungan.pdf';
  $('#filename').value=stemName(documents[0].file.name);if(fs.length>12)error('Maksimal 12 dokumen; hanya 12 file pertama yang dimuat.');await switchDocument(0)}
 async function switchDocument(i){if(i<0||i>=documents.length)return;if(activeIndex>=0)saveCurrentPage();
@@ -235,8 +269,8 @@ async function drawPage(){if(!pdfDoc)return;const seq=++readVersion;
    }
    layer.batchDraw();
  }
- $('#pageno').textContent=`Hal. ${page} / ${pdfDoc.numPages}`;
- setInfo(`Halaman ${page}: ${info.objects.length} blok terdeteksi. Edit tersimpan dalam draft; centang halaman untuk ekspor.`);updatePageSelectionButton();
+ $('#pageno').textContent=`Hal. ${page} / ${pdfDoc.numPages}`;await refreshDraftPreview(seq);
+ setInfo(`Halaman ${page}: ${info.objects.length} blok terdeteksi. Edit tersimpan dalam draft; centang halaman untuk ekspor.`);updatePageSelectionButton();renderTargetDocs();
  }catch(e){error(e.message)}
 }
 $('#upload').onchange=loadPdf;
@@ -297,7 +331,7 @@ function renderSelectedQueue(){const list=$('#chosenList');list.replaceChildren(
  const down=document.createElement('button');down.textContent='↓';down.title='Turunkan urutan';down.disabled=i===selectedQueue.length-1;down.onclick=()=>moveSelection(i,1);
  const del=document.createElement('button');del.textContent='×';del.title='Hapus dari ekspor (edit draft tidak hilang)';del.onclick=()=>{selectedQueue.splice(i,1);selectionChanged()};row.append(n,go,up,down,del);list.append(row)});
  updatePageSelectionButton();}
-function selectionChanged(){renderSelectedQueue();renderWorkspace();renderNames()}
+function selectionChanged(){renderSelectedQueue();renderWorkspace();renderNames();renderTargetDocs()}
 function moveSelection(i,delta){const j=i+delta;if(j<0||j>=selectedQueue.length)return;[selectedQueue[i],selectedQueue[j]]=[selectedQueue[j],selectedQueue[i]];selectionChanged()}
 function addChoice(fi,p,tag=''){if(!chosen(fi,p)){selectedQueue.push({fileIndex:fi,page:p,tag});return true}return false}
 $('#selectPage').onclick=()=>{if(activeIndex<0||!pdfDoc)return;saveCurrentPage();const ix=selectedQueue.findIndex(q=>q.fileIndex===activeIndex&&q.page===page);if(ix>=0)selectedQueue.splice(ix,1);else addChoice(activeIndex,page,'manual');selectionChanged()};
@@ -342,8 +376,10 @@ async function submit(tool,overrideFile=null){const active=currentDoc();const fs
  try{const opts={nama:$('#filename').value.trim(),password:$('#password').value};for(const el of document.querySelectorAll('#params [data-key]'))opts[el.dataset.key]=el.value;
  if(tool==='edit'){saveCurrentPage();const groups=buildGroups();const style=$('#outputStyle').value;const tpl=$('#nameTemplate').value;
  groups.forEach((g,i)=>{g.name=nameOverrides.get(g.key)||templateName(tpl,g,i)});
- opts.style=style;opts.groups=groups.map(({fileIndex,pages,name})=>({fileIndex,pages,name}));opts.documents=documents.map(d=>({operations:[...d.ops.values()].flat(),password:d.password}));
+ opts.style=style;opts.groups=groups.map(({fileIndex,pages,name})=>({fileIndex,pages,name}));opts.documents=documents.map(d=>({operations:[...d.ops.values()].flat(),pageActions:d.pageActions||[],password:d.password}));
  opts.zip_name=$('#zipName').value;opts.combined_name=$('#combinedName').value;opts.quality_match=$('#qualityMatch').checked;
+ } else if(active?.file?.name.toLowerCase().endsWith('.pdf')){
+ saveCurrentPage(); opts.draft_ops=[...active.ops.values()].flat();opts.draft_page_actions=active.pageActions||[];opts.quality_match=$('#qualityMatch').checked;
  }
  if(tool==='form_fill'){try{opts.fields=JSON.parse(opts.fields)}catch{throw new Error('Format JSON isian formulir tidak valid.')}}
  if(tool==='sign_certificate'){const f=$('#certFile')?.files[0];if(!f)throw new Error('Pilih sertifikat .p12 atau .pfx.');fs.push(f)}
@@ -355,12 +391,118 @@ async function submit(tool,overrideFile=null){const active=currentDoc();const fs
  const blob=await r.blob();const dispo=r.headers.get('Content-Disposition')||'';const nameUtf=/filename\*=UTF-8''([^;]+)/i.exec(dispo)?.[1];const filename=nameUtf?decodeURIComponent(nameUtf):/filename="([^"]+)"/.exec(dispo)?.[1]||'hasil.pdf';
  $('#result').replaceChildren();const msg=document.createElement('div');msg.className='msg';msg.textContent='✅ Berhasil: '+filename;
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.textContent='⬇ Unduh '+filename;a.className='download';$('#result').append(msg,a);
- if(blob.type==='application/pdf'){const b=document.createElement('button');b.textContent='📁 Tambah hasil ke daftar editor';b.style.margin='8px';b.onclick=async()=>{const result=new File([blob],filename,{type:blob.type});if(documents.length>=12){error('Daftar penuh. Pilih ulang maksimal 12 file jika ingin menambah hasil.');return};saveCurrentPage();documents.push({file:result,pdfDoc:null,page:1,ops:new Map(),included:true,ranges:'',numPages:0,password:''});await switchDocument(documents.length-1)};$('#result').append(b)}
+ if(blob.type==='application/pdf'){
+ const b=document.createElement('button');b.textContent='📁 Tambah hasil ke daftar editor';b.style.margin='8px';
+ b.onclick=async()=>{const result=new File([blob],filename,{type:blob.type});
+  if(documents.length>=12){error('Daftar penuh: maksimal 12 PDF aktif. Simpan unduhan atau buka sesi baru.');return}
+  saveCurrentPage();documents.push({file:result,pdfDoc:null,page:1,ops:new Map(),pageActions:[],included:true,ranges:'',numPages:0,password:''});
+  await switchDocument(documents.length-1);b.disabled=true;b.textContent='✓ Sudah ada di ruang kerja';
+ };
+ $('#result').append(b);
+ if(tool!=='edit'&&$('#keepWorkspace').checked&&documents.length<12)await b.onclick();
+ }
  }catch(e){error(e.message)}finally{btn.disabled=false;if(tool==='edit')btn.textContent='⬇ Buat & Unduh Hasil Pilihan';choose(tool)}}
 $('#process').onclick=()=>submit(choice);
 $('#processQuick').onclick=()=>submit('edit');
 let camStream=null;
 $('#camera').onclick=async()=>{try{camStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});$('#vid').srcObject=camStream;$('#vid').classList.remove('hide');$('#shot').classList.remove('hide')}catch(e){error('Tidak dapat membuka kamera: '+e.message)}};
 $('#shot').onclick=async()=>{const v=$('#vid');const can=document.createElement('canvas');can.width=v.videoWidth;can.height=v.videoHeight;can.getContext('2d').drawImage(v,0,0);const blob=await new Promise(resolve=>can.toBlob(resolve,'image/jpeg',0.85));camStream?.getTracks().forEach(t=>t.stop());$('#vid').classList.add('hide');$('#shot').classList.add('hide');if(!blob){error('Foto tidak tersedia');return}const fd=new FormData();fd.append('files',new File([blob],'hasil_scan.jpg',{type:'image/jpeg'}));fd.append('opts','{}');const r=await fetch('/api/image_pdf',{method:'POST',body:fd});if(!r.ok){error('Konversi foto gagal');return}const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scan_kamera.pdf';a.textContent='⬇ Unduh scan_kamera.pdf';a.className='download';$('#result').replaceChildren(a)};
+
+// Universal per-page draft actions. Export basket remains separate.
+function targetScope(){return $('#targetScope').value}
+function renderTargetDocs(){
+ const wrap=$('#targetDocs'); if(!wrap)return;
+ const scope=targetScope(),multi=scope==='range'||scope==='all';wrap.classList.toggle('hide',!multi);
+ if(!multi){wrap.replaceChildren();updateTargetSummary();return}
+ // Retain per-file manual ranges when toggling tools or switching document.
+ const previous=[...wrap.querySelectorAll('.targetfile')].map(el=>({i:Number(el.dataset.fi),checked:el.querySelector('input[type=checkbox]').checked,range:el.querySelector('input[type=text]')?.value||''}));
+ wrap.replaceChildren();documents.forEach((doc,i)=>{
+  if(!doc.numPages)return;const old=previous.find(a=>a.i===i);
+  const block=document.createElement('div');block.className='targetfile';block.dataset.fi=i;
+  const label=document.createElement('label');const cb=document.createElement('input');cb.type='checkbox';cb.checked=old?old.checked:i===activeIndex;cb.onchange=updateTargetSummary;
+  label.append(cb,document.createTextNode(doc.file.name+` (${doc.numPages} hal.)`));block.append(label);
+  if(scope==='range'){const range=document.createElement('input');range.type='text';range.placeholder='Contoh: 2-4,8,9,10-99';range.value=old?.range||'';range.oninput=updateTargetSummary;block.append(range)}
+  wrap.append(block);
+ });updateTargetSummary()
+}
+function getActionTargets(){
+ const scope=targetScope(), d=currentDoc();if(!d||!d.numPages)throw Error('Buka PDF terlebih dahulu.');
+ if(scope==='current')return [{fileIndex:activeIndex,page}];
+ if(scope==='basket'){
+  if(!selectedQueue.length)throw Error('Keranjang masih kosong. Pilih halaman terlebih dahulu.');
+  return selectedQueue.map(({fileIndex,page})=>({fileIndex,page}));
+ }
+ const result=[];
+ for(const row of $('#targetDocs').querySelectorAll('.targetfile')){
+  if(!row.querySelector('input[type=checkbox]').checked)continue;
+  const fi=Number(row.dataset.fi),doc=documents[fi];if(!doc?.numPages)continue;
+  const pages=scope==='all'?Array.from({length:doc.numPages},(_,i)=>i+1):parseSegments(row.querySelector('input[type=text]').value,doc.numPages).flat();
+  for(const no of new Set(pages))result.push({fileIndex:fi,page:no});
+ }
+ if(!result.length)throw Error('Pilih dokumen dan rentang halaman yang ingin diedit.');
+ if(result.length>400)throw Error('Maksimal 400 target dalam satu tindakan. Perkecil rentang.');
+ return result;
+}
+function updateTargetSummary(){
+ if(!$('#targetSummary'))return;
+ try{const arr=getActionTargets();const count=new Set(arr.map(x=>x.fileIndex)).size;
+  $('#targetSummary').textContent=`Target: ${arr.length} halaman dari ${count} PDF. Draft berubah tanpa memasukkan halaman baru ke keranjang ekspor.`;
+ }catch(e){$('#targetSummary').textContent=e.message}
+}
+$('#targetScope').onchange=renderTargetDocs;
+function collectStageParams(){const opts={};for(const el of document.querySelectorAll('#params [data-key]'))opts[el.dataset.key]=el.value;return opts}
+function renderStageHistory(){const list=$('#historyList');list.replaceChildren();for(const item of stageHistory.slice(-8).reverse()){
+ const li=document.createElement('li');li.textContent=`${item.tool} · ${item.targets.length} halaman`;list.append(li)}
+ $('#undoStage').disabled=!stageHistory.length;$('#redoStage').disabled=!stageRedo.length;
+}
+function updatePageDraftStatus(){const d=currentDoc();if(!d)return;const entries=(d.pageActions||[]).filter(x=>x.page===page);
+ const suffix=entries.map(x=>x.tool).join(', ');$('#draftStatus').textContent=entries.length?`✓ ${entries.length} tindakan draft di halaman ini: ${suffix}. `+'Watermark dan objek lain tampil di preview; batas crop/rotasi baru final setelah ekspor.':
+ 'Belum ada tindakan tambahan pada halaman ini. Perubahan editor tetap tersimpan sebagai draft.';
+}
+async function refreshDraftPreview(seq=readVersion){
+ const d=currentDoc();if(!d)return;const actions=(d.pageActions||[]).filter(a=>a.page===page);
+ const guide=$('#cropGuide');guide.style.display='none';updatePageDraftStatus();
+ const activeCrops=actions.filter(a=>a.tool==='crop');if(activeCrops.length){
+  const op=activeCrops.at(-1).options;const l=Number(op.left||0),t=Number(op.top||0),r=Number(op.right||0),b=Number(op.bottom||0);
+  const c=$('#pdfCanvas');const w=c.width,h=c.height;
+  if(l>=0&&t>=0&&r>=0&&b>=0&&w-(l+r)*scale>20&&h-(t+b)*scale>20){
+   Object.assign(guide.style,{display:'block',left:l*scale+'px',top:t*scale+'px',width:(w-(l+r)*scale)+'px',height:(h-(t+b)*scale)+'px'});
+  }
+ }
+ const visible=actions.filter(a=>!['crop','rotate_page'].includes(a.tool));if(!visible.length)return;
+ const my=++draftPreviewVersion;
+ const fd=new FormData();fd.append('file',d.file);fd.append('page',String(page));fd.append('password',d.password||'');fd.append('actions',JSON.stringify(visible));
+ try{const r=await fetch('/advanced/draft-preview',{method:'POST',body:fd});if(!r.ok){const j=await r.json();throw Error(j.detail||'Preview tindakan gagal')}
+  const image=await createImageBitmap(await r.blob());if(my!==draftPreviewVersion||seq!==readVersion){image.close();return}
+  const canvas=$('#pdfCanvas'),ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0,canvas.width,canvas.height);image.close();
+ }catch(e){if(seq===readVersion)setInfo('Preview tindakan belum tersedia: '+e.message)}
+}
+async function applyStage(){
+ try{
+  if(!STAGED_TOOLS.has(choice))throw Error('Pilih tindakan halaman.');
+  const targets=getActionTargets(), options=collectStageParams();
+  if(choice==='sign_visual'){const img=$('#sigImage')?.files[0];if(!img)throw Error('Pilih gambar tanda tangan dahulu.');options.image=await readData(img)}
+  if(choice==='redact'&&!$('#redactConfirm').checked)throw Error('Centang konfirmasi redaksi permanen terlebih dahulu.');
+  saveCurrentPage();
+  const entry={tool:choice,targets:targets.map(x=>({...x})),entries:[]};
+  for(let i=0;i<targets.length;i++){
+   const target=targets[i],document=documents[target.fileIndex];
+   const optionsCopy={...options};if(choice==='page_number')optionsCopy.number=String((Number(options.start)||1)+i);
+   const action={id:'stage-'+Date.now()+'-'+i,tool:choice,page:target.page,options:optionsCopy};
+   document.pageActions.push(action);entry.entries.push({fileIndex:target.fileIndex,action});
+  }
+  stageHistory.push(entry);stageRedo=[];renderStageHistory();await drawPage();
+  setInfo(`✓ ${choice} ditambahkan pada ${targets.length} halaman sebagai draft. Centang halaman yang ingin diekspor.`);
+ }catch(e){error(e.message)}
+}
+$('#applyDraft').onclick=applyStage;
+$('#undoStage').onclick=async()=>{const h=stageHistory.pop();if(!h)return;
+ for(const {fileIndex,action} of h.entries){const d=documents[fileIndex];d.pageActions=d.pageActions.filter(x=>x.id!==action.id)}
+ stageRedo.push(h);renderStageHistory();await drawPage();
+};
+$('#redoStage').onclick=async()=>{const h=stageRedo.pop();if(!h)return;
+ for(const {fileIndex,action} of h.entries)documents[fileIndex].pageActions.push(action);
+ stageHistory.push(h);renderStageHistory();await drawPage();
+};
 $('#qualityMatch').checked=true;if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';cfg();
 </script></body></html>

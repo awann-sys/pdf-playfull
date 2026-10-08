@@ -1,54 +1,54 @@
-# PDF Playfull — Editor multi-file + ekspor halaman (tanpa AI)
+# PDF Playfull — Universal PDF Workspace (revisi non-AI)
 
-Perubahan ini untuk aplikasi **FastAPI di Render**. Menu lama tetap dipertahankan.
+## Revisi yang sudah tersedia
 
-## File yang berubah
+- Preview PDF, daftar file, keranjang halaman, dan penamaan hasil **tetap terlihat** saat berpindah alat.
+- Pilihan target tindakan: **halaman aktif (default)**, **halaman dalam keranjang**, **rentang per dokumen**, atau **seluruh halaman dokumen pilihan**.
+- Tindakan yang diterapkan ke draft tanpa unduhan: **watermark, crop, putar halaman, nomor halaman, tanda tangan gambar, redaksi berdasarkan frasa, formulir isian**.
+- Watermark, nomor halaman, redaksi, form, dan tanda tangan tampak dalam preview melalui render server. **Crop** diberi panduan area dan **rotasi** dicatat dalam draft; tampilan canvas editor tidak diputar supaya koordinat objek asli tidak salah. Keduanya diterapkan saat ekspor.
+- Tindakan otomatis tersimpan sementara selama tab masih terbuka, dipisahkan per dokumen, dan bisa dibatalkan lewat **Batalkan terakhir** atau dikembalikan dengan **Ulangi tindakan**. Undo/Redo untuk objek visual masih berada di editor objek.
+- **Keranjang ekspor terpisah dari target tindakan.** Halaman di luar keranjang tidak dimasukkan unduhan meskipun memiliki perubahan draft.
+- Ekspor tetap mendukung satu PDF, per dokumen, per rentang, per halaman, nama tiap PDF dan ZIP.
+- Alat tingkat dokumen seperti OCR, PDF/A, perbaikan PDF, dan konversi memproses draft aktif lebih dahulu, kemudian mengolahnya. Jika hasilnya PDF, **Simpan hasil sebagai dokumen baru di workspace** sudah aktif secara default, tanpa perlu download.
+- Quality Match untuk teks tambahan pada scan tetap tersedia dan **tidak memburamkan watermark**.
+- Fitur AI tidak ditambahkan.
 
-- `static/advanced.html`: properti teks/gambar dan workspace multi-file, penamaan per hasil.
-- `advanced_pdf.py`: pengaturan font, warna, align, backend edit banyak PDF dan ekspor per kelompok.
-- `server.py`: endpoint `POST /advanced/batch-edit` untuk menjalankan pemrosesan yang dipilih.
+## Keterbatasan yang harus diketahui
 
-Tidak ada dependensi Python baru. `requirements.txt`, `Dockerfile`, dan `render.yaml` tetap seperti revisi Tahap 1–3 sebelumnya.
+- Proses berat seperti OCR/PDF-A/konversi Office dijalankan oleh server ketika tombol proses ditekan. Hasilnya dapat ditambahkan sebagai dokumen kerja baru, tetapi bukan manipulasi langsung pada canvas.
+- Crop dan rotasi belum memperlihatkan hasil final bersudut penuh di canvas objek. Crop menggunakan panduan area; ekspor final sudah menerapkan operasi sebenarnya.
+- Draft saat ini belum bertahan setelah refresh/menutup tab. Simpanlah hasil penting dengan mengekspor.
+- Redaksi permanen menghapus isi dari PDF hasil. Pratinjau bisa berbeda jika jenis font atau PDF scan kompleks.
+- Batas 12 dokumen, 400 tindakan halaman per dokumen, 800 halaman dalam satu kali ekspor dan 55 MB total unggahan batch. Render Free bisa kehabisan RAM pada PDF besar.
+- Sertifikat digital P12 ditandatangani melalui alat dokumen terpisah; menandatangani secara digital bukan sekadar menambahkan gambar tanda tangan.
 
-## Cara pakai
+## Cara memasang PATCH (Windows CMD)
 
-1. Buka **Edit PDF Bebas + Tools Lanjutan** di aplikasi. Pilih **Edit Teks & Gambar**.
-2. Unggah 1–12 file PDF sekaligus. Pilih file aktif dengan klik namanya. Centang file yang akan dimasukkan ke hasil.
-3. Klik blok teks/gambar di preview. Panel **Properti objek** menyediakan teks, font (Helvetica/Times/Courier), ukuran, tebal/miring, warna, rata kiri/tengah/kanan, X/Y, lebar/tinggi. Gunakan drag untuk geser. Tombol Tambah Teks otomatis membuka panel properti, **tanpa dialog browser**.
-4. Saat beralih ke PDF lain, riwayat edit dan halaman terakhir untuk setiap file tetap tersimpan **selama tab browser tetap terbuka**. Pilihan file dan rentang disimpan sementara di browser; **tidak tersimpan permanen dan akan hilang saat refresh/menutup tab**.
-5. Tentukan cakupan halaman: **halaman ini saja**, **semua**, **halaman saat ini tiap file**, atau **rentang per file** (contoh: `2-4,8,9,10-99`). Angka harus berada dalam jumlah halaman PDF sumber masing-masing.
-6. Tentukan keluaran:
-   - **Jadikan satu PDF**: semua halaman terpilih dari dokumen tercentang digabung menjadi satu PDF dengan nama dari **Nama file PDF gabungan**.
-   - **Setiap rentang**: `2-4,8,9,10-99` membuat empat PDF. Per PDF dapat diberi nama di daftar di bawah pola nama.
-   - **Setiap halaman**: setiap halaman dari rentang dibuat PDF sendiri dengan nama individual.
-7. Ubah pola nama output dengan `{source}`, `{start}`, `{end}`, `{page}`, `{index}` bila perlu. Tiap keluaran bisa diganti namanya langsung lewat kolom di daftar hasil. Atur nama ZIP dari kolom **Nama ZIP**.
-8. Klik **Proses PDF pilihan** atau **Proses hasil edit PDF**, lalu unduh. **Satu keluaran = PDF langsung, dua atau lebih keluaran = ZIP**.
-
-## Contoh
-
-Dua file: `Skripsi_A.pdf` dan `Skripsi_B.pdf`, masing-masing dicentang.
-- File A: `2-4,8,9,10-99`; file B: `1,3-5`.
-- Mode **per rentang** menghasilkan hingga 6 PDF bernama sesuai isian, dikemas dalam ZIP bernama `PDF_Playfull_Hasil.zip` (bisa diganti).
-- Mode **per halaman** mengeluarkan masing-masing halaman sebagai PDF tersendiri.
-- Mode **satu PDF** menggabungkan semua halaman terpilih dalam satu PDF menurut urutan file dan rentang.
-
-## Batasan teknis
-
-- Editor teks PDF adalah penggantian blok teks menggunakan redaksi permanen + penulisan ulang; **bukan** mesin layout paragraf Word. Font PDF asli tidak selalu bisa dipertahankan persis. Font yang didukung editor: Helvetica, Times, Courier dan variasi tebal/miring.
-- Obyek tertanam yang rumit / teks hasil scan mungkin tidak dapat disunting sebagai teks; OCR disediakan pada menu lain.
-- Hasil disimpan lewat unduhan; PDF tidak otomatis diunggah ke GitHub.
-- Untuk stabilitas Render Free, batasi dokumen sampai 12 file, ukuran gabungan sekitar 55 MB, 350 kelompok ekspor, dan 800 halaman total yang diekspor per proses.
-- Uji fungsi backend dan simulasi browser telah dilakukan, namun jalankan pengujian di browser Render setelah redeploy, terutama dengan PDF besar.
-
-## Update via CMD
-
-Ekstrak isi patch di folder lokal proyek sehingga `server.py`, `advanced_pdf.py`, dan `static/advanced.html` ditimpa, lalu:
+1. Ekstrak isi ZIP Patch **ke** `C:\pdf pecah` dengan **Replace/Timpa**, bukan memasukkan seluruh ZIP ke folder `static`.
+2. Empat file yang perlu ada:
+   - `C:\pdf pecah\advanced_pdf.py`
+   - `C:\pdf pecah\server.py`
+   - `C:\pdf pecah\workspace_ops.py` (**file baru**)
+   - `C:\pdf pecah\static\advanced.html`
+3. Jalankan:
 
 ```cmd
 cd /d "C:\pdf pecah"
-git add server.py advanced_pdf.py static/advanced.html PANDUAN_UPDATE.md
-git commit -m "Editor PDF teks lengkap, multi-file, dan ekspor halaman fleksibel"
+git status
+git add advanced_pdf.py server.py workspace_ops.py static/advanced.html
+git commit -m "Integrasi workspace PDF dan tindakan multi-halaman"
 git push origin main
 ```
 
-Render akan redeploy otomatis jika **Auto Deploy** aktif. Setelah Live, gunakan `Ctrl+F5` untuk refresh browser.
+4. Render → Events → tunggu status Live. Buka situs kemudian `Ctrl + Shift + R`.
+5. Jika Git menampilkan `nothing to commit`, jalankan `git status` dan pastikan file `static\advanced.html` memang ditimpa, bukan ditaruh di root proyek.
+
+## Tes penggunaan
+
+1. Upload dua PDF berukuran kecil.
+2. Klik Watermark; pilih **Rentang per dokumen**. Centang file A lalu isi `2-4,8`, centang file B lalu isi `3`.
+3. Pilih **Terapkan ke Draft**. Periksa halaman yang diberi watermark dan riwayat tindakan.
+4. Klik Batalkan terakhir lalu Ulangi tindakan; lihat perubahan kembali.
+5. Centang beberapa halaman masuk keranjang **dengan urutan bebas lintas file**.
+6. Klik Buat & Unduh Hasil Pilihan, pilih format hasil dan nama yang diinginkan.
+7. Gunakan Perbaiki PDF untuk memeriksa opsi hasil otomatis masuk workspace (tanpa unduh ulang).

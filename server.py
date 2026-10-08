@@ -365,6 +365,26 @@ def advanced_process(tool: str, files: list[UploadFile] = File(...), opts: str =
         if len(opts)>7_000_000: raise ValueError("Terlalu banyak perubahan atau gambar.")
         options=json.loads(opts)
         fs=[Berkas(f.filename or "dokumen.pdf", baca(f)) for f in files]
+        # All document-level operations consume the current draft when present.
+        # This avoids forcing a manual export/reupload between page editing and OCR, PDF/A, etc.
+        if fs and fs[0].name.lower().endswith('.pdf'):
+            edit_ops = options.pop('draft_ops', [])
+            page_actions = options.pop('draft_page_actions', [])
+            if edit_ops or page_actions:
+                import workspace_ops as wops
+                if edit_ops:
+                    changed = adv.apply_edits(fs[0].data, {
+                        'password':options.get('password',''), 'operations':edit_ops,
+                        'quality_match':bool(options.get('quality_match',False)),
+                    })
+                else:
+                    changed = fs[0].data
+                if page_actions:
+                    with adv.open_pdf(changed, options.get('password','') if not edit_ops else '') as pdf:
+                        wops.apply_document_actions(pdf,page_actions)
+                        changed=adv.save_pdf(pdf)
+                fs[0]=Berkas(fs[0].name,changed)
+                options['password']=''
         body,name,mime,info=adv.dispatch(tool,fs,options)
         return Response(body,media_type=mime,headers={
             "Content-Disposition":f'attachment; filename="{adv.safe_name(name)}"',
@@ -377,6 +397,22 @@ def _download_disposition(name):
     safe = adv.safe_name(name)
     ascii_name = ''.join(ch if ch.isascii() and (ch.isalnum() or ch in '._- ()') else '_' for ch in safe)
     return f"attachment; filename=\"{ascii_name}\"; filename*=UTF-8''{quote(safe)}"
+
+
+@app.post("/advanced/draft-preview")
+def advanced_draft_preview(file: UploadFile = File(...), page: int = Form(1), password: str = Form(""), actions: str = Form("[]")):
+    try:
+        import workspace_ops as wops
+        if len(actions) > 100_000: raise ValueError("Terlalu banyak data preview.")
+        raw = baca(file)
+        if len(raw) > 25 * 1024 * 1024: raise ValueError("PDF preview terlalu besar.")
+        operations = json.loads(actions)
+        if not isinstance(operations,list) or len(operations)>wops.MAX_ACTIONS:
+            raise ValueError("Tindakan preview tidak valid.")
+        result = wops.preview_page(raw, page, operations, password)
+        return Response(result, media_type="image/png", headers={"Cache-Control":"no-store"})
+    except (ValueError, TypeError, RuntimeError) as exc:
+        return JSONResponse({"detail":str(exc)},status_code=400)
 
 
 @app.post("/advanced/batch-edit")

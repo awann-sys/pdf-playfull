@@ -681,6 +681,7 @@ def batch_edit(fs, opts):
     if len(json.dumps(opts)) > 9_000_000:
         raise ValueError("Data edit terlalu besar.")
 
+    import workspace_ops as wops
     edited = []
     try:
         for f, spec in zip(fs, doc_opts):
@@ -693,6 +694,11 @@ def batch_edit(fs, opts):
                 pdf = open_pdf(edited_bytes)
             else:
                 pdf = open_pdf(f.data, password)
+            try:
+                wops.apply_document_actions(pdf, spec.get('pageActions', []))
+            except Exception:
+                pdf.close()
+                raise
             edited.append(pdf)
 
         validated = []
