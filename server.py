@@ -346,4 +346,30 @@ def jalankan(tool: str, files: list[UploadFile] = File(default=[]), opts: str = 
         "Access-Control-Expose-Headers": "X-Info, Content-Disposition"})
 
 
+# Extra tools: advanced visual editing, conversion, OCR, forms and document security.
+import advanced_pdf as adv
+
+@app.post("/advanced/inspect")
+def advanced_inspect(file: UploadFile = File(...), page: int = Form(1), password: str = Form("")):
+    try:
+        if not (file.filename or "").lower().endswith(".pdf"):
+            raise ValueError("Pilih file PDF.")
+        return adv.inspect_page(baca(file), page, password)
+    except Exception as exc:
+        return JSONResponse({"detail":str(exc)},status_code=400)
+
+@app.post("/advanced/process/{tool}")
+def advanced_process(tool: str, files: list[UploadFile] = File(...), opts: str = Form("{}")):
+    try:
+        if len(files)>2: raise ValueError("Maksimum dua dokumen untuk fitur ini.")
+        if len(opts)>7_000_000: raise ValueError("Terlalu banyak perubahan atau gambar.")
+        options=json.loads(opts)
+        fs=[Berkas(f.filename or "dokumen.pdf", baca(f)) for f in files]
+        body,name,mime,info=adv.dispatch(tool,fs,options)
+        return Response(body,media_type=mime,headers={
+            "Content-Disposition":f'attachment; filename="{adv.safe_name(name)}"',
+            "Access-Control-Expose-Headers":"Content-Disposition"})
+    except Exception as exc:
+        return JSONResponse({"detail":str(exc)},status_code=400)
+
 app.mount("/", StaticFiles(directory=str(Path(__file__).parent / "static"), html=True), name="static")

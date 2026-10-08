@@ -1,60 +1,73 @@
-# PDF Toolkit — siap deploy ke Render
+# PDF Playfull — Editor dan PDF Tools (Tahap 1–3; tanpa AI)
 
-Aplikasi ini menggunakan **FastAPI + HTML/JavaScript + PyMuPDF**, bukan Streamlit.
-Terdapat menu Pemotong Skripsi, PDF Tools, dan PDF Playfull.
-Konversi Word ke PDF memerlukan LibreOffice, sudah dipasang lewat `Dockerfile`.
+Versi ini mempertahankan aplikasi FastAPI sebelumnya: **Pemotong Skripsi**, **PDF Tools**, dan **PDF Playfull**, plus halaman **Edit PDF Bebas + Tools Lanjutan** (`/advanced.html`). Backend PDF lama tetap berada di `pdf_core.py`; fungsi baru disimpan terpisah di `advanced_pdf.py`. Semua hasil dikirim sebagai unduhan; tidak di-commit atau disimpan ke GitHub otomatis.
 
-## Deploy di Render (cara paling mudah)
+## Fitur baru
 
-1. Ekstrak ZIP ini di komputer. Isinya harus berada di **root repository** GitHub, terutama `Dockerfile`, `render.yaml`, `server.py`, `pdf_core.py`, `requirements.txt`, dan folder `static/`. Jangan unggah hanya ZIP-nya.
-2. Masuk ke https://github.com/new dan buat repository baru, misalnya `pdf-toolkit`, boleh `Private`.
-3. Buka repository baru → **Add file** → **Upload files** → unggah **semua isi folder hasil ekstrak** → **Commit changes**. Pastikan bukan terbungkus lagi dalam folder `pdf-toolkit/`.
-4. Masuk ke https://dashboard.render.com/ → **New** → **Blueprint** → hubungkan GitHub → pilih repository tadi.
-5. Render membaca `render.yaml`. Periksa service bernama `pdf-toolkit`, runtime Docker, plan Free, region Singapore → klik **Deploy Blueprint**.
-6. Buka halaman service Render dan tunggu sampai status **Live**. Proses pertama butuh waktu lebih lama karena instalasi LibreOffice.
-7. Buka alamat seperti `https://pdf-toolkit-xxxx.onrender.com/` (gunakan alamat yang benar-benar ditampilkan oleh Render).
-8. Untuk mengecek backend, buka `https://<alamat-render-kamu>/healthz`; hasil normal `{"status":"ok"}`.
+### Tahap 1 — Editor visual
+- PDF.js menampilkan halaman PDF di browser (halaman yang aktif saja).
+- Konva.js menyediakan pemilihan, pemindahan, pengubahan ukuran, Undo/Redo, penambahan teks, gambar, kotak dan sorotan.
+- Klik dua kali pada bingkai teks asli untuk mengubah teks. Backend menggunakan **redaksi teks lama** lalu menggambar teks baru. Font/layout rumit **tidak sama dengan Microsoft Word**, dan harus diperiksa kembali.
+- Memindahkan gambar asli akan mengubah objek menjadi potongan gambar raster, sehingga editability dan sifat vektornya dapat hilang.
+- Watermark teks transparan dan crop margin (crop *tampilan*, konten di luar crop masih berada di file).
 
-## Alternatif: New → Web Service
+### Tahap 2 — Konversi
+- DOC/DOCX, PPT/PPTX, XLS/XLSX, ODT/ODS/ODP → PDF via LibreOffice.
+- HTML lokal (.html/.htm) → PDF via LibreOffice. **URL web langsung belum didukung** untuk menghindari risiko SSRF.
+- PDF → DOCX dengan `pdf2docx` (layout tidak selalu sempurna).
+- PDF → PPTX dengan *slide berupa gambar halaman* (teks/bentuk tidak langsung editable).
+- PDF → XLSX dengan mengekstrak **tabel yang terdeteksi**; bukan konversi tata letak keseluruhan.
+- PDF → Markdown dengan deteksi ukuran judul sederhana.
+- Ekstraksi gambar bitmap dari PDF.
+- PDF → PDF/A-2 melalui LibreOffice; perlu **validasi veraPDF** untuk memastikan kepatuhan standar pengarsipan.
 
-- Hubungkan repository GitHub yang sama.
-- Pilih **Language: Docker**, **Branch: main**, **Root Directory: kosong** (karena file ada di root), **Instance Type: Free** untuk mencoba.
-- Dockerfile Path: `./Dockerfile`. Tidak perlu menulis Build Command maupun Start Command; keduanya ditangani oleh Dockerfile.
-- Jika menggunakan mode Web Service manual, tambahkan env `MAX_UPLOAD_MB=25` jika ingin menentukan batas upload per berkas.
-- Klik **Deploy Web Service**.
+### Tahap 3 — Keamanan dan dokumen
+- Redaksi permanen teks sensitif yang dicari, dengan menghapus konten dari PDF.
+- OCR scan memakai Tesseract (English dan Bahasa Indonesia), dibatasi 40 halaman per permintaan untuk hosting ringan.
+- Gambar tanda tangan visual (bukan tanda tangan digital tersertifikasi).
+- Tanda tangan **kriptografis** menggunakan sertifikat milik pengguna dalam format `.p12`/`.pfx`, memakai `pyHanko`.
+- Tambah field formulir secara manual, deteksi terbatas label berakhiran `:`, dan isi form memakai JSON berdasarkan nama field.
+- Upaya perbaikan PDF (optimasi/rekonstruksi struktur yang masih dapat dibaca; file yang rusak parah bisa gagal).
+- Perbandingan **visual dua PDF berdampingan**; belum ada markup otomatis untuk tiap perbedaan.
+- Scan kamera di browser melalui HTTPS, lalu hasilnya menjadi PDF.
 
-## Pengaturan penting
+**Tidak ada fitur AI**: tidak ada ringkasan AI, terjemahan AI atau generator workflow.
 
-- Aplikasi mendengarkan `0.0.0.0:$PORT` (default `10000`) sesuai persyaratan Render.
-- `GET /healthz` digunakan untuk health check.
-- Tidak memerlukan `packages.txt`: LibreOffice dipasang di dalam Dockerfile.
-- Paket Free memiliki RAM 512 MB. PDF panjang, kompresi raster, dan Word → PDF berpotensi membutuhkan lebih banyak RAM; kurangi ukuran berkas atau gunakan instance lebih besar jika gagal karena kehabisan memori.
-- Server tidak menyimpan berkas pengguna secara permanen. Ruang kerja PDF di browser juga akan hilang saat halaman ditutup atau dimuat ulang. Sistem berkas lokal Render tidak permanen.
-- Jangan memasukkan PDF sensitif ke layanan publik tanpa kontrol akses dan kebijakan privasi.
-
-## Uji lokal
-
-Jika Docker tersedia:
-
-```bash
-docker build -t pdf-toolkit .
-docker run --rm -p 10000:10000 -e PORT=10000 pdf-toolkit
-```
-
-Buka http://localhost:10000 dan http://localhost:10000/healthz.
-
-Jika ingin menjalankan FastAPI tanpa Docker, install `requirements.txt` dan LibreOffice sistem, kemudian:
+## Jalankan lokal
 
 ```bash
-python -m uvicorn server:app --reload --host 127.0.0.1 --port 8000
+python -m pip install -r requirements.txt
+# instal LibreOffice Writer + Draw + Impress + Calc serta Tesseract eng/ind via package manager sistem
+python -m uvicorn server:app --reload
 ```
 
-Buka http://127.0.0.1:8000.
+Buka `http://localhost:8000/` untuk PDF Toolkit dan `http://localhost:8000/advanced.html` untuk menu baru. Kode editor bergantung pada **PDF.js 3.11.174** dan **Konva.js 9.3.20** melalui CDN, jadi browser harus dapat memuat dependensi dari internet. Tidak ada PDF pengguna yang dikirim oleh server ke layanan AI.
 
-## Mengatasi masalah
+Untuk Render, gunakan `Dockerfile` dan `render.yaml` dari paket ini. Dependencies mencakup LibreOffice Impress/Calc, Tesseract dan modul Python baru. Karena Render Free memiliki memori kecil, **konversi Office, OCR dan dokumen sangat besar mungkin melampaui batas RAM/CPU**.
 
-- **ModuleNotFoundError**: pastikan `requirements.txt` berada pada root repository yang sama dengan `Dockerfile`.
-- **No open ports detected**: cek bahwa perintah Docker menggunakan `--host 0.0.0.0 --port ${PORT:-10000}`.
-- **Word → PDF gagal**: pastikan yang dipilih adalah **Docker** dan log build memasang `libreoffice-writer`.
-- **Out of memory**: kurangi jumlah halaman/besar dokumen atau upgrade dari Free untuk pekerjaan berat.
-- **Deployment gagal**: buka service → **Logs** pada Render dan salin pesan error paling bawah untuk diagnosis lebih lanjut.
+## Tes yang dilakukan
+
+```bash
+PYTHONPATH=. python -m pytest -q tests/test_preview.py tests/test_advanced.py
+python -m py_compile server.py pdf_core.py advanced_pdf.py
+```
+
+Sebelum deploy publik, uji visual editor secara manual di browser karena lingkungan pembuatan tidak mengizinkan Playwright membuka localhost. Fitur `pyHanko` dan `pdf2docx` juga perlu uji integrasi di lingkungan yang berhasil menginstal kedua paket tersebut. Periksa output digital signature dengan validator sertifikat (dan time-stamp jika diperlukan); penandatanganan tidak otomatis menyatakan legalitas sertifikat.
+
+## Update repository GitHub yang sudah ada
+
+Ekstrak isi paket **pada folder root** proyek `C:\\pdf pecah` (bukan ke dalam subfolder). Lalu di CMD:
+
+```cmd
+cd /d "C:\pdf pecah"
+git status
+git add server.py advanced_pdf.py static/index.html static/advanced.html requirements.txt Dockerfile README.md
+git commit -m "Tambah PDF Playfull tahap 1 sampai 3 tanpa AI"
+git push origin main
+```
+
+Jika Render terhubung dengan GitHub dan Auto Deploy aktif, layanan dapat membangun ulang Docker image. **Jangan upload PDF pribadi atau file sertifikat `.p12` ke repository GitHub.**
+
+## Catatan lisensi
+
+PyMuPDF memiliki ketentuan AGPL/komersial; pastikan penggunaan/distribusi aplikasi mematuhi lisensi yang berlaku. PDF.js dan Konva.js mempunyai lisensi open-source masing-masing. Untuk kebutuhan pengguna publik yang memproses data sensitif, audit keamanan dan privasi harus dilakukan sebelum produksi.

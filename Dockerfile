@@ -4,6 +4,12 @@ FROM python:3.12-slim
 # Font dasar ditambahkan agar hasil DOCX -> PDF lebih konsisten.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice-writer \
+    libreoffice-calc \
+    libreoffice-impress \
+    libreoffice-draw \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    tesseract-ocr-ind \
     fonts-liberation \
     fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*

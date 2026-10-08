@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PDF Playfull — Edit Bebas + Tools Lanjutan</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#17324d;background:#f3f8fc}*{box-sizing:border-box}
+body{margin:0}header{background:#fff;position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(12px,4vw,44px);box-shadow:0 1px 6px #abc3d022}
+a{color:#1479aa;text-decoration:none}h1{font-size:clamp(24px,4vw,33px);margin:0 0 5px}.lead{color:#5b7182;margin:0 0 20px}
+main{max-width:1440px;margin:auto;padding:20px}.layout{display:grid;grid-template-columns:minmax(260px,310px) minmax(0,1fr);gap:18px}
+.panel{background:white;border:1px solid #d5e5ed;border-radius:15px;padding:17px;box-shadow:0 2px 10px #577a9010;margin-bottom:14px}
+.panel h2{font-size:17px;margin:0 0 10px}.panel h3{font-size:14px;margin:18px 0 8px}.small{font-size:12px;color:#607587}label{display:block;font-weight:600;font-size:13px;margin:12px 0 6px}
+input,select,textarea,button{font:inherit}input[type=file],input[type=text],input[type=number],input[type=password],input[type=color],select,textarea{width:100%;padding:9px;border:1px solid #cbdde9;border-radius:8px;background:#fff}
+input[type=color]{height:42px;padding:4px}input[type=range]{width:100%}button{border:1px solid #c8dee9;background:#f5fbfe;padding:9px 12px;border-radius:9px;cursor:pointer;color:#17324d;font-weight:600}button:hover{background:#e6f4fb}button:disabled{opacity:.55;cursor:not-allowed}.primary{background:linear-gradient(120deg,#0284c7,#0d9488);color:#fff;border:none}.primary:hover{background:#036d91}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.bar button{flex:1 0 auto}.sep{height:1px;background:#e5eef2;margin:16px 0}.stagehead{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}.viewer{overflow:auto;min-height:240px;max-height:70vh;background:#d7e4ee;border:1px solid #b8cbd8;border-radius:10px;padding:20px;display:flex;justify-content:center;align-items:flex-start}
+.paper{position:relative;box-shadow:0 8px 24px #37516d55;background:white;flex-shrink:0}#pdfCanvas{display:block}#konvaOverlay{position:absolute;left:0;top:0;touch-action:none}
+#result{min-height:36px;margin-top:10px}.msg{padding:12px;border-radius:8px;background:#e9f8ee;color:#186442}.msg.error{background:#fff0f0;color:#b21b32}
+.download{display:inline-block;background:#0d9488;color:white;padding:12px 16px;border-radius:10px;font-weight:600;margin-top:8px}.hide{display:none!important}.pill{display:inline-block;font-size:11px;background:#e4f3fa;border-radius:20px;padding:5px 9px;color:#12618f}
+.toolgroup{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.toolgroup button{text-align:left;font-size:13px}.toolgroup button.chosen{background:#d7f6ea;border:2px solid #0d9488}
+#toolDesc{font-size:13px;color:#486779;padding:8px 0}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.viewer{max-height:57vh}header{position:relative}}
+</style></head><body>
+<header><a href="/">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
+<main><h1>Editor PDF & Alat Profesional</h1><p class="lead">Edit objek visual, konversi dokumen, lindungi PDF, OCR dan buat formulir. Semua diproses di server aplikasi.</p>
+<div class="layout"><aside>
+<div class="panel"><h2>📂 Dokumen kerja</h2><label for="upload">PDF atau dokumen sumber</label><input id="upload" type="file" accept=".pdf,.docx,.doc,.ppt,.pptx,.xls,.xlsx,.odt,.odp,.ods,.html,.htm"/><label for="upload2">Dokumen kedua (khusus Bandingkan)</label><input id="upload2" type="file" accept=".pdf"/>
+<div id="fileInfo" class="small">Pilih PDF untuk menampilkan editor.</div><div class="sep"></div><label for="filename">Nama hasil</label><input id="filename" type="text" placeholder="Mengikuti nama dokumen"/><label for="password">Password PDF jika terkunci</label><input id="password" type="password" autocomplete="off"/></div>
+<div class="panel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div><button class="primary" style="width:100%;margin-top:12px" id="process">Buat Hasil</button></div>
+</aside><section>
+<div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button></div></div>
+<p class="small">Klik objek biru untuk memilih. Drag untuk memindahkan dan titik sudut untuk mengubah ukuran. Klik dua kali teks untuk mengedit; hasil akhir dibuat setelah menekan Buat Hasil.</p>
+<div class="bar" id="editbar"><button id="addtext">✎ Tambah teks</button><button id="addimage">▧ Tambah gambar</button><button id="addrect">▢ Kotak</button><button id="addhighlight">🖍 Sorot</button><button id="delobj">🗑 Hapus pilihan</button><button id="undo">↶ Undo</button><button id="redo">↷ Redo</button></div><input type="file" id="imgInput" accept="image/png,image/jpeg" hidden/>
+<div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="konvaOverlay"></div></div></div><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
+<div class="panel"><h2>📱 Scan dari kamera</h2><p class="small">Pada ponsel, ambil foto lewat kamera lalu simpan sebagai PDF. Memerlukan HTTPS dan izin kamera.</p><button id="camera">📷 Ambil foto → PDF</button><video id="vid" playsinline autoplay muted class="hide" style="width:100%;max-height:300px"></video><button id="shot" class="hide primary">Jepret & konversi</button></div>
+<div class="panel"><h2>📥 Hasil pemrosesan</h2><div id="result">Belum ada hasil.</div></div>
+</section></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/konva@9.3.20/konva.min.js"></script>
+<script>
+'use strict';
+const $=q=>document.querySelector(q);
+const TOOLS=[
+ ['edit','✏️ Edit Teks & Gambar',1,'Tambah, geser, ubah ukuran, ganti atau hapus teks/gambar. Redaksi teks asli dilakukan dalam PDF, bukan sekadar menutup dengan kotak.'],
+ ['watermark','💧 Watermark',1,'Tulisan transparan sebagai tanda air.'],
+ ['crop','✂️ Potong Margin',1,'Mengubah crop box (area tampilan), bukan menghapus data di luar crop.'],
+ ['office_pdf','📄 Word/PPT/Excel → PDF',2,'Konversi Office via LibreOffice. Untuk PowerPoint dan Excel, layout dapat berubah menurut font.'],
+ ['pdf_word','📘 PDF → Word',2,'Konversi dengan pdf2docx; tidak menjamin ketepatan tata letak 100%.'],
+ ['pdf_pptx','📊 PDF → PowerPoint',2,'Setiap halaman dijadikan gambar satu slide, objek di dalam slide tidak editable.'],
+ ['pdf_xlsx','📗 PDF → Excel',2,'Ekstraksi tabel yang terdeteksi menjadi sheet XLSX, bukan konversi layout PDF penuh.'],
+ ['extract_images','🌄 Ambil Gambar PDF',2,'Ekstrak file gambar bitmap asli dalam PDF.'],
+ ['html_pdf','🌐 HTML → PDF',2,'Upload file HTML lokal; tautan URL publik tidak di-fetch oleh server demi keamanan.'],
+ ['pdfa','🗃 PDF → PDF/A',2,'Ekspor ulang via LibreOffice PDF/A-2, verifikasi formal dengan veraPDF tetap diperlukan.'],
+ ['markdown','📝 PDF → Markdown',2,'Ekstraksi teks dengan deteksi judul sederhana. Tata letak kompleks dapat berubah.'],
+ ['redact','⬛ Samarkan Permanen',3,'Hapus teks yang cocok berikut isinya, bukan menutup visual saja.'],
+ ['ocr','🔎 OCR Scan',3,'Jadikan halaman hasil scan dapat dicari dengan Tesseract. Maksimal 40 halaman.'],
+ ['sign_certificate','🔏 Tanda Tangan Digital P12',3,'Tanda tangan PDF secara kriptografis dengan sertifikat PKCS#12 (.p12/.pfx) milik sendiri.'],
+ ['form_auto','🗂 Deteksi Formulir',3,'Mendeteksi label berakhiran titik dua dan menambahkan kotak isian otomatis (heuristik, perlu pemeriksaan hasil).'],
+ ['form_fill','⌨️ Isi Formulir',3,'Isi field PDF berdasarkan nama kolom menggunakan JSON.'],
+ ['sign_visual','✒️ Tanda Tangan Visual',3,'Bubuhkan gambar tanda tangan; tidak setara tanda tangan digital bersertifikat.'],
+ ['form','☑️ Formulir Isian',3,'Tambah field teks interaktif yang bisa diisi di pembaca PDF.'],
+ ['repair','🩹 Perbaiki PDF',3,'Membangun ulang struktur PDF yang masih bisa dibaca; tidak menjamin PDF rusak parah pulih.'],
+ ['compare','⚖️ Bandingkan PDF',3,'Bandingkan dua versi PDF berdampingan per halaman.'],
+];
+let choice='edit',pdfDoc=null,pdfFile=null,page=1,scale=1,kwStage=null,layer=null,tr=null,nodes=[],hist=[],picked=null,blocks=[],pageWidth=0,pageHeight=0,readVersion=0;let pageOps=new Map(),redos=[];
+function cfg(){for(const [id,n,g,desc] of TOOLS){const btn=document.createElement('button');btn.textContent=n;btn.dataset.tool=id;btn.onclick=()=>choose(id);$('#group'+g).appendChild(btn)}choose('edit')}
+const extraParams={
+ watermark:[['text','Teks watermark','DRAFT'],['fontSize','Ukuran tulisan','42'],['color','Warna (#hex)','#777777'],['angle','Rotasi (0,90,180,270)','0'],['pages','Halaman (mis. 1-5)','semua']],
+ crop:[['left','Potong kiri (pt)','20'],['top','Potong atas (pt)','20'],['right','Potong kanan (pt)','20'],['bottom','Potong bawah (pt)','20'],['pages','Halaman','semua']],
+ redact:[['phrase','Teks yang dihapus permanen','RAHASIA'],['pages','Halaman','semua']],
+ ocr:[['lang','Bahasa OCR (eng/ind/ind+eng)','ind+eng']],
+ form:[['field_name','Nama field','nama_lengkap'],['page','Halaman','1'],['x','X (pt)','100'],['y','Y (pt)','120'],['w','Lebar (pt)','210'],['h','Tinggi (pt)','26'],['default','Isi default','']],
+ sign_certificate:[['certificate_password','Password file sertifikat P12','']],
+ form_fill:[['fields','JSON isian, contoh: {\"nama_lengkap\":\"Adi\"}','{"nama_lengkap":"Adi"}']],
+ sign_visual:[['page','Halaman','1'],['x','X (pt)','100'],['y','Y (pt)','150'],['w','Lebar (pt)','200'],['h','Tinggi (pt)','75']],
+ extract_images:[['pages','Halaman','semua']],
+};
+function choose(id){choice=id;for(const b of document.querySelectorAll('.toolgroup button'))b.classList.toggle('chosen',b.dataset.tool===id);
+ const t=TOOLS.find(x=>x[0]===id);$('#toolTitle').textContent=t[1];$('#toolDesc').textContent=t[3];
+ const p=$('#params');p.replaceChildren();for(const [key,label,def] of (extraParams[id]||[])){const l=document.createElement('label');l.textContent=label;const el=document.createElement('input');el.type='text';el.value=def;el.dataset.key=key;l.appendChild(el);p.appendChild(l)}
+ if(id==='sign_certificate'){const l=document.createElement('label');l.textContent='Berkas sertifikat .p12 / .pfx';const e=document.createElement('input');e.type='file';e.accept='.p12,.pfx';e.id='certFile';l.appendChild(e);p.appendChild(l)}
+ if(id==='sign_visual'){const l=document.createElement('label');l.textContent='Gambar tanda tangan PNG/JPG';const e=document.createElement('input');e.type='file';e.accept='image/png,image/jpeg';e.id='sigImage';l.appendChild(e);p.appendChild(l)}
+ $('#editbar').classList.toggle('hide',id!=='edit');$('#process').textContent=id==='edit'?'Simpan PDF yang diedit':'Proses: '+t[1];
+ $('#upload2').parentElement.querySelector('label[for="upload2"]').classList.toggle('hide',id!=='compare');$('#upload2').classList.toggle('hide',id!=='compare');
+ $('#upload').accept=id==='office_pdf'?'.doc,.docx,.odt,.ppt,.pptx,.odp,.xls,.xlsx,.ods':id==='html_pdf'?'.html,.htm':'.pdf';
+}
+function setInfo(t){$('#editinfo').textContent=t}
+function error(t){$('#result').replaceChildren();const d=document.createElement('div');d.className='msg error';d.textContent='⚠️ '+t;$('#result').appendChild(d)}
+function state(){return {nodes:nodes.map(n=>({attrs:{...n.attrs},meta:{...n.meta}}))}}
+function checkpoint(){hist.push(state());if(hist.length>20)hist.shift();redos=[]}
+function selectNode(n){picked=n;if(tr)tr.nodes(n?[n]:[]);layer?.batchDraw();setInfo(n?'Objek dipilih: '+(n.meta?.kind||'baru')+'. Double click untuk mengganti teks.':'Pilih objek untuk mengedit.')}
+function makeRect(data,meta,staged=true){const rect=new Konva.Rect({x:data.x*scale,y:data.y*scale,width:data.w*scale,height:data.h*scale,fill:meta.kind==='original_image'?'rgba(255,140,0,.05)':'rgba(0,130,255,.055)',stroke:meta.kind==='original_image'?'#c77b15':'#0284c7',strokeWidth:1.2,dash:[4,4],draggable:true,name:'editable'});rect.meta={...meta};if(meta.kind==='text'){const label=new Konva.Text({x:rect.x()+3,y:rect.y()+3,text:meta.text||'',fontSize:(meta.fontSize||12)*scale,fill:'#17324d',width:rect.width()-6,listening:false});layer.add(label);rect.label=label;const relabel=()=>{label.position({x:rect.x()+3,y:rect.y()+3});label.width(Math.max(20,rect.width()*rect.scaleX()-6));label.fontSize((meta.fontSize||12)*scale)};rect.on('dragmove transform',relabel)}rect.on('click tap',e=>{e.cancelBubble=true;selectNode(rect)});rect.on('dragstart transformstart',checkpoint);
+ rect.on('dblclick dbltap',()=>{if(rect.meta.kind==='original_text'||rect.meta.kind==='text'){const value=prompt('Ganti teks pada objek:',rect.meta.text||'');if(value!==null){checkpoint();rect.meta.text=value;rect.meta.changed=true;if(rect.label)rect.label.text(value);selectNode(rect)}}});
+ layer.add(rect);nodes.push(rect);return rect}
+function loadOverlay(info){blocks=info.objects;pageWidth=info.width;pageHeight=info.height;nodes=[];hist=[];picked=null;
+ const w=$('#pdfCanvas').width,h=$('#pdfCanvas').height;$('#konvaOverlay').innerHTML='';kwStage=new Konva.Stage({container:'konvaOverlay',width:w,height:h});layer=new Konva.Layer();kwStage.add(layer);tr=new Konva.Transformer({rotateEnabled:false,keepRatio:false,anchorSize:8});layer.add(tr);
+ for(const x of blocks){const kind=x.type==='text'?'original_text':'original_image';makeRect(x,{kind,text:x.text||'',original:{x:x.x,y:x.y,w:x.w,h:x.h},changed:false,fontSize:x.fontSize||12,page})}
+ kwStage.on('click tap',e=>{if(e.target===kwStage)selectNode(null)});layer.draw();}
+async function loadPdf(){pageOps.clear();const f=$('#upload').files[0];pdfFile=f;pdfDoc=null;$('#fileInfo').textContent=f?`${f.name} (${(f.size/1048576).toFixed(1)} MB)`:'Belum ada dokumen';if(!f)return;
+ $('#filename').value=f.name.replace(/\.[^/.]+$/,'');
+ if(!f.name.toLowerCase().endsWith('.pdf')){setInfo('Dokumen Office/HTML siap dikonversi. Preview visual hanya tersedia untuk PDF.');return}
+ if(!window.pdfjsLib||!window.Konva){error('Editor visual memerlukan PDF.js dan Konva.js. Periksa akses CDN browser.');return}
+ try{const arr=new Uint8Array(await f.arrayBuffer());pdfDoc=await pdfjsLib.getDocument({data:arr,password:$('#password').value||undefined}).promise;page=1;await drawPage()}catch(e){error('Tidak dapat membuka PDF: '+e.message)}
+}
+async function drawPage(){if(!pdfDoc)return;const seq=++readVersion;
+ try{const pg=await pdfDoc.getPage(page);const base=pg.getViewport({scale:1});const available=Math.max(300,Math.min(880,$('#viewer').clientWidth-48));scale=Math.min(1.6,available/base.width);
+ const viewport=pg.getViewport({scale});const canvas=$('#pdfCanvas');canvas.width=Math.round(viewport.width);canvas.height=Math.round(viewport.height);$('#paper').style.width=canvas.width+'px';$('#paper').style.height=canvas.height+'px';
+ await pg.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
+ const fd=new FormData();fd.append('file',pdfFile);fd.append('page',page);fd.append('password',$('#password').value);
+ const r=await fetch('/advanced/inspect',{method:'POST',body:fd});const info=await r.json();if(!r.ok)throw new Error(info.detail||'Gagal membaca objek.');if(seq!==readVersion)return;
+ loadOverlay(info);if(pageOps.has(page)){for(const op of pageOps.get(page)){if(op.type==='text'||op.type==='image'||op.type==='rectangle'||op.type==='highlight'){makeRect(op,{kind:op.type,text:op.text,image:op.image,page,changed:true,fontSize:op.fontSize||12})}else if(op.type==='delete_text'||op.type==='delete_image'){const found=nodes.find(n=>n.meta?.original&&Math.abs(n.meta.original.x-op.x)<3&&Math.abs(n.meta.original.y-op.y)<3);if(found){found.meta.deleted=true;found.visible(false)}}}layer.draw()}$('#pageno').textContent=`Hal. ${page} / ${pdfDoc.numPages}`;setInfo(`Halaman ${page}: ${info.objects.length} blok teks/gambar dikenali. Objek kompleks mungkin tidak seluruhnya terdeteksi.`)
+ }catch(e){error(e.message)}
+}
+$('#upload').onchange=loadPdf;function saveCurrentPage(){if(pdfDoc&&layer)pageOps.set(page,operations())}
+$('#prev').onclick=()=>{if(pdfDoc&&page>1){saveCurrentPage();page--;drawPage()}};$('#next').onclick=()=>{if(pdfDoc&&page<pdfDoc.numPages){saveCurrentPage();page++;drawPage()}};
+$('#zoomin').onclick=()=>{if(pdfDoc){const v=$('#viewer');v.style.zoom=1.25}};$('#zoomout').onclick=()=>{if(pdfDoc){$('#viewer').style.zoom=1}};
+$('#addtext').onclick=()=>{if(!layer)return;const t=prompt('Teks baru:','Teks baru');if(t===null)return;checkpoint();const n=makeRect({x:60,y:60,w:Math.max(120,t.length*7),h:35},{kind:'text',text:t,changed:true,fontSize:12,page});selectNode(n)};
+$('#addrect').onclick=()=>{if(!layer)return;checkpoint();selectNode(makeRect({x:50,y:50,w:130,h:60},{kind:'rectangle',changed:true,page}))};
+$('#addhighlight').onclick=()=>{if(!layer)return;checkpoint();selectNode(makeRect({x:50,y:50,w:130,h:30},{kind:'highlight',changed:true,page}))};
+$('#addimage').onclick=()=>$('#imgInput').click();
+function readData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+$('#imgInput').onchange=async e=>{if(!e.target.files[0]||!layer)return;const image=await readData(e.target.files[0]);checkpoint();selectNode(makeRect({x:40,y:40,w:160,h:100},{kind:'image',image,changed:true,page}));e.target.value=''};
+$('#delobj').onclick=()=>{if(!picked)return;checkpoint();picked.meta.deleted=true;picked.visible(false);picked.label?.visible(false);selectNode(null)};
+function restoreSnapshot(prev){if(!layer)return;for(const n of nodes){n.label?.destroy();n.destroy()}nodes=[];for(const item of prev.nodes){const a=item.attrs;const n=makeRect({x:a.x/scale,y:a.y/scale,w:a.width/scale,h:a.height/scale},item.meta);if(item.meta.deleted){n.visible(false);n.label?.visible(false)}}selectNode(null)}
+$('#undo').onclick=()=>{if(!hist.length||!layer)return;redos.push(state());restoreSnapshot(hist.pop())};
+$('#redo').onclick=()=>{if(!redos.length||!layer)return;hist.push(state());restoreSnapshot(redos.pop())};
+function operations(){const o=[];if(!layer)return o;
+ for(const n of nodes){const m=n.meta;const original=m.original;const x=n.x()/scale,y=n.y()/scale,w=n.width()*n.scaleX()/scale,h=n.height()*n.scaleY()/scale;
+ const box={page:m.page||page,x,y,w,h};const changed=m.changed||(original&&(Math.abs(x-original.x)>1||Math.abs(y-original.y)>1||Math.abs(w-original.w)>1||Math.abs(h-original.h)>1));
+ if(m.kind==='original_text'){if(m.deleted||changed){o.push({type:'delete_text',page:m.page,...original});if(!m.deleted)o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12})}}
+ else if(m.kind==='original_image'){if(m.deleted) o.push({type:'delete_image',page:m.page,...original});else if(changed)o.push({type:'move_original_image',...box,original})}
+ else if(!m.deleted){if(m.kind==='text')o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12});if(m.kind==='image')o.push({type:'image',...box,image:m.image});if(m.kind==='rectangle'||m.kind==='highlight')o.push({type:m.kind,...box})}
+ }return o}
+async function submit(tool,overrideFile=null){const fs=overrideFile?[overrideFile]:[...($('#upload').files||[])];if(!fs.length){error('Pilih file terlebih dahulu.');return}const btn=$('#process');btn.disabled=true;btn.textContent='Memproses...';$('#result').textContent='Sedang bekerja...';
+ try{const opts={nama:$('#filename').value.trim(),password:$('#password').value};for(const el of document.querySelectorAll('#params [data-key]'))opts[el.dataset.key]=el.value;
+ if(tool==='edit'){saveCurrentPage();opts.operations=[...pageOps.values()].flat();if(!opts.operations.length)throw new Error('Belum ada perubahan; pilih atau tambahkan objek dahulu.')}
+ if(tool==='form_fill'){try{opts.fields=JSON.parse(opts.fields)}catch{throw new Error('Format JSON isian formulir tidak valid.')}}
+ if(tool==='sign_certificate'){const f=$('#certFile')?.files[0];if(!f)throw new Error('Pilih sertifikat .p12 atau .pfx.');fs.push(f)}
+ if(tool==='sign_visual'){const f=$('#sigImage')?.files[0];if(!f)throw new Error('Unggah gambar tanda tangan PNG/JPG.');opts.image=await readData(f)}
+ if(tool==='compare'){const other=$('#upload2').files[0];if(!other)throw new Error('Pilih dokumen kedua untuk dibandingkan.');fs.push(other)}
+ const fd=new FormData();for(const f of fs)fd.append('files',f);fd.append('opts',JSON.stringify(opts));
+ const r=await fetch('/advanced/process/'+tool,{method:'POST',body:fd});if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.detail||'Pemrosesan gagal')}
+ const blob=await r.blob();const dispo=r.headers.get('Content-Disposition')||'';const filename=/filename="([^"]+)"/.exec(dispo)?.[1]||'hasil.pdf';
+ $('#result').replaceChildren();const msg=document.createElement('div');msg.className='msg';msg.textContent='✅ Berhasil: '+filename;
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.textContent='⬇ Unduh '+filename;a.className='download';$('#result').append(msg,a);
+ if(blob.type==='application/pdf'){const b=document.createElement('button');b.textContent='📁 Edit hasil lagi';b.style.margin='8px';b.onclick=async()=>{const result=new File([blob],filename,{type:blob.type});const dt=new DataTransfer();dt.items.add(result);$('#upload').files=dt.files;$('#filename').value=filename.replace(/\.pdf$/,'')+'_edit';await loadPdf()};$('#result').append(b)}
+ }catch(e){error(e.message)}finally{btn.disabled=false;choose(tool)}}
+$('#process').onclick=()=>submit(choice);
+let camStream=null;
+$('#camera').onclick=async()=>{try{camStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});$('#vid').srcObject=camStream;$('#vid').classList.remove('hide');$('#shot').classList.remove('hide')}catch(e){error('Tidak dapat membuka kamera: '+e.message)}};
+$('#shot').onclick=async()=>{const v=$('#vid');const can=document.createElement('canvas');can.width=v.videoWidth;can.height=v.videoHeight;can.getContext('2d').drawImage(v,0,0);const blob=await new Promise(resolve=>can.toBlob(resolve,'image/jpeg',0.85));camStream?.getTracks().forEach(t=>t.stop());$('#vid').classList.add('hide');$('#shot').classList.add('hide');if(!blob){error('Foto tidak tersedia');return}const fd=new FormData();fd.append('files',new File([blob],'hasil_scan.jpg',{type:'image/jpeg'}));fd.append('opts','{}');const r=await fetch('/api/image_pdf',{method:'POST',body:fd});if(!r.ok){error('Konversi foto gagal');return}const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scan_kamera.pdf';a.textContent='⬇ Unduh scan_kamera.pdf';a.className='download';$('#result').replaceChildren(a)};
+if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';cfg();
+</script></body></html>
