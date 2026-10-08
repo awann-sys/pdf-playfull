@@ -117,9 +117,20 @@ def apply_edits(data: bytes, opts: dict) -> bytes:
             if kind in ("text", "replace_text"):
                 fontsize = min(100, max(5, float(op.get("fontSize", 12))))
                 value = str(op.get("text", ""))[:8000]
-                font = {"serif":"times-roman", "mono":"cour", "sans":"helv"}.get(op.get("font"), "helv")
+                family = op.get("font", "sans")
+                if family not in ("serif", "mono", "sans"):
+                    raise ValueError("Jenis font tidak tersedia.")
+                bold = bool(op.get("bold", False))
+                italic = bool(op.get("italic", False))
+                faces = {
+                    "sans": ("helv", "hebo", "heit", "hebi"),
+                    "serif": ("tiro", "tibo", "tiit", "tibi"),
+                    "mono": ("cour", "cobo", "coit", "cobi"),
+                }
+                font = faces[family][int(bold) + 2 * int(italic)]
+                alignment = {"left": 0, "center": 1, "right": 2}.get(op.get("align"), 0)
                 available = p.insert_textbox(rect, value, fontsize=fontsize, fontname=font,
-                                             color=color(op.get("color")), align=0, overlay=True)
+                                             color=color(op.get("color", "#17324d")), align=alignment, overlay=True)
                 if available < 0:
                     # Single-line fallback prevents complete loss when the text block has tight bounding box.
                     p.insert_text((rect.x0, min(rect.y1, rect.y0 + fontsize * 0.95)), value.splitlines()[0],
@@ -171,8 +182,17 @@ def inspect_page(data: bytes, page_index=1, password=""):
             if block.get("type") == 0:
                 text = "\n".join("".join(span.get("text", "") for span in line.get("spans", [])) for line in block.get("lines", []))
                 sizes = [float(span.get("size", 12)) for l in block.get("lines", []) for span in l.get("spans", [])]
-                if text.strip(): objects.append({"type":"text","text":text,"x":x0,"y":y0,"w":x1-x0,"h":y1-y0,
-                                                   "fontSize":round(max(sizes, default=12),1)})
+                if text.strip():
+                    spans = [sp for line in block.get("lines", []) for sp in line.get("spans", [])]
+                    lead = spans[0] if spans else {}
+                    font_name = str(lead.get("font", "")).lower()
+                    family = "mono" if any(t in font_name for t in ("cour", "mono")) else "serif" if any(t in font_name for t in ("times", "serif", "roman")) else "sans"
+                    flags = int(lead.get("flags", 0))
+                    rgb = int(lead.get("color", 0)) & 0xFFFFFF
+                    objects.append({"type":"text","text":text,"x":x0,"y":y0,"w":x1-x0,"h":y1-y0,
+                                    "fontSize":round(max(sizes, default=12),1), "font":family,
+                                    "bold":bool(flags & 16), "italic":bool(flags & 2),
+                                    "color":f"#{rgb:06x}"})
             elif block.get("type") == 1:
                 objects.append({"type":"image","x":x0,"y":y0,"w":x1-x0,"h":y1-y0})
         return {"width":page.rect.width,"height":page.rect.height,"pages":len(d),"objects":objects}
@@ -543,3 +563,113 @@ def dispatch(tool:str, fs:list, opts:dict):
         result=compare_pdfs(data,fs[1].data,opts);ext=".pdf";mime=PDF
     else:raise ValueError("Alat belum tersedia: "+tool)
     return result,base+ext,mime,"Selesai"
+
+
+# ---------------------------------------------------------------------------
+# Advanced editor batch export. Editing and page extraction are deliberately
+# independent: edits are applied to source page coordinates before selection.
+# ---------------------------------------------------------------------------
+
+def _unique_result_name(requested, seen):
+    """Avoid overwriting entries when different source PDFs share a filename."""
+    name = safe_name(requested, "hasil")
+    if not name.lower().endswith(".pdf"):
+        name += ".pdf"
+    if name.lower() not in seen:
+        seen.add(name.lower())
+        return name
+    stem = name[:-4]
+    i = 2
+    while f"{stem}_{i}.pdf".lower() in seen:
+        i += 1
+    result = f"{stem}_{i}.pdf"
+    seen.add(result.lower())
+    return result
+
+
+def batch_edit(fs, opts):
+    """Batch apply visual edits per source file and then export chosen pages.
+
+    groups are explicitly ordered by the browser and have 1-based page indices;
+    every group has its own name. No mutable editing state is stored server-side.
+    """
+    if not (1 <= len(fs) <= 12):
+        raise ValueError("Pilih 1 sampai 12 dokumen PDF.")
+    if sum(len(f.data) for f in fs) > 55 * 1024 * 1024:
+        raise ValueError("Total ukuran dokumen maksimal 55 MB.")
+    doc_opts = opts.get("documents", [])
+    groups = opts.get("groups", [])
+    style = opts.get("style", "combined")
+    if style not in ("combined", "range", "page"):
+        raise ValueError("Mode hasil tidak valid.")
+    if not isinstance(doc_opts, list) or len(doc_opts) != len(fs):
+        raise ValueError("Pilihan dokumen tidak cocok dengan unggahan.")
+    if not isinstance(groups, list) or not (1 <= len(groups) <= 350):
+        raise ValueError("Jumlah kelompok hasil harus 1 sampai 350.")
+    if len(json.dumps(opts)) > 9_000_000:
+        raise ValueError("Data edit terlalu besar.")
+
+    edited = []
+    try:
+        for f, spec in zip(fs, doc_opts):
+            if not f.name.lower().endswith(".pdf"):
+                raise ValueError("Fitur edit banyak dokumen hanya menerima PDF.")
+            operations = spec.get("operations", [])
+            password = str(spec.get("password", ""))
+            if operations:
+                edited_bytes = apply_edits(f.data, {"password": password, "operations": operations})
+                pdf = open_pdf(edited_bytes)
+            else:
+                pdf = open_pdf(f.data, password)
+            edited.append(pdf)
+
+        validated = []
+        total_pages = 0
+        for i, grp in enumerate(groups):
+            idx = grp.get("fileIndex")
+            if type(idx) is not int or not 0 <= idx < len(edited):
+                raise ValueError(f"Kelompok hasil {i+1} memiliki sumber tidak valid.")
+            pages = grp.get("pages", [])
+            if not isinstance(pages, list) or not pages or len(pages) > len(edited[idx]):
+                raise ValueError(f"Kelompok hasil {i+1} mempunyai daftar halaman tidak valid.")
+            if any(type(n) is not int or not 1 <= n <= len(edited[idx]) for n in pages):
+                raise ValueError(f"Kelompok hasil {i+1} berisi nomor halaman tidak valid.")
+            total_pages += len(pages)
+            if total_pages > 800:
+                raise ValueError("Maksimum 800 halaman dalam satu proses.")
+            validated.append((idx, pages, grp.get("name", "hasil")))
+
+        if style == "combined":
+            with fitz.open() as result:
+                for idx, pages, _ in validated:
+                    source = edited[idx]
+                    for n in pages:
+                        result.insert_pdf(source, from_page=n - 1, to_page=n - 1)
+                data = save_pdf(result)
+            name = safe_name(opts.get("combined_name"), "hasil_edit")
+            if not name.lower().endswith(".pdf"):
+                name += ".pdf"
+            return data, name, PDF, len(validated)
+
+        seen = set()
+        output = io.BytesIO()
+        if len(validated) == 1:
+            idx, pages, requested = validated[0]
+            with fitz.open() as dest:
+                for n in pages:
+                    dest.insert_pdf(edited[idx], from_page=n - 1, to_page=n - 1)
+                return save_pdf(dest), _unique_result_name(requested, seen), PDF, 1
+
+        with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
+            for idx, pages, requested in validated:
+                with fitz.open() as dest:
+                    for n in pages:
+                        dest.insert_pdf(edited[idx], from_page=n - 1, to_page=n - 1)
+                    zf.writestr(_unique_result_name(requested, seen), save_pdf(dest))
+        zip_name = safe_name(opts.get("zip_name"), "hasil_edit_banyak")
+        if not zip_name.lower().endswith(".zip"):
+            zip_name += ".zip"
+        return output.getvalue(), zip_name, ZIP, len(validated)
+    finally:
+        for pdf in edited:
+            pdf.close()

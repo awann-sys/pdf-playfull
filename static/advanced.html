@@ -13,20 +13,62 @@ input[type=color]{height:42px;padding:4px}input[type=range]{width:100%}button{bo
 #result{min-height:36px;margin-top:10px}.msg{padding:12px;border-radius:8px;background:#e9f8ee;color:#186442}.msg.error{background:#fff0f0;color:#b21b32}
 .download{display:inline-block;background:#0d9488;color:white;padding:12px 16px;border-radius:10px;font-weight:600;margin-top:8px}.hide{display:none!important}.pill{display:inline-block;font-size:11px;background:#e4f3fa;border-radius:20px;padding:5px 9px;color:#12618f}
 .toolgroup{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.toolgroup button{text-align:left;font-size:13px}.toolgroup button.chosen{background:#d7f6ea;border:2px solid #0d9488}
-#toolDesc{font-size:13px;color:#486779;padding:8px 0}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}
+#toolDesc{font-size:13px;color:#486779;padding:8px 0}
+.workspace-row{display:flex;align-items:center;gap:7px;padding:8px;border:1px solid #d5e5ed;border-radius:8px;margin:6px 0;min-width:0}
+.workspace-row.active{border-color:#0284c7;background:#edf9fe}
+.workspace-row .edit-file{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;font-weight:600;border:0;background:none;padding:4px}
+.workspace-row small{font-size:11px;color:#61758a}
+.workspace-row input[type=checkbox]{width:17px;height:17px}
+.fieldgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fieldgrid label{margin:0}.fieldgrid input,.fieldgrid select{margin-top:5px}
+.editorrow{display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:12px;align-items:start}
+.properties{border:1px solid #d5e5ed;border-radius:10px;background:#f8fbff;padding:12px;max-height:70vh;overflow-y:auto}
+.properties h3{margin:0 0 8px;font-size:15px}.properties label{margin:8px 0 4px}
+.properties textarea{resize:vertical;min-height:74px}
+.toggles{display:flex;gap:8px}.toggles label{display:flex;gap:6px;align-items:center}
+.batchmode{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.batchmode label{margin:0}
+#outputNames{max-height:250px;overflow:auto;border:1px solid #dde9f0;border-radius:8px;padding:8px}
+.name-row{display:grid;grid-template-columns:minmax(70px,1fr) minmax(90px,1.7fr);gap:8px;align-items:center;margin-bottom:8px}
+.name-row span{font-size:12px;overflow-wrap:anywhere}
+input[type=checkbox]{accent-color:#0d9488}
+#notice{padding:8px 10px;background:#eaf7fb;border-radius:8px;color:#136481;font-size:12px;margin:7px 0}
+@media(max-width:1100px){.editorrow{grid-template-columns:1fr}.properties{max-height:none}}
+.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}
 @media(max-width:820px){.layout{grid-template-columns:1fr}.viewer{max-height:57vh}header{position:relative}}
 </style></head><body>
 <header><a href="/">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
 <main><h1>Editor PDF & Alat Profesional</h1><p class="lead">Edit objek visual, konversi dokumen, lindungi PDF, OCR dan buat formulir. Semua diproses di server aplikasi.</p>
 <div class="layout"><aside>
-<div class="panel"><h2>📂 Dokumen kerja</h2><label for="upload">PDF atau dokumen sumber</label><input id="upload" type="file" accept=".pdf,.docx,.doc,.ppt,.pptx,.xls,.xlsx,.odt,.odp,.ods,.html,.htm"/><label for="upload2">Dokumen kedua (khusus Bandingkan)</label><input id="upload2" type="file" accept=".pdf"/>
-<div id="fileInfo" class="small">Pilih PDF untuk menampilkan editor.</div><div class="sep"></div><label for="filename">Nama hasil</label><input id="filename" type="text" placeholder="Mengikuti nama dokumen"/><label for="password">Password PDF jika terkunci</label><input id="password" type="password" autocomplete="off"/></div>
+<div class="panel"><h2>📂 Dokumen kerja</h2><label for="upload">PDF atau dokumen sumber</label><input id="upload" type="file" multiple accept=".pdf,.docx,.doc,.ppt,.pptx,.xls,.xlsx,.odt,.odp,.ods,.html,.htm"/>
+<div class="small">Untuk Edit PDF, pilih beberapa berkas PDF sekaligus (maksimal 12). Klik nama file untuk berpindah editor; perubahan tetap tersimpan selama tab ini terbuka.</div>
+<div id="workspace"></div><label for="upload2">Dokumen kedua (khusus Bandingkan)</label><input id="upload2" type="file" accept=".pdf"/>
+<div id="fileInfo" class="small">Pilih PDF untuk menampilkan editor.</div><div class="sep"></div><div id="singleNameField"><label for="filename">Nama hasil (alat selain Edit Visual)</label><input id="filename" type="text" placeholder="Mengikuti nama dokumen"/></div><label for="password">Password PDF jika terkunci</label><input id="password" type="password" autocomplete="off"/></div>
+<div class="panel hide" id="batchPanel"><h2>📦 Halaman & hasil edit</h2>
+<label for="targetMode">Halaman yang diolah</label><select id="targetMode"><option value="active_current">Halaman ini saja (dokumen aktif)</option><option value="all">Semua halaman dari file yang dicentang</option><option value="current">Halaman saat ini pada tiap file</option><option value="custom">Halaman tertentu / rentang pada setiap file</option></select>
+<p class="small" id="targetHelp">Untuk rentang, isi pada baris setiap file: misalnya 2-4,8,9,10-99.</p>
+<label for="outputStyle">Pengelompokan hasil</label><select id="outputStyle"><option value="combined">Jadikan satu file PDF</option><option value="range">Setiap rentang menjadi PDF tersendiri</option><option value="page">Setiap halaman menjadi PDF tersendiri</option></select>
+<label for="combinedName">Nama file PDF gabungan</label><input id="combinedName" type="text" value="hasil_edit_gabungan.pdf"/>
+<label for="nameTemplate">Pola nama file individual</label><input id="nameTemplate" type="text" value="{source}_{start}-{end}"/>
+<p class="small">Placeholder: <code>{source}</code> nama dokumen, <code>{start}</code> halaman awal, <code>{end}</code> halaman akhir, <code>{page}</code> halaman tunggal, <code>{index}</code> nomor hasil.</p>
+<label>Ubah nama setiap hasil PDF (opsional)</label><div id="outputNames">Upload PDF untuk melihat daftar hasil.</div>
+<label for="zipName">Nama ZIP jika hasil lebih dari satu</label><input id="zipName" type="text" value="PDF_Playfull_Hasil.zip"/>
+<button type="button" id="processQuick" class="primary" style="width:100%;margin-top:12px">✨ Proses PDF pilihan</button>
+<div id="notice">File PDF tunggal diunduh langsung sebagai .pdf. Banyak hasil menjadi .zip.</div>
+</div>
 <div class="panel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div><button class="primary" style="width:100%;margin-top:12px" id="process">Buat Hasil</button></div>
 </aside><section>
 <div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button></div></div>
-<p class="small">Klik objek biru untuk memilih. Drag untuk memindahkan dan titik sudut untuk mengubah ukuran. Klik dua kali teks untuk mengedit; hasil akhir dibuat setelah menekan Buat Hasil.</p>
+<p class="small">Klik objek untuk memilih, lalu tarik untuk memindahkannya. Gambar/teks yang dipindah langsung terlihat pada posisi baru. Klik dua kali teks untuk mengganti isinya. Setelah selesai, klik Simpan PDF yang diedit untuk membuat file hasil.</p>
 <div class="bar" id="editbar"><button id="addtext">✎ Tambah teks</button><button id="addimage">▧ Tambah gambar</button><button id="addrect">▢ Kotak</button><button id="addhighlight">🖍 Sorot</button><button id="delobj">🗑 Hapus pilihan</button><button id="undo">↶ Undo</button><button id="redo">↷ Redo</button></div><input type="file" id="imgInput" accept="image/png,image/jpeg" hidden/>
-<div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="konvaOverlay"></div></div></div><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
+<div class="editorrow"><div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="konvaOverlay"></div></div></div>
+<div class="properties" id="properties"><h3>🔤 Properti objek</h3><p class="small" id="propsHint">Klik teks atau gambar pada halaman. Panel ini menggantikan popup teks.</p>
+<div id="propsForm" class="hide">
+<div id="textProps"><label for="propText">Isi teks</label><textarea id="propText" rows="4" placeholder="Tulis isi teks di sini"></textarea>
+<div class="fieldgrid"><label>Jenis font<select id="propFont"><option value="sans">Helvetica / Sans</option><option value="serif">Times / Serif</option><option value="mono">Courier / Mono</option></select></label><label>Ukuran (pt)<input id="propSize" type="number" min="5" max="100" step="0.5" value="12"></label></div>
+<div class="toggles"><label><input type="checkbox" id="propBold"> Tebal</label><label><input type="checkbox" id="propItalic"> Miring</label></div>
+<div class="fieldgrid"><label>Warna teks<input id="propColor" type="color" value="#17324d"></label><label>Perataan<select id="propAlign"><option value="left">Kiri</option><option value="center">Tengah</option><option value="right">Kanan</option></select></label></div>
+</div><div class="sep"></div><strong class="small">Letak dan ukuran (pt)</strong><div class="fieldgrid"><label>X<input id="propX" type="number" step="1"></label><label>Y<input id="propY" type="number" step="1"></label><label>Lebar<input id="propW" type="number" min="2" step="1"></label><label>Tinggi<input id="propH" type="number" min="2" step="1"></label></div>
+<p class="small">Perubahan properti langsung tampil pada preview. Klik Simpan PDF yang diedit untuk hasil permanen.</p></div></div></div><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
 <div class="panel"><h2>📱 Scan dari kamera</h2><p class="small">Pada ponsel, ambil foto lewat kamera lalu simpan sebagai PDF. Memerlukan HTTPS dan izin kamera.</p><button id="camera">📷 Ambil foto → PDF</button><video id="vid" playsinline autoplay muted class="hide" style="width:100%;max-height:300px"></video><button id="shot" class="hide primary">Jepret & konversi</button></div>
 <div class="panel"><h2>📥 Hasil pemrosesan</h2><div id="result">Belum ada hasil.</div></div>
 </section></div>
@@ -59,6 +101,7 @@ const TOOLS=[
  ['compare','⚖️ Bandingkan PDF',3,'Bandingkan dua versi PDF berdampingan per halaman.'],
 ];
 let choice='edit',pdfDoc=null,pdfFile=null,page=1,scale=1,kwStage=null,layer=null,tr=null,nodes=[],hist=[],picked=null,blocks=[],pageWidth=0,pageHeight=0,readVersion=0;let pageOps=new Map(),redos=[];
+let documents=[],activeIndex=-1,nameOverrides=new Map(),plannedGroups=[];
 function cfg(){for(const [id,n,g,desc] of TOOLS){const btn=document.createElement('button');btn.textContent=n;btn.dataset.tool=id;btn.onclick=()=>choose(id);$('#group'+g).appendChild(btn)}choose('edit')}
 const extraParams={
  watermark:[['text','Teks watermark','DRAFT'],['fontSize','Ukuran tulisan','42'],['color','Warna (#hex)','#777777'],['angle','Rotasi (0,90,180,270)','0'],['pages','Halaman (mis. 1-5)','semua']],
@@ -76,72 +119,211 @@ function choose(id){choice=id;for(const b of document.querySelectorAll('.toolgro
  const p=$('#params');p.replaceChildren();for(const [key,label,def] of (extraParams[id]||[])){const l=document.createElement('label');l.textContent=label;const el=document.createElement('input');el.type='text';el.value=def;el.dataset.key=key;l.appendChild(el);p.appendChild(l)}
  if(id==='sign_certificate'){const l=document.createElement('label');l.textContent='Berkas sertifikat .p12 / .pfx';const e=document.createElement('input');e.type='file';e.accept='.p12,.pfx';e.id='certFile';l.appendChild(e);p.appendChild(l)}
  if(id==='sign_visual'){const l=document.createElement('label');l.textContent='Gambar tanda tangan PNG/JPG';const e=document.createElement('input');e.type='file';e.accept='image/png,image/jpeg';e.id='sigImage';l.appendChild(e);p.appendChild(l)}
- $('#editbar').classList.toggle('hide',id!=='edit');$('#process').textContent=id==='edit'?'Simpan PDF yang diedit':'Proses: '+t[1];
+ $('#editbar').classList.toggle('hide',id!=='edit');$('#batchPanel').classList.toggle('hide',id!=='edit');$('#properties').classList.toggle('hide',id!=='edit');$('#singleNameField').classList.toggle('hide',id==='edit');$('#process').textContent=id==='edit'?'✨ Proses hasil edit PDF':'Proses: '+t[1];
+ renderWorkspace();renderNames();
  $('#upload2').parentElement.querySelector('label[for="upload2"]').classList.toggle('hide',id!=='compare');$('#upload2').classList.toggle('hide',id!=='compare');
  $('#upload').accept=id==='office_pdf'?'.doc,.docx,.odt,.ppt,.pptx,.odp,.xls,.xlsx,.ods':id==='html_pdf'?'.html,.htm':'.pdf';
 }
 function setInfo(t){$('#editinfo').textContent=t}
 function error(t){$('#result').replaceChildren();const d=document.createElement('div');d.className='msg error';d.textContent='⚠️ '+t;$('#result').appendChild(d)}
+// Lapisan putih menutupi lokasi lama; lapisan pratinjau menampilkan isi yang digeser.
+// PDF.js tetap menjadi sumber halaman asli. Perubahan sesungguhnya disimpan oleh PyMuPDF.
+let maskLayer=null, previewLayer=null;
 function state(){return {nodes:nodes.map(n=>({attrs:{...n.attrs},meta:{...n.meta}}))}}
 function checkpoint(){hist.push(state());if(hist.length>20)hist.shift();redos=[]}
-function selectNode(n){picked=n;if(tr)tr.nodes(n?[n]:[]);layer?.batchDraw();setInfo(n?'Objek dipilih: '+(n.meta?.kind||'baru')+'. Double click untuk mengganti teks.':'Pilih objek untuk mengedit.')}
-function makeRect(data,meta,staged=true){const rect=new Konva.Rect({x:data.x*scale,y:data.y*scale,width:data.w*scale,height:data.h*scale,fill:meta.kind==='original_image'?'rgba(255,140,0,.05)':'rgba(0,130,255,.055)',stroke:meta.kind==='original_image'?'#c77b15':'#0284c7',strokeWidth:1.2,dash:[4,4],draggable:true,name:'editable'});rect.meta={...meta};if(meta.kind==='text'){const label=new Konva.Text({x:rect.x()+3,y:rect.y()+3,text:meta.text||'',fontSize:(meta.fontSize||12)*scale,fill:'#17324d',width:rect.width()-6,listening:false});layer.add(label);rect.label=label;const relabel=()=>{label.position({x:rect.x()+3,y:rect.y()+3});label.width(Math.max(20,rect.width()*rect.scaleX()-6));label.fontSize((meta.fontSize||12)*scale)};rect.on('dragmove transform',relabel)}rect.on('click tap',e=>{e.cancelBubble=true;selectNode(rect)});rect.on('dragstart transformstart',checkpoint);
- rect.on('dblclick dbltap',()=>{if(rect.meta.kind==='original_text'||rect.meta.kind==='text'){const value=prompt('Ganti teks pada objek:',rect.meta.text||'');if(value!==null){checkpoint();rect.meta.text=value;rect.meta.changed=true;if(rect.label)rect.label.text(value);selectNode(rect)}}});
- layer.add(rect);nodes.push(rect);return rect}
-function loadOverlay(info){blocks=info.objects;pageWidth=info.width;pageHeight=info.height;nodes=[];hist=[];picked=null;
- const w=$('#pdfCanvas').width,h=$('#pdfCanvas').height;$('#konvaOverlay').innerHTML='';kwStage=new Konva.Stage({container:'konvaOverlay',width:w,height:h});layer=new Konva.Layer();kwStage.add(layer);tr=new Konva.Transformer({rotateEnabled:false,keepRatio:false,anchorSize:8});layer.add(tr);
- for(const x of blocks){const kind=x.type==='text'?'original_text':'original_image';makeRect(x,{kind,text:x.text||'',original:{x:x.x,y:x.y,w:x.w,h:x.h},changed:false,fontSize:x.fontSize||12,page})}
- kwStage.on('click tap',e=>{if(e.target===kwStage)selectNode(null)});layer.draw();}
-async function loadPdf(){pageOps.clear();const f=$('#upload').files[0];pdfFile=f;pdfDoc=null;$('#fileInfo').textContent=f?`${f.name} (${(f.size/1048576).toFixed(1)} MB)`:'Belum ada dokumen';if(!f)return;
- $('#filename').value=f.name.replace(/\.[^/.]+$/,'');
- if(!f.name.toLowerCase().endsWith('.pdf')){setInfo('Dokumen Office/HTML siap dikonversi. Preview visual hanya tersedia untuk PDF.');return}
- if(!window.pdfjsLib||!window.Konva){error('Editor visual memerlukan PDF.js dan Konva.js. Periksa akses CDN browser.');return}
- try{const arr=new Uint8Array(await f.arrayBuffer());pdfDoc=await pdfjsLib.getDocument({data:arr,password:$('#password').value||undefined}).promise;page=1;await drawPage()}catch(e){error('Tidak dapat membuka PDF: '+e.message)}
+function selectNode(n){picked=n;if(tr)tr.nodes(n?[n]:[]);layer?.batchDraw();updateProperties();setInfo(n?'Objek dipilih: '+(n.meta?.kind||'baru')+'. Ubah propertinya di panel sebelah kanan.':'Pilih objek untuk mengedit.')}
+function nodeCoords(n){return {x:n.x()/scale,y:n.y()/scale,w:n.width()*n.scaleX()/scale,h:n.height()*n.scaleY()/scale}}
+function changedFromOriginal(n){const m=n.meta, v=nodeCoords(n),o=m.original;return !!(m.changed||(o&&(Math.abs(v.x-o.x)>0.7||Math.abs(v.y-o.y)>0.7||Math.abs(v.w-o.w)>0.7||Math.abs(v.h-o.h)>0.7)))}
+function snapshotImage(orig){
+  // Potong gambar dari halaman PDF yang TELAH dirender, bukan dari garis seleksi Konva.
+  const c=$('#pdfCanvas'), sx=c.width/pageWidth,sy=c.height/pageHeight;
+  const out=document.createElement('canvas');out.width=Math.max(1,Math.round(orig.w*sx));out.height=Math.max(1,Math.round(orig.h*sy));
+  out.getContext('2d').drawImage(c,orig.x*sx,orig.y*sy,orig.w*sx,orig.h*sy,0,0,out.width,out.height);
+  return out;
 }
+function ensureCover(n){if(n.cover)return;const o=n.meta.original;
+ n.cover=new Konva.Rect({x:o.x*scale-1,y:o.y*scale-1,width:o.w*scale+2,height:o.h*scale+2,fill:'white',listening:false});maskLayer.add(n.cover)}
+function visualPosition(n){const v=nodeCoords(n);return {x:v.x*scale,y:v.y*scale,width:Math.max(1,v.w*scale),height:Math.max(1,v.h*scale)}}
+function syncVisual(n){
+ if(!n||!layer||!maskLayer||!previewLayer)return;
+ const m=n.meta,v=visualPosition(n),active=!m.deleted;
+ const existing=m.kind==='original_text'||m.kind==='original_image';
+ const changed=existing&&changedFromOriginal(n);
+ if(existing){
+   if(changed||m.deleted)ensureCover(n);
+   if(n.cover)n.cover.visible(changed||!!m.deleted);
+ }
+ if(m.kind==='original_image'&&changed&&active){
+   if(!n.visual){n.visual=new Konva.Image({...v,image:snapshotImage(m.original),listening:false});previewLayer.add(n.visual)}
+   n.visual.setAttrs(v);n.visual.visible(true);
+ } else if(m.kind==='original_text'&&changed&&active){
+   if(!n.visual){n.visual=new Konva.Text({text:m.text||'',fill:'#17324d',fontFamily:'Arial',listening:false});previewLayer.add(n.visual)}
+   n.visual.setAttrs({...v,text:m.text||'',fontSize:(m.fontSize||12)*scale,fill:m.color||'#17324d',fontFamily:fontCSS(m.font),fontStyle:fontStyle(m),align:m.align||'left',wrap:'word'});n.visual.visible(true);
+ } else if(m.kind==='image'&&active){
+   if(!n.visual&&!n.visualLoading){
+     n.visualLoading=true;const img=new Image();const source=m.image;
+     img.onload=()=>{if(!n.getStage()||n.meta.image!==source)return;n.visual=new Konva.Image({image:img,listening:false});previewLayer.add(n.visual);syncVisual(n)};
+     img.onerror=()=>{n.visualLoading=false;setInfo('Gambar tidak dapat ditampilkan. Gunakan PNG/JPG.')};img.src=source||'';
+   } else {n.visual.setAttrs(v);n.visual.visible(true)}
+ } else if(m.kind==='text'&&active){
+   if(!n.visual){n.visual=new Konva.Text({listening:false});previewLayer.add(n.visual)}
+   n.visual.setAttrs({...v,text:m.text||'',fontSize:(m.fontSize||12)*scale,fill:m.color||'#17324d',fontFamily:fontCSS(m.font),fontStyle:fontStyle(m),align:m.align||'left',wrap:'word'});n.visual.visible(true);
+ } else if(n.visual)n.visual.visible(false);
+ if(m.deleted){n.visible(false);n.visual?.visible(false)}
+ maskLayer.batchDraw();previewLayer.batchDraw();layer.batchDraw();
+}
+function makeRect(data,meta){
+ const rect=new Konva.Rect({x:data.x*scale,y:data.y*scale,width:data.w*scale,height:data.h*scale,fill:meta.kind==='original_image'?'rgba(255,140,0,.035)':'rgba(0,130,255,.025)',stroke:meta.kind==='original_image'?'#c77b15':'#0284c7',strokeWidth:1.2,dash:[4,4],draggable:true,name:'editable'});
+ rect.meta={...meta};
+ rect.on('click tap',e=>{e.cancelBubble=true;selectNode(rect)});
+ rect.on('dragstart transformstart',checkpoint);
+ rect.on('dragmove transform',()=>syncVisual(rect));
+ rect.on('dragend transformend',()=>{syncVisual(rect);setInfo('Posisi objek diperbarui. Klik Simpan PDF yang diedit untuk menerapkan ke berkas.')});
+ rect.on('dblclick dbltap',()=>{selectNode(rect);if(rect.meta.kind==='original_text'||rect.meta.kind==='text')$('#propText').focus()});
+ layer.add(rect);nodes.push(rect);syncVisual(rect);return rect;
+}
+function loadOverlay(info){blocks=info.objects;pageWidth=info.width;pageHeight=info.height;nodes=[];hist=[];redos=[];picked=null;
+ const w=$('#pdfCanvas').width,h=$('#pdfCanvas').height;kwStage?.destroy();$('#konvaOverlay').replaceChildren();
+ kwStage=new Konva.Stage({container:'konvaOverlay',width:w,height:h});
+ maskLayer=new Konva.Layer();previewLayer=new Konva.Layer();layer=new Konva.Layer();
+ kwStage.add(maskLayer);kwStage.add(previewLayer);kwStage.add(layer);
+ tr=new Konva.Transformer({rotateEnabled:false,keepRatio:false,anchorSize:8});layer.add(tr);
+ for(const x of blocks){const kind=x.type==='text'?'original_text':'original_image';makeRect(x,{kind,text:x.text||'',original:{x:x.x,y:x.y,w:x.w,h:x.h},changed:false,fontSize:x.fontSize||12,font:x.font||'sans',bold:!!x.bold,italic:!!x.italic,color:x.color||'#17324d',align:'left',page})}
+ kwStage.on('click tap',e=>{if(e.target===kwStage)selectNode(null)});layer.draw();
+}
+function stemName(name){return name.replace(/\.[^.]+$/,'').replace(/[^\w .()-]/g,'_').trim()||'Dokumen'}
+function currentDoc(){return documents[activeIndex]||null}
+function renderWorkspace(){const wrap=$('#workspace');wrap.replaceChildren();if(!documents.length)return;
+ documents.forEach((d,i)=>{const row=document.createElement('div');row.className='workspace-row'+(i===activeIndex?' active':'');const cb=document.createElement('input');cb.type='checkbox';cb.checked=d.included;cb.title='Ikut dalam hasil akhir';cb.onchange=()=>{d.included=cb.checked;renderNames()};const btn=document.createElement('button');btn.className='edit-file';btn.textContent=`${i+1}. ${d.file.name} (${d.numPages||'…'} hal)`;btn.title='Edit dokumen ini';btn.onclick=()=>switchDocument(i);row.append(cb,btn);
+  if($('#targetMode').value==='custom' && choice==='edit'){const field=document.createElement('input');field.type='text';field.placeholder='2-4,8,9,10-99';field.value=d.ranges;field.title='Rentang halaman untuk file ini';field.style.width='140px';field.style.flex='0 1 140px';field.oninput=()=>{d.ranges=field.value;renderNames()};row.append(field)}wrap.append(row)});
+ $('#fileInfo').textContent=`${documents.length} dokumen, ${documents.filter(d=>d.included).length} dipilih untuk hasil. Edit dan pilihan disimpan selama tab browser ini terbuka.`}
+async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();
+ documents=fs.slice(0,12).map(f=>({file:f,pdfDoc:null,page:1,ops:new Map(),included:true,ranges:'',numPages:0,password:$('#password').value||''}));activeIndex=-1;nameOverrides.clear();
+ $('#combinedName').value=documents.length===1?stemName(documents[0].file.name)+'_edited.pdf':'PDF_Playfull_gabungan.pdf';
+ $('#filename').value=stemName(documents[0].file.name);if(fs.length>12)error('Maksimal 12 dokumen; hanya 12 file pertama yang dimuat.');await switchDocument(0)}
+async function switchDocument(i){if(i<0||i>=documents.length)return;if(activeIndex>=0)saveCurrentPage();
+ const d=documents[i];activeIndex=i;pdfFile=d.file;pageOps=d.ops;page=d.page;pdfDoc=d.pdfDoc;readVersion++;$('#password').value=d.password||'';
+ renderWorkspace();renderNames();selectNode(null);
+ if(!d.file.name.toLowerCase().endsWith('.pdf')){pdfDoc=null;$('#pageno').textContent='Bukan PDF';setInfo('Dokumen sumber bukan PDF. Editor visual hanya untuk PDF; fitur konversi tetap tersedia.');return}
+ if(!window.pdfjsLib||!window.Konva){error('PDF.js/Konva tidak berhasil dimuat. Periksa koneksi internet atau CDN.');return}
+ try{if(!pdfDoc){const bytes=new Uint8Array(await d.file.arrayBuffer());pdfDoc=await pdfjsLib.getDocument({data:bytes,password:d.password||undefined}).promise;d.pdfDoc=pdfDoc;d.numPages=pdfDoc.numPages;}if(activeIndex!==i)return;await drawPage();renderWorkspace();renderNames()}
+ catch(e){error('Tidak dapat membuka PDF '+d.file.name+': '+e.message)}}
 async function drawPage(){if(!pdfDoc)return;const seq=++readVersion;
  try{const pg=await pdfDoc.getPage(page);const base=pg.getViewport({scale:1});const available=Math.max(300,Math.min(880,$('#viewer').clientWidth-48));scale=Math.min(1.6,available/base.width);
  const viewport=pg.getViewport({scale});const canvas=$('#pdfCanvas');canvas.width=Math.round(viewport.width);canvas.height=Math.round(viewport.height);$('#paper').style.width=canvas.width+'px';$('#paper').style.height=canvas.height+'px';
  await pg.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
  const fd=new FormData();fd.append('file',pdfFile);fd.append('page',page);fd.append('password',$('#password').value);
  const r=await fetch('/advanced/inspect',{method:'POST',body:fd});const info=await r.json();if(!r.ok)throw new Error(info.detail||'Gagal membaca objek.');if(seq!==readVersion)return;
- loadOverlay(info);if(pageOps.has(page)){for(const op of pageOps.get(page)){if(op.type==='text'||op.type==='image'||op.type==='rectangle'||op.type==='highlight'){makeRect(op,{kind:op.type,text:op.text,image:op.image,page,changed:true,fontSize:op.fontSize||12})}else if(op.type==='delete_text'||op.type==='delete_image'){const found=nodes.find(n=>n.meta?.original&&Math.abs(n.meta.original.x-op.x)<3&&Math.abs(n.meta.original.y-op.y)<3);if(found){found.meta.deleted=true;found.visible(false)}}}layer.draw()}$('#pageno').textContent=`Hal. ${page} / ${pdfDoc.numPages}`;setInfo(`Halaman ${page}: ${info.objects.length} blok teks/gambar dikenali. Objek kompleks mungkin tidak seluruhnya terdeteksi.`)
+ loadOverlay(info);
+ if(pageOps.has(page)){
+   for(const op of pageOps.get(page)){
+     if(op.type==='text'||op.type==='image'||op.type==='rectangle'||op.type==='highlight')makeRect(op,{kind:op.type,text:op.text,image:op.image,page,changed:true,fontSize:op.fontSize||12,font:op.font||'sans',bold:!!op.bold,italic:!!op.italic,color:op.color||'#17324d',align:op.align||'left'});
+     else if(op.type==='delete_text'||op.type==='delete_image'){
+       const found=nodes.find(n=>n.meta?.original&&Math.abs(n.meta.original.x-op.x)<3&&Math.abs(n.meta.original.y-op.y)<3);
+       if(found){found.meta.deleted=true;syncVisual(found)}
+     }else if(op.type==='move_original_image'){
+       const q=op.original||{};
+       const found=nodes.find(n=>n.meta?.kind==='original_image'&&Math.abs(n.meta.original.x-q.x)<3&&Math.abs(n.meta.original.y-q.y)<3);
+       if(found){found.position({x:op.x*scale,y:op.y*scale});found.size({width:op.w*scale,height:op.h*scale});syncVisual(found)}
+     }
+   }
+   layer.batchDraw();
+ }
+ $('#pageno').textContent=`Hal. ${page} / ${pdfDoc.numPages}`;
+ setInfo(`Halaman ${page}: ${info.objects.length} blok dikenali. Geser objek untuk melihat perubahan; klik Simpan PDF yang diedit untuk mengunduh hasil.`);
  }catch(e){error(e.message)}
 }
-$('#upload').onchange=loadPdf;function saveCurrentPage(){if(pdfDoc&&layer)pageOps.set(page,operations())}
-$('#prev').onclick=()=>{if(pdfDoc&&page>1){saveCurrentPage();page--;drawPage()}};$('#next').onclick=()=>{if(pdfDoc&&page<pdfDoc.numPages){saveCurrentPage();page++;drawPage()}};
-$('#zoomin').onclick=()=>{if(pdfDoc){const v=$('#viewer');v.style.zoom=1.25}};$('#zoomout').onclick=()=>{if(pdfDoc){$('#viewer').style.zoom=1}};
-$('#addtext').onclick=()=>{if(!layer)return;const t=prompt('Teks baru:','Teks baru');if(t===null)return;checkpoint();const n=makeRect({x:60,y:60,w:Math.max(120,t.length*7),h:35},{kind:'text',text:t,changed:true,fontSize:12,page});selectNode(n)};
+$('#upload').onchange=loadPdf;
+function saveCurrentPage(){const d=currentDoc();if(d&&pdfDoc&&layer){d.page=page;d.ops.set(page,operations());}}
+function fontCSS(v){return v==='serif'?'Times New Roman':v==='mono'?'Courier New':'Arial'}
+function fontStyle(meta){return(meta.bold?'bold':'')+(meta.italic?' italic':'')||'normal'}
+function updateProperties(){const visible=!!picked;$('#propsForm').classList.toggle('hide',!visible);$('#propsHint').classList.toggle('hide',visible);if(!visible)return;
+ const m=picked.meta,v=nodeCoords(picked),isText=['original_text','text'].includes(m.kind);
+ $('#textProps').classList.toggle('hide',!isText);
+ if(isText){$('#propText').value=m.text||'';$('#propFont').value=m.font||'sans';$('#propSize').value=m.fontSize||12;$('#propBold').checked=!!m.bold;$('#propItalic').checked=!!m.italic;$('#propColor').value=m.color||'#17324d';$('#propAlign').value=m.align||'left'}
+ for(const key of ['X','Y','W','H'])$('#prop'+key).value=Math.round(v[key.toLowerCase()]*10)/10;
+}
+const propTextIds=['propText','propFont','propSize','propBold','propItalic','propColor','propAlign'];
+const propBoxIds=['propX','propY','propW','propH'];
+function changeProperties(){if(!picked)return;
+ const m=picked.meta,isText=['original_text','text'].includes(m.kind);
+ if(isText){m.text=$('#propText').value;m.font=$('#propFont').value;m.fontSize=Math.max(5,Math.min(100,Number($('#propSize').value)||12));m.bold=$('#propBold').checked;m.italic=$('#propItalic').checked;m.color=$('#propColor').value;m.align=$('#propAlign').value;m.changed=true}
+ for(const [key,setter] of [['X','x'],['Y','y'],['W','width'],['H','height']]){const value=Number($('#prop'+key).value);if(Number.isFinite(value)&&(key==='X'||key==='Y'||value>=2))picked[setter](value*scale)}
+ syncVisual(picked);saveCurrentPage()}
+for(const id of [...propTextIds,...propBoxIds]){const el=$('#'+id);el.addEventListener('focus',()=>{if(picked)checkpoint()});el.addEventListener('change',changeProperties);el.addEventListener('input',changeProperties)}
+
+$('#prev').onclick=()=>{if(pdfDoc&&page>1){saveCurrentPage();page--;currentDoc().page=page;drawPage();renderNames()}};
+$('#next').onclick=()=>{if(pdfDoc&&page<pdfDoc.numPages){saveCurrentPage();page++;currentDoc().page=page;drawPage();renderNames()}};
+$('#zoomin').onclick=()=>{if(pdfDoc){const v=$('#viewer');v.style.zoom=1.25}};
+$('#zoomout').onclick=()=>{if(pdfDoc){$('#viewer').style.zoom=1}};
+$('#addtext').onclick=()=>{if(!layer)return;checkpoint();const t='Teks baru';const n=makeRect({x:60,y:60,w:190,h:45},{kind:'text',text:t,changed:true,fontSize:12,font:'sans',bold:false,italic:false,align:'left',color:'#17324d',page});selectNode(n);$('#propText').focus();$('#propText').select()};
 $('#addrect').onclick=()=>{if(!layer)return;checkpoint();selectNode(makeRect({x:50,y:50,w:130,h:60},{kind:'rectangle',changed:true,page}))};
 $('#addhighlight').onclick=()=>{if(!layer)return;checkpoint();selectNode(makeRect({x:50,y:50,w:130,h:30},{kind:'highlight',changed:true,page}))};
 $('#addimage').onclick=()=>$('#imgInput').click();
 function readData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
 $('#imgInput').onchange=async e=>{if(!e.target.files[0]||!layer)return;const image=await readData(e.target.files[0]);checkpoint();selectNode(makeRect({x:40,y:40,w:160,h:100},{kind:'image',image,changed:true,page}));e.target.value=''};
-$('#delobj').onclick=()=>{if(!picked)return;checkpoint();picked.meta.deleted=true;picked.visible(false);picked.label?.visible(false);selectNode(null)};
-function restoreSnapshot(prev){if(!layer)return;for(const n of nodes){n.label?.destroy();n.destroy()}nodes=[];for(const item of prev.nodes){const a=item.attrs;const n=makeRect({x:a.x/scale,y:a.y/scale,w:a.width/scale,h:a.height/scale},item.meta);if(item.meta.deleted){n.visible(false);n.label?.visible(false)}}selectNode(null)}
+$('#delobj').onclick=()=>{if(!picked)return;checkpoint();picked.meta.deleted=true;syncVisual(picked);selectNode(null)};
+function restoreSnapshot(prev){if(!layer)return;
+ for(const n of nodes)n.destroy();nodes=[];maskLayer.destroyChildren();previewLayer.destroyChildren();
+ for(const item of prev.nodes){const a=item.attrs;const n=makeRect({x:a.x/scale,y:a.y/scale,w:a.width*(a.scaleX||1)/scale,h:a.height*(a.scaleY||1)/scale},item.meta);if(item.meta.deleted)syncVisual(n)}
+ selectNode(null);saveCurrentPage()}
 $('#undo').onclick=()=>{if(!hist.length||!layer)return;redos.push(state());restoreSnapshot(hist.pop())};
 $('#redo').onclick=()=>{if(!redos.length||!layer)return;hist.push(state());restoreSnapshot(redos.pop())};
 function operations(){const o=[];if(!layer)return o;
- for(const n of nodes){const m=n.meta;const original=m.original;const x=n.x()/scale,y=n.y()/scale,w=n.width()*n.scaleX()/scale,h=n.height()*n.scaleY()/scale;
- const box={page:m.page||page,x,y,w,h};const changed=m.changed||(original&&(Math.abs(x-original.x)>1||Math.abs(y-original.y)>1||Math.abs(w-original.w)>1||Math.abs(h-original.h)>1));
- if(m.kind==='original_text'){if(m.deleted||changed){o.push({type:'delete_text',page:m.page,...original});if(!m.deleted)o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12})}}
- else if(m.kind==='original_image'){if(m.deleted) o.push({type:'delete_image',page:m.page,...original});else if(changed)o.push({type:'move_original_image',...box,original})}
- else if(!m.deleted){if(m.kind==='text')o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12});if(m.kind==='image')o.push({type:'image',...box,image:m.image});if(m.kind==='rectangle'||m.kind==='highlight')o.push({type:m.kind,...box})}
+ for(const n of nodes){const m=n.meta;const original=m.original;const v=nodeCoords(n);const box={page:m.page||page,...v};const changed=changedFromOriginal(n);
+ if(m.kind==='original_text'){if(m.deleted||changed){o.push({type:'delete_text',page:m.page,...original});if(!m.deleted)o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12,font:m.font||'sans',bold:!!m.bold,italic:!!m.italic,color:m.color||'#17324d',align:m.align||'left'})}}
+ else if(m.kind==='original_image'){if(m.deleted)o.push({type:'delete_image',page:m.page,...original});else if(changed)o.push({type:'move_original_image',...box,original})}
+ else if(!m.deleted){if(m.kind==='text')o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12,font:m.font||'sans',bold:!!m.bold,italic:!!m.italic,color:m.color||'#17324d',align:m.align||'left'});if(m.kind==='image')o.push({type:'image',...box,image:m.image});if(m.kind==='rectangle'||m.kind==='highlight')o.push({type:m.kind,...box})}
  }return o}
-async function submit(tool,overrideFile=null){const fs=overrideFile?[overrideFile]:[...($('#upload').files||[])];if(!fs.length){error('Pilih file terlebih dahulu.');return}const btn=$('#process');btn.disabled=true;btn.textContent='Memproses...';$('#result').textContent='Sedang bekerja...';
+function parseSegments(raw,total){const value=(raw||'').trim();if(!value)throw Error('Isi rentang halaman untuk dokumen ini, mis. 2-4,8,9,10-99.');
+ let segments=[];for(const part of value.split(/[,;\s]+/).filter(Boolean)){const m=/^(\d+)(?:-(\d+))?$/.exec(part);if(!m)throw Error('Format halaman salah: '+part);
+ const a=Number(m[1]),b=Number(m[2]||m[1]);if(a<1||b<1||a>total||b>total)throw Error('Nomor halaman '+part+' melebihi total '+total+'.');
+ const pages=[];for(let n=a; a<=b?n<=b:n>=b; n+=a<=b?1:-1)pages.push(n);segments.push(pages)}return segments}
+function templateName(s,group,index){const p=group.pages;const vars={source:stemName(documents[group.fileIndex].file.name),start:p[0],end:p[p.length-1],page:p[0],index:index+1};const out=(s||'{source}_{start}-{end}').replace(/\{(source|start|end|page|index)\}/g,(_,k)=>String(vars[k]));return /\.pdf$/i.test(out)?out:out+'.pdf'}
+function buildGroups(){const result=[];const scope=$('#targetMode').value,style=$('#outputStyle').value;
+ documents.forEach((d,i)=>{if(!d.included || (scope==='active_current' && i!==activeIndex))return;if(!d.numPages)throw Error('Dokumen '+d.file.name+' belum selesai dimuat. Klik nama file untuk membukanya.');
+ let segments=scope==='all'?[Array.from({length:d.numPages},(_,n)=>n+1)]:['current','active_current'].includes(scope)?[[d.page]]:parseSegments(d.ranges,d.numPages);
+ if(style==='page')segments=segments.flatMap(seg=>seg.map(n=>[n]));
+ for(const [position,pages] of segments.entries()){result.push({fileIndex:i,pages,key:`${i}|${style}|${position}|${pages.join(',')}`,name:''})}});
+ if(!result.length)throw Error('Pilih setidaknya satu dokumen dan halaman.');if(result.length>350)throw Error('Maksimal 350 hasil dalam satu proses.');
+ return result}
+function renderNames(){const parent=$('#outputNames');parent.replaceChildren();if(choice!=='edit')return;
+ const style=$('#outputStyle').value;
+ $('#combinedName').parentElement.querySelector('label[for="combinedName"]').classList.toggle('hide',style!=='combined');$('#combinedName').classList.toggle('hide',style!=='combined');
+ $('#nameTemplate').parentElement.querySelector('label[for="nameTemplate"]').classList.toggle('hide',style==='combined');$('#nameTemplate').classList.toggle('hide',style==='combined');
+ $('#zipName').parentElement.querySelector('label[for="zipName"]').classList.toggle('hide',style==='combined');$('#zipName').classList.toggle('hide',style==='combined');
+ try{plannedGroups=buildGroups()}catch(e){plannedGroups=[];parent.textContent=e.message;return}
+ if(style==='combined'){parent.textContent=`${plannedGroups.reduce((a,g)=>a+g.pages.length,0)} halaman dari ${new Set(plannedGroups.map(g=>g.fileIndex)).size} dokumen → satu PDF.`;return}
+ const tpl=$('#nameTemplate').value;
+ plannedGroups.forEach((g,i)=>{g.name=nameOverrides.get(g.key)||templateName(tpl,g,i);const row=document.createElement('div');row.className='name-row';
+ const label=document.createElement('span');label.textContent=`${i+1}. ${documents[g.fileIndex].file.name} · hal. ${g.pages.length===1?g.pages[0]:g.pages[0]+'–'+g.pages.at(-1)}`;
+ const field=document.createElement('input');field.type='text';field.value=g.name;field.title='Nama file PDF ini';field.oninput=()=>{g.name=field.value;nameOverrides.set(g.key,field.value)};
+ row.append(label,field);parent.append(row)});
+}
+$('#password').onchange=()=>{const d=currentDoc();if(d)d.password=$('#password').value};
+$('#targetMode').onchange=()=>{renderWorkspace();renderNames()};$('#outputStyle').onchange=renderNames;$('#nameTemplate').oninput=()=>{nameOverrides.clear();renderNames()};
+async function submit(tool,overrideFile=null){const active=currentDoc();const fs=tool==='edit'?documents.map(d=>d.file):overrideFile?[overrideFile]:active?[active.file]:[];
+ if(!fs.length){error('Pilih file terlebih dahulu.');return}const btn=$('#process');btn.disabled=true;btn.textContent='Memproses...';$('#result').textContent='Sedang bekerja...';
  try{const opts={nama:$('#filename').value.trim(),password:$('#password').value};for(const el of document.querySelectorAll('#params [data-key]'))opts[el.dataset.key]=el.value;
- if(tool==='edit'){saveCurrentPage();opts.operations=[...pageOps.values()].flat();if(!opts.operations.length)throw new Error('Belum ada perubahan; pilih atau tambahkan objek dahulu.')}
+ if(tool==='edit'){saveCurrentPage();const groups=buildGroups();const style=$('#outputStyle').value;const tpl=$('#nameTemplate').value;
+ groups.forEach((g,i)=>{g.name=nameOverrides.get(g.key)||templateName(tpl,g,i)});
+ opts.style=style;opts.groups=groups.map(({fileIndex,pages,name})=>({fileIndex,pages,name}));opts.documents=documents.map(d=>({operations:[...d.ops.values()].flat(),password:d.password}));
+ opts.zip_name=$('#zipName').value;opts.combined_name=$('#combinedName').value;
+ }
  if(tool==='form_fill'){try{opts.fields=JSON.parse(opts.fields)}catch{throw new Error('Format JSON isian formulir tidak valid.')}}
  if(tool==='sign_certificate'){const f=$('#certFile')?.files[0];if(!f)throw new Error('Pilih sertifikat .p12 atau .pfx.');fs.push(f)}
  if(tool==='sign_visual'){const f=$('#sigImage')?.files[0];if(!f)throw new Error('Unggah gambar tanda tangan PNG/JPG.');opts.image=await readData(f)}
  if(tool==='compare'){const other=$('#upload2').files[0];if(!other)throw new Error('Pilih dokumen kedua untuk dibandingkan.');fs.push(other)}
  const fd=new FormData();for(const f of fs)fd.append('files',f);fd.append('opts',JSON.stringify(opts));
- const r=await fetch('/advanced/process/'+tool,{method:'POST',body:fd});if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.detail||'Pemrosesan gagal')}
- const blob=await r.blob();const dispo=r.headers.get('Content-Disposition')||'';const filename=/filename="([^"]+)"/.exec(dispo)?.[1]||'hasil.pdf';
+ const route=tool==='edit'?'/advanced/batch-edit':'/advanced/process/'+tool;
+ const r=await fetch(route,{method:'POST',body:fd});if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.detail||'Pemrosesan gagal')}
+ const blob=await r.blob();const dispo=r.headers.get('Content-Disposition')||'';const nameUtf=/filename\*=UTF-8''([^;]+)/i.exec(dispo)?.[1];const filename=nameUtf?decodeURIComponent(nameUtf):/filename="([^"]+)"/.exec(dispo)?.[1]||'hasil.pdf';
  $('#result').replaceChildren();const msg=document.createElement('div');msg.className='msg';msg.textContent='✅ Berhasil: '+filename;
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.textContent='⬇ Unduh '+filename;a.className='download';$('#result').append(msg,a);
- if(blob.type==='application/pdf'){const b=document.createElement('button');b.textContent='📁 Edit hasil lagi';b.style.margin='8px';b.onclick=async()=>{const result=new File([blob],filename,{type:blob.type});const dt=new DataTransfer();dt.items.add(result);$('#upload').files=dt.files;$('#filename').value=filename.replace(/\.pdf$/,'')+'_edit';await loadPdf()};$('#result').append(b)}
+ if(blob.type==='application/pdf'){const b=document.createElement('button');b.textContent='📁 Tambah hasil ke daftar editor';b.style.margin='8px';b.onclick=async()=>{const result=new File([blob],filename,{type:blob.type});if(documents.length>=12){error('Daftar penuh. Pilih ulang maksimal 12 file jika ingin menambah hasil.');return};saveCurrentPage();documents.push({file:result,pdfDoc:null,page:1,ops:new Map(),included:true,ranges:'',numPages:0,password:''});await switchDocument(documents.length-1)};$('#result').append(b)}
  }catch(e){error(e.message)}finally{btn.disabled=false;choose(tool)}}
 $('#process').onclick=()=>submit(choice);
+$('#processQuick').onclick=()=>submit('edit');
 let camStream=null;
 $('#camera').onclick=async()=>{try{camStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});$('#vid').srcObject=camStream;$('#vid').classList.remove('hide');$('#shot').classList.remove('hide')}catch(e){error('Tidak dapat membuka kamera: '+e.message)}};
 $('#shot').onclick=async()=>{const v=$('#vid');const can=document.createElement('canvas');can.width=v.videoWidth;can.height=v.videoHeight;can.getContext('2d').drawImage(v,0,0);const blob=await new Promise(resolve=>can.toBlob(resolve,'image/jpeg',0.85));camStream?.getTracks().forEach(t=>t.stop());$('#vid').classList.add('hide');$('#shot').classList.add('hide');if(!blob){error('Foto tidak tersedia');return}const fd=new FormData();fd.append('files',new File([blob],'hasil_scan.jpg',{type:'image/jpeg'}));fd.append('opts','{}');const r=await fetch('/api/image_pdf',{method:'POST',body:fd});if(!r.ok){error('Konversi foto gagal');return}const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scan_kamera.pdf';a.textContent='⬇ Unduh scan_kamera.pdf';a.className='download';$('#result').replaceChildren(a)};

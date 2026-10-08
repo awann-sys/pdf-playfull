@@ -372,4 +372,29 @@ def advanced_process(tool: str, files: list[UploadFile] = File(...), opts: str =
     except Exception as exc:
         return JSONResponse({"detail":str(exc)},status_code=400)
 
+def _download_disposition(name):
+    from urllib.parse import quote
+    safe = adv.safe_name(name)
+    ascii_name = ''.join(ch if ch.isascii() and (ch.isalnum() or ch in '._- ()') else '_' for ch in safe)
+    return f"attachment; filename=\"{ascii_name}\"; filename*=UTF-8''{quote(safe)}"
+
+
+@app.post("/advanced/batch-edit")
+def advanced_batch_edit(files: list[UploadFile] = File(...), opts: str = Form("{}")):
+    try:
+        if len(opts) > 9_000_000:
+            raise ValueError("Data edit terlalu besar.")
+        if not (1 <= len(files) <= 12):
+            raise ValueError("Maksimum 12 PDF sekaligus.")
+        fs = [Berkas(f.filename or "dokumen.pdf", baca(f)) for f in files]
+        body, name, mime, count = adv.batch_edit(fs, json.loads(opts))
+        return Response(body, media_type=mime, headers={
+            "Content-Disposition": _download_disposition(name),
+            "Access-Control-Expose-Headers": "Content-Disposition",
+            "X-File-Count": str(count),
+        })
+    except (ValueError, TypeError, KeyError, RuntimeError) as exc:
+        return JSONResponse({"detail": str(exc)}, status_code=400)
+
+
 app.mount("/", StaticFiles(directory=str(Path(__file__).parent / "static"), html=True), name="static")
