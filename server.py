@@ -1,5 +1,5 @@
 """Backend FastAPI. Jalankan: uvicorn server:app --reload"""
-import base64, io, json, os, zipfile
+import atexit, io, json, os, secrets, shutil, tempfile, threading, time, zipfile
 from pathlib import Path
 import fitz
 from fastapi import FastAPI, File, Form, UploadFile
@@ -16,6 +16,15 @@ def healthz():
     return {"status": "ok"}
 MAX_MB = int(os.getenv("MAX_UPLOAD_MB", "25"))   # batas per file (server gratis RAM-nya kecil)
 MAX_FILES, MAX_PREVIEW = 20, 300
+PREVIEW_TTL_SECONDS = 20 * 60
+MAX_PREVIEW_SESSION_MB = 80
+MAX_ACTIVE_PREVIEW_MB = 160
+MAX_PREVIEW_SESSIONS = 12
+_preview_lock = threading.RLock()
+_preview_render_slots = threading.BoundedSemaphore(2)
+_preview_sessions = {}
+_preview_root = Path(tempfile.mkdtemp(prefix="pdf-playfull-preview-"))
+atexit.register(lambda: shutil.rmtree(_preview_root, ignore_errors=True))
 PDF, ZIP = "application/pdf", "application/zip"
 DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 
@@ -192,19 +201,134 @@ TOOLS = {fn.__name__: fn for fn in (skripsi, merge, organize, playfull, split, d
                                     image_pdf, pdf_text, pdf_docx, word_pdf, number, protect, unlock)}
 
 
-@app.post("/preview")
-def preview(files: list[UploadFile] = File(...), password: str = Form("")):
+def _discard_preview(token):
+    session = _preview_sessions.pop(token, None)
+    if session:
+        shutil.rmtree(session["directory"], ignore_errors=True)
+
+
+def _clean_previews(now):
+    """Hapus file sementara setelah 20 menit tidak dipakai."""
+    for token, session in list(_preview_sessions.items()):
+        if now - session["last_used"] >= PREVIEW_TTL_SECONDS:
+            _discard_preview(token)
+
+
+def _preview_error(message, status=400):
+    return JSONResponse({"detail": message}, status_code=status)
+
+
+@app.post("/preview/init")
+def init_preview(files: list[UploadFile] = File(...), password: str = Form("")):
+    """Upload sekali saja. Kirim metadata halaman tanpa merender thumbnail."""
+    if not files or len(files) > MAX_FILES:
+        return _preview_error(f"Unggah 1–{MAX_FILES} PDF.")
+    token = secrets.token_urlsafe(32)
+    directory = _preview_root / token
+    directory.mkdir(mode=0o700)
+    metadata, sumber, starts, total_bytes = [], [], [], 0
     try:
-        hal = []
-        for f in files:
-            with c.buka_pdf(baca(f), password) as p:
-                if len(hal) + len(p) > MAX_PREVIEW: raise ValueError(f"Pratinjau dibatasi {MAX_PREVIEW} halaman.")
-                for i in range(len(p)):
-                    img = p[i].get_pixmap(dpi=40, colorspace=fitz.csRGB, alpha=False).tobytes("jpeg", jpg_quality=70)
-                    hal.append({"img": base64.b64encode(img).decode(), "file": f.filename, "page": i + 1})
-        return {"pages": hal}
-    except Exception as e:
-        return JSONResponse({"detail": str(e)}, 400)
+        for k, uploaded in enumerate(files):
+            name = uploaded.filename or f"Berkas {k + 1}.pdf"
+            if not name.lower().endswith(".pdf"):
+                raise ValueError(f"{name} bukan file PDF.")
+            path = directory / f"{k:03d}.pdf"
+            size = 0
+            with path.open("wb") as target:
+                while data := uploaded.file.read(1024 * 1024):
+                    size += len(data)
+                    total_bytes += len(data)
+                    if size > MAX_MB * 1048576:
+                        raise ValueError(f"{name} melebihi batas {MAX_MB} MB.")
+                    if total_bytes > MAX_PREVIEW_SESSION_MB * 1048576:
+                        raise ValueError(f"Total file preview maksimal {MAX_PREVIEW_SESSION_MB} MB.")
+                    target.write(data)
+            starts.append(len(metadata))
+            with fitz.open(path) as pdf:
+                if pdf.needs_pass and (not password or pdf.authenticate(password) <= 0):
+                    raise ValueError("PDF terkunci. Masukkan password yang benar.")
+                if not pdf.is_pdf:
+                    raise ValueError(f"{name} bukan file PDF yang valid.")
+                if len(metadata) + len(pdf) > MAX_PREVIEW:
+                    raise ValueError(f"Pratinjau dibatasi {MAX_PREVIEW} halaman.")
+                for j in range(len(pdf)):
+                    metadata.append({"file": name, "page": j + 1})
+            sumber.append(str(path))
+        with _preview_lock:
+            now = time.monotonic()
+            _clean_previews(now)
+            if len(_preview_sessions) >= MAX_PREVIEW_SESSIONS or (
+                sum(s["bytes"] for s in _preview_sessions.values()) + total_bytes
+                > MAX_ACTIVE_PREVIEW_MB * 1048576
+            ):
+                raise ValueError("Server sedang penuh dengan sesi preview. Tunggu sebentar lalu coba lagi.")
+            _preview_sessions[token] = {
+                "directory": directory, "paths": sumber, "pages": metadata,
+                "password": password, "last_used": now, "bytes": total_bytes,
+                "starts": starts,
+            }
+        return {"session": token, "pages": metadata}
+    except Exception as exc:
+        shutil.rmtree(directory, ignore_errors=True)
+        return _preview_error(str(exc))
+
+
+def _get_preview_page(token, page_index):
+    with _preview_lock:
+        now = time.monotonic()
+        _clean_previews(now)
+        session = _preview_sessions.get(token)
+        if session is None:
+            raise LookupError("Sesi preview berakhir. Klik Muat ulang.")
+        if page_index < 0 or page_index >= len(session["pages"]):
+            raise IndexError("Nomor halaman tidak valid.")
+        # Asal file dicatat menurut nomor halaman pertama, bukan menurut namanya:
+        # dua file berbeda boleh mempunyai nama yang sama.
+        offsets = session["starts"]
+        file_index = max(i for i, start in enumerate(offsets) if start <= page_index)
+        session["last_used"] = now
+        return session["paths"][file_index], page_index - offsets[file_index], session["password"]
+
+
+@app.get("/preview/thumb/{token}/{page_index}")
+def preview_thumb(token: str, page_index: int):
+    try:
+        path, number, password = _get_preview_page(token, page_index)
+        with _preview_render_slots:
+            with fitz.open(path) as pdf:
+                if pdf.needs_pass:
+                    pdf.authenticate(password)
+                picture = pdf[number].get_pixmap(dpi=36, colorspace=fitz.csRGB, alpha=False)
+                data = picture.tobytes("jpeg", jpg_quality=60)
+        return Response(data, media_type="image/jpeg", headers={"Cache-Control": "private, max-age=900"})
+    except (LookupError, IndexError) as exc:
+        return _preview_error(str(exc), 404 if isinstance(exc, IndexError) else 410)
+    except Exception:
+        return _preview_error("Gagal membuat thumbnail PDF.")
+
+
+@app.get("/preview/page/{token}/{page_index}")
+def preview_large(token: str, page_index: int):
+    try:
+        path, number, password = _get_preview_page(token, page_index)
+        with _preview_render_slots:
+            with fitz.open(path) as pdf:
+                if pdf.needs_pass:
+                    pdf.authenticate(password)
+                picture = pdf[number].get_pixmap(dpi=120, colorspace=fitz.csRGB, alpha=False)
+                data = picture.tobytes("jpeg", jpg_quality=80)
+        return Response(data, media_type="image/jpeg", headers={"Cache-Control": "private, max-age=900"})
+    except (LookupError, IndexError) as exc:
+        return _preview_error(str(exc), 404 if isinstance(exc, IndexError) else 410)
+    except Exception:
+        return _preview_error("Gagal membuat pratinjau halaman.")
+
+
+@app.delete("/preview/session/{token}")
+def close_preview(token: str):
+    with _preview_lock:
+        _discard_preview(token)
+    return {"status": "ok"}
 
 
 @app.post("/api/{tool}")
