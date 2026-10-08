@@ -433,4 +433,20 @@ def advanced_batch_edit(files: list[UploadFile] = File(...), opts: str = Form("{
         return JSONResponse({"detail": str(exc)}, status_code=400)
 
 
+@app.post("/advanced/extract-objects")
+def advanced_extract_objects(files: list[UploadFile] = File(...), opts: str = Form("{}")):
+    """Extract native embedded images or a rendered region; does not alter the PDF."""
+    try:
+        if len(opts)>80_000: raise ValueError("Terlalu banyak pilihan objek.")
+        import object_extract
+        fs=[Berkas(f.filename or "dokumen.pdf", baca(f)) for f in files]
+        body,name,mime=object_extract.extract_many(fs,json.loads(opts))
+        return Response(body,media_type=mime,headers={
+            "Content-Disposition": _download_disposition(name),
+            "Access-Control-Expose-Headers":"Content-Disposition",
+            "Cache-Control":"no-store",
+        })
+    except (ValueError,KeyError,TypeError,RuntimeError) as exc:
+        return JSONResponse({"detail":str(exc)},status_code=400)
+
 app.mount("/", StaticFiles(directory=str(Path(__file__).parent / "static"), html=True), name="static")

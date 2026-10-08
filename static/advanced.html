@@ -13,6 +13,12 @@ input[type=color]{height:42px;padding:4px}input[type=range]{width:100%}button{bo
 #result{min-height:36px;margin-top:10px}.msg{padding:12px;border-radius:8px;background:#e9f8ee;color:#186442}.msg.error{background:#fff0f0;color:#b21b32}
 .download{display:inline-block;background:#0d9488;color:white;padding:12px 16px;border-radius:10px;font-weight:600;margin-top:8px}.hide{display:none!important}.pill{display:inline-block;font-size:11px;background:#e4f3fa;border-radius:20px;padding:5px 9px;color:#12618f}
 .toolgroup{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.toolgroup button{text-align:left;font-size:13px}.toolgroup button.chosen{background:#d7f6ea;border:2px solid #0d9488}
+#extractAreaLayer{position:absolute;inset:0;z-index:12;cursor:crosshair;touch-action:none;pointer-events:auto}
+#extractBox{position:absolute;box-sizing:border-box;border:2px dashed #0284c7;background:#0284c722;box-shadow:0 0 0 1px #fff;pointer-events:none}
+.object-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(115px,1fr) auto;align-items:center;gap:7px;padding:7px 0;border-bottom:1px solid #dce9ee}
+.object-row small{display:block;color:#607587;overflow-wrap:anywhere;font-size:11px}.object-row input{min-width:0}
+#extractList{max-height:195px;overflow:auto;border:1px solid #d6e6ed;border-radius:9px;padding:5px 10px;margin-top:8px}
+#extractHint{margin:8px 0;min-height:22px}
 #toolDesc{font-size:13px;color:#486779;padding:8px 0}
 .workspace-row{display:flex;align-items:center;gap:7px;padding:8px;border:1px solid #d5e5ed;border-radius:8px;margin:6px 0;min-width:0}
 .workspace-row.active{border-color:#0284c7;background:#edf9fe}
@@ -45,7 +51,7 @@ input[type=checkbox]{accent-color:#0d9488}
 #draftStatus{font-size:12px;color:#175d79;margin:8px 0}
 .export-help{font-size:12px;color:#436c7d;background:#eff8fc;padding:10px;border-radius:8px}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}.panel-scroll{max-height:62vh;overflow-y:auto;overscroll-behavior:contain}.camera-preview{width:100%;max-height:280px;object-fit:contain;border:1px solid #c9dce6;border-radius:10px;background:#f6fbfe}.sigpad-wrap{border:1px dashed #b7d0dd;border-radius:10px;background:#fff;padding:8px}.sigpad-wrap canvas{width:100%;height:150px;border-radius:8px;border:1px solid #dce9f0;background:#fff;touch-action:none;cursor:crosshair}.sigpad-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.sign-mode #editbar button:not(#delobj){display:none}
 @media(max-width:1180px){.layout{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}#exportAside{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}}@media(max-width:820px){#exportAside{display:block}.layout{grid-template-columns:1fr}.viewer{max-height:57vh}header{position:relative}}
-</style></head><body>
+#resetPage:hover{border-color:#e5a0a0;color:#a33c3c;background:#fff1f1}</style></head><body>
 <header><a href="/">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
 <main><h1>Editor PDF & Alat Profesional</h1><p class="lead">Edit objek visual, konversi dokumen, lindungi PDF, OCR dan buat formulir. Semua diproses di server aplikasi.</p>
 <div class="layout"><aside>
@@ -55,10 +61,10 @@ input[type=checkbox]{accent-color:#0d9488}
 <div id="fileInfo" class="small">Pilih PDF untuk menampilkan editor.</div><div class="sep"></div><div id="singleNameField"><label for="filename">Nama hasil (alat selain Edit Visual)</label><input id="filename" type="text" placeholder="Mengikuti nama dokumen"/></div><label for="password">Password PDF jika terkunci</label><input id="password" type="password" autocomplete="off"/></div>
 <div class="panel panel-scroll" id="toolPanel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div></div>
 </aside><section>
-<div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button><button id="undoAll" type="button" disabled title="Batalkan perubahan terakhir">↶ Undo</button><button id="redoAll" type="button" disabled title="Ulangi perubahan">↷ Redo</button><button id="selectPage" class="select-current" type="button">☐ Pilih halaman ini</button></div></div>
+<div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button><button id="undoAll" type="button" disabled title="Batalkan perubahan terakhir">↶ Undo</button><button id="redoAll" type="button" disabled title="Ulangi perubahan">↷ Redo</button><button id="resetPage" type="button" disabled title="Hapus semua perubahan draft pada halaman aktif. Pilihan di keranjang tidak dihapus dan perubahan bisa dikembalikan dengan Undo.">↺ Reset Halaman</button><button id="selectPage" class="select-current" type="button">☐ Pilih halaman ini</button></div></div>
 <p class="small">Klik objek untuk memilih, lalu tarik untuk memindahkannya. Gambar/teks yang dipindah langsung terlihat pada posisi baru. Edit otomatis tersimpan sebagai draft selama tab terbuka. Centang halaman yang ingin diekspor; hanya halaman terpilih yang masuk hasil.</p>
 <div class="bar" id="editbar"><button id="addtext">✎ Tambah teks</button><button id="addimage">▧ Tambah gambar</button><button id="addrect">▢ Kotak</button><button id="addhighlight">🖍 Sorot</button><button id="delobj">🗑 Hapus pilihan</button></div><input type="file" id="imgInput" accept="image/png,image/jpeg" hidden/>
-<div class="editorrow"><div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="cropGuide"></div><div id="konvaOverlay"></div></div></div>
+<div class="editorrow"><div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="cropGuide"></div><div id="konvaOverlay"></div><div id="extractAreaLayer" class="hide"><div id="extractBox" class="hide"></div></div></div></div>
 <div class="properties" id="properties"><h3>🔤 Properti objek</h3><p class="small" id="propsHint">Klik teks atau gambar pada halaman. Panel ini menggantikan popup teks.</p>
 <div id="propsForm" class="hide">
 <div id="textProps"><label for="propText">Isi teks</label><textarea id="propText" rows="4" placeholder="Tulis isi teks di sini"></textarea>
@@ -67,7 +73,7 @@ input[type=checkbox]{accent-color:#0d9488}
 <div class="fieldgrid"><label>Warna teks<input id="propColor" type="color" value="#17324d"></label><label>Perataan<select id="propAlign"><option value="left">Kiri</option><option value="center">Tengah</option><option value="right">Kanan</option></select></label></div>
 </div><div class="sep"></div><strong class="small">Letak dan ukuran (pt)</strong><div class="fieldgrid"><label>X<input id="propX" type="number" step="1"></label><label>Y<input id="propY" type="number" step="1"></label><label>Lebar<input id="propW" type="number" min="2" step="1"></label><label>Tinggi<input id="propH" type="number" min="2" step="1"></label></div>
 <p class="small">Perubahan properti langsung tampil pada preview. Edit otomatis tercatat sebagai draft; unduh menggunakan panel Ekspor Halaman Terpilih.</p></div></div></div><p id="draftStatus" aria-live="polite">Tindakan halaman disimpan sebagai draft, belum diunduh.</p><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
-<div class="panel" id="toolControls"><h2>⚙️ Pengaturan fitur aktif</h2><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div>
+<div class="panel panel-scroll" id="toolControls"><h2>⚙️ Pengaturan fitur aktif</h2><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div>
 <div id="targetPanel" class="hide"><strong>🎯 Terapkan tindakan ke halaman</strong>
 <label for="targetScope">Target tindakan</label><select id="targetScope"><option value="current">Halaman yang sedang dibuka (default)</option><option value="basket">Semua halaman di keranjang</option><option value="range">Rentang per dokumen</option><option value="all">Seluruh halaman dokumen pilihan</option></select>
 <div id="targetDocs" class="hide"></div><label id="redactConfirmRow" class="hide" style="font-size:12px"><input type="checkbox" id="redactConfirm"> Saya memahami redaksi permanen menghapus informasi dari PDF hasil.</label><div id="targetSummary">Pilih PDF untuk melihat target.</div>
@@ -77,7 +83,6 @@ input[type=checkbox]{accent-color:#0d9488}
 <label id="keepWorkspaceRow" class="hide" style="font-size:12px"><input type="checkbox" id="keepWorkspace" checked> Simpan hasil PDF sebagai dokumen baru di workspace (tanpa harus download)</label>
 <button class="primary" style="width:100%;margin-top:12px" id="process">Proses Alat Dokumen</button></div>
 <div class="panel"><h2>📱 Scan dari kamera</h2><p class="small">Pada ponsel, ambil foto lewat kamera lalu simpan sebagai PDF atau langsung tempel ke halaman aktif sebagai gambar.</p><div class="bar"><button id="camera">📷 Buka kamera</button><button id="shot" class="hide primary">Jepret foto</button></div><video id="vid" playsinline autoplay muted class="hide" style="width:100%;max-height:300px"></video><img id="cameraStill" class="camera-preview hide" alt="Pratinjau foto kamera"><div id="cameraActions" class="hide"><div class="sigpad-actions"><button id="cameraPaste" type="button">📌 Tempel ke halaman aktif</button><button id="cameraPdf" type="button" class="primary">⬇ Jadikan PDF</button><button id="cameraRetake" type="button">↺ Ambil ulang</button></div><p class="small">Tempel ke halaman aktif menambahkan foto sebagai gambar baru di editor, jadi kamu bisa pindahkan atau ubah ukurannya sebelum ekspor.</p></div></div>
-<div class="panel"><h2>📥 Hasil pemrosesan</h2><div id="result">Belum ada hasil.</div></div>
 </section><aside id="exportAside"><div class="panel hide" id="selectionPanel">
 <h2>✅ Keranjang halaman <span id="selectedCount" class="pill">0 halaman</span></h2>
 <p class="small">Urutan mengikuti saat halaman dicentang. Klik nama halaman untuk membukanya, atau geser urutan dengan tombol panah.</p>
@@ -85,7 +90,7 @@ input[type=checkbox]{accent-color:#0d9488}
 <div class="choice-actions bar"><button id="addRange" type="button">+ Tambah nomor</button><button id="addAllFile" type="button">Pilih semua di file ini</button><button id="clearSelected" type="button">Kosongkan pilihan</button></div>
 <div id="chosenList" aria-live="polite"></div>
 </div><div class="panel hide" id="batchPanel"><h2>📦 Ekspor halaman terpilih</h2>
-<p class="small">Hanya halaman dalam keranjang yang akan diunduh. Edit halaman lain tetap ada sebagai draft sampai tab ditutup.</p>
+<p class="small">Hanya halaman dalam keranjang yang akan diunduh. Setelah menambahkan tanda tangan, watermark, atau edit lainnya, cukup pilih halaman lalu ekspor di sini—tanpa kembali ke Edit Teks & Gambar. Edit halaman lain tetap ada sebagai draft sampai tab ditutup.</p>
 <label for="outputStyle">Bentuk hasil</label><select id="outputStyle"><option value="combined">Gabungkan semua pilihan menjadi 1 PDF</option><option value="document">Satu PDF untuk setiap dokumen asal</option><option value="range">Pisahkan per rentang berurutan</option><option value="page">Satu PDF per halaman</option></select>
 <label for="combinedName">Nama PDF gabungan</label><input id="combinedName" type="text" value="PDF_Playfull_Gabungan.pdf"/>
 <label for="nameTemplate">Pola nama file otomatis</label><input id="nameTemplate" type="text" value="{source}_hal_{start}-{end}"/>
@@ -96,7 +101,8 @@ input[type=checkbox]{accent-color:#0d9488}
 <p class="small">Efek terlihat pada file unduhan, bukan preview. PDF digital tetap vektor, sedangkan tambahan teks pada scan sedikit disesuaikan warna dan ketajamannya. Tidak menjamin tambalan sempurna atau menghapus teks yang menyatu dengan gambar scan.</p>
 <div id="planSummary" class="export-help">Belum ada halaman dipilih.</div>
 <button type="button" id="processQuick" class="primary" style="width:100%;margin-top:12px" disabled>⬇ Buat & Unduh Hasil Pilihan</button>
-<div id="notice">Satu PDF → unduh langsung. Beberapa PDF → ZIP dengan nama file masing-masing.</div></div></aside></div>
+<div id="notice">Satu PDF → unduh langsung. Beberapa PDF → ZIP dengan nama file masing-masing.</div></div>
+<div class="panel" id="resultPanel"><h2>📥 Hasil pemrosesan</h2><div id="result" aria-live="polite">Belum ada hasil.</div></div></aside></div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/konva@9.3.20/konva.min.js"></script>
@@ -109,6 +115,7 @@ const TOOLS=[
  ['crop','✂️ Potong Margin',1,'Mengubah crop box (area tampilan), bukan menghapus data di luar crop.'],
  ['rotate_page','🔄 Putar Halaman',1,'Putar halaman pilihan 90°, 180°, atau 270°.'],
  ['page_number','🔢 Nomor Halaman',1,'Tambah nomor halaman pada target pilihan.'],
+ ['extract_objects','🖼️ Ekstrak Objek',1,'Mode A: klik objek gambar asli; Mode B: tandai area bebas termasuk scan atau logo vektor. Hasil unduhan tidak mengubah PDF.'],
  ['office_pdf','📄 Word/PPT/Excel → PDF',2,'Konversi Office via LibreOffice. Untuk PowerPoint dan Excel, layout dapat berubah menurut font.'],
  ['pdf_word','📘 PDF → Word',2,'Konversi dengan pdf2docx; tidak menjamin ketepatan tata letak 100%.'],
  ['pdf_pptx','📊 PDF → PowerPoint',2,'Setiap halaman dijadikan gambar satu slide, objek di dalam slide tidak editable.'],
@@ -148,17 +155,81 @@ const extraParams={
  sign_visual:[['x','X (pt)','100'],['y','Y (pt)','150'],['w','Lebar (pt)','200'],['h','Tinggi (pt)','75']],
  extract_images:[['pages','Halaman','semua']],
 };
+let extractEntries=[],extractRect=null,extractMode='object';
+function renderExtractOptions(parent){
+ const panel=document.createElement('div'); panel.id='extractControls';
+ panel.innerHTML=`<label for="extractMode">Mode ekstraksi</label>
+ <select id="extractMode"><option value="object">A — Klik objek gambar asli</option><option value="area">B — Seleksi area bebas (scan / vektor)</option></select>
+ <p class="small" id="extractHint">Mode A: klik gambar pada preview, lalu tekan + Tambah objek.</p>
+ <label for="extractFormat">Format hasil</label><select id="extractFormat"><option value="original">Format asli gambar (Mode A)</option><option value="png" selected>PNG — tanpa kehilangan detail</option><option value="jpg">JPG — ukuran lebih kecil</option><option value="webp">WEBP — lossless</option></select>
+ <label for="extractQuality">Kualitas</label><select id="extractQuality"><option value="native">Asli (resolusi gambar tertanam)</option><option value="150">Render 150 DPI</option><option value="300">Render 300 DPI</option><option value="600">Render 600 DPI</option></select>
+ <label><input type="checkbox" id="extractTransparent"> Pertahankan transparansi jika memungkinkan (PNG/WEBP)</label>
+ <label for="extractName">Nama objek berikutnya (opsional)</label><input type="text" id="extractName" placeholder="Contoh: Logo_Fakultas">
+ <button type="button" id="extractAdd" class="primary" style="width:100%;margin:10px 0">+ Tambahkan objek / area terpilih</button>
+ <b>Daftar hasil ekstraksi</b><div id="extractList"></div>
+ <label for="extractZip">Nama ZIP (jika lebih dari satu)</label><input id="extractZip" type="text" value="Hasil_Ekstrak_Objek">
+ <div class="bar"><button type="button" id="extractClear">Kosongkan daftar</button><button type="button" id="extractDownload" class="primary">⬇ Ekstrak & Unduh</button></div>
+ <p class="small">Satu hasil → unduh gambar langsung. Beberapa objek → ZIP dengan nama tiap gambar. Area tetap mengikuti halaman asli; tidak menghapus draft edit.</p>`;
+ parent.appendChild(panel);
+ $('#extractMode').value=extractMode;
+ $('#extractMode').onchange=()=>{extractMode=$('#extractMode').value; extractRect=null;updateExtractOverlay();};
+ $('#extractAdd').onclick=addExtractEntry;
+ $('#extractClear').onclick=()=>{extractEntries=[];renderExtractList()};
+ $('#extractDownload').onclick=downloadExtract;
+ $('#extractQuality').onchange=updateExtractHints;
+ $('#extractFormat').onchange=updateExtractHints;
+ renderExtractList();updateExtractOverlay();
+}
+function updateExtractHints(){const hint=$('#extractHint');if(!hint)return;const mode=$('#extractMode').value;
+ hint.textContent=mode==='object'?'Mode A: klik kotak gambar asli pada preview lalu Tambahkan. Bila logo bukan gambar tertanam, gunakan Mode B.':'Mode B: klik-tahan dan tarik di atas halaman untuk memblok area. DPI lebih tinggi tidak memperbaiki scan buram.';
+ const quality=$('#extractQuality');const native=quality?.querySelector('[value="native"]');if(native)native.disabled=mode==='area';if(mode==='area'&&quality.value==='native')quality.value='300';
+ const format=$('#extractFormat');if(format.value==='original'&&(mode==='area'||quality.value!=='native'))format.value='png';format.querySelector('[value="original"]').disabled=mode==='area'||quality.value!=='native';
+}
+function updateExtractOverlay(){const region=$('#extractAreaLayer'),box=$('#extractBox');if(!region)return;const active=choice==='extract_objects'&&extractMode==='area';region.classList.toggle('hide',!active);if(!active||!extractRect){box.classList.add('hide')}else{box.classList.remove('hide');box.style.left=(extractRect.x*100)+'%';box.style.top=(extractRect.y*100)+'%';box.style.width=(extractRect.w*100)+'%';box.style.height=(extractRect.h*100)+'%';} updateExtractHints();}
+function coordsAt(e){const r=$('#extractAreaLayer').getBoundingClientRect();return{x:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),y:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height))}}
+let extractDragStart=null;
+$('#extractAreaLayer').addEventListener('pointerdown',e=>{if(choice!=='extract_objects'||extractMode!=='area')return;extractDragStart=coordsAt(e);extractRect=null;$('#extractAreaLayer').setPointerCapture(e.pointerId);e.preventDefault()});
+$('#extractAreaLayer').addEventListener('pointermove',e=>{if(!extractDragStart)return;const p=coordsAt(e),a=extractDragStart;extractRect={x:Math.min(a.x,p.x),y:Math.min(a.y,p.y),w:Math.abs(p.x-a.x),h:Math.abs(p.y-a.y)};updateExtractOverlay()});
+function finishExtractDrag(e){if(!extractDragStart)return;const p=coordsAt(e),a=extractDragStart;extractDragStart=null;extractRect={x:Math.min(a.x,p.x),y:Math.min(a.y,p.y),w:Math.abs(p.x-a.x),h:Math.abs(p.y-a.y)};if(extractRect.w<.006||extractRect.h<.006)extractRect=null;updateExtractOverlay();}
+$('#extractAreaLayer').addEventListener('pointerup',finishExtractDrag);$('#extractAreaLayer').addEventListener('pointercancel',()=>{extractDragStart=null});
+function addExtractEntry(){try{
+ if(activeIndex<0||!pdfDoc||!pageWidth||!pageHeight)throw Error('Buka file PDF dan halaman terlebih dahulu.');
+ let rect;
+ if(extractMode==='object'){
+   if(!picked||picked.meta?.kind!=='original_image'||!picked.meta.original)throw Error('Klik gambar asli pada halaman terlebih dahulu. Jika tidak terdeteksi, pilih Mode B.');
+   const a=picked.meta.original;rect={x:a.x/pageWidth,y:a.y/pageHeight,w:a.w/pageWidth,h:a.h/pageHeight};
+ }else{if(!extractRect)throw Error('Blok area pada halaman menggunakan mouse/touchpad terlebih dahulu.');rect={...extractRect}}
+ if(extractEntries.length>=30)throw Error('Maksimal 30 objek dalam satu unduhan.');
+ const name=$('#extractName')?.value.trim()||`${stemName(currentDoc().file.name)}_h${page}_${extractEntries.length+1}`;
+ extractEntries.push({fileIndex:activeIndex,page,mode:extractMode,rect,name});$('#extractName').value='';renderExtractList();setInfo(`✓ ${extractEntries.length} objek siap diekstrak. Isi draft halaman tetap tidak berubah.`)
+ }catch(e){error(e.message)}}
+function renderExtractList(){const list=$('#extractList');if(!list)return;list.replaceChildren();if(!extractEntries.length){list.textContent='Belum ada objek dipilih.';return}
+ extractEntries.forEach((item,i)=>{const row=document.createElement('div');row.className='object-row';const label=document.createElement('span');const d=documents[item.fileIndex];label.innerHTML=`<small>Objek ${i+1} · ${item.mode==='object'?'A':'B'}</small>`;const file=document.createElement('small');file.textContent=`${d?.file?.name||'Dokumen'} · hal. ${item.page}`;label.append(file);
+ const input=document.createElement('input');input.type='text';input.value=item.name;input.title='Nama file ini';input.oninput=()=>item.name=input.value;
+ const rm=document.createElement('button');rm.textContent='×';rm.title='Hapus dari daftar ekstraksi';rm.onclick=()=>{extractEntries.splice(i,1);renderExtractList()};row.append(label,input,rm);list.append(row)});
+}
+async function downloadExtract(){const btn=$('#extractDownload');if(!extractEntries.length){error('Tambahkan minimal satu objek atau area.');return}if(!documents.length){error('Upload PDF terlebih dahulu.');return}
+ btn.disabled=true;btn.textContent='Mengekstrak...';try{
+ const pdfIndices=[...new Set(extractEntries.map(x=>x.fileIndex))];const ixMap=new Map(pdfIndices.map((n,i)=>[n,i]));
+ const opt={items:extractEntries.map(x=>({...x,fileIndex:ixMap.get(x.fileIndex)})),format:$('#extractFormat').value,quality:$('#extractQuality').value,dpi:Number($('#extractQuality').value)||300,
+ transparent:$('#extractTransparent').checked,zipName:$('#extractZip').value,passwords:pdfIndices.map(i=>documents[i].password||'')};
+ const form=new FormData();for(const i of pdfIndices)form.append('files',documents[i].file);form.append('opts',JSON.stringify(opt));
+ const r=await fetch('/advanced/extract-objects',{method:'POST',body:form});if(!r.ok){const err=await r.json().catch(()=>({}));throw Error(err.detail||'Ekstraksi gagal.')}
+ const blob=await r.blob(),disp=r.headers.get('Content-Disposition')||'';const utf=/filename\*=UTF-8''([^;]+)/i.exec(disp)?.[1];const name=utf?decodeURIComponent(utf):/filename="([^"]+)"/.exec(disp)?.[1]||'ekstrak.png';
+ $('#result').replaceChildren();const message=document.createElement('div');message.className='msg';message.textContent='✅ Ekstraksi selesai: '+name;const link=document.createElement('a');link.className='download';link.href=URL.createObjectURL(blob);link.download=name;link.textContent='⬇ Unduh '+name;$('#result').append(message,link);link.click();
+ }catch(e){error(e.message)}finally{btn.disabled=false;btn.textContent='⬇ Ekstrak & Unduh'}}
 function choose(id){choice=id;for(const b of document.querySelectorAll('.toolgroup button'))b.classList.toggle('chosen',b.dataset.tool===id);
  const t=TOOLS.find(x=>x[0]===id);$('#toolTitle').textContent=t[1];$('#toolDesc').textContent=t[3];
  const p=$('#params');p.replaceChildren();for(const [key,label,def] of (extraParams[id]||[])){const l=document.createElement('label');l.textContent=label;const el=document.createElement('input');el.type='text';el.value=def;el.dataset.key=key;l.appendChild(el);p.appendChild(l)}
  if(id==='sign_certificate'){const l=document.createElement('label');l.textContent='Berkas sertifikat .p12 / .pfx';const e=document.createElement('input');e.type='file';e.accept='.p12,.pfx';e.id='certFile';l.appendChild(e);p.appendChild(l)}
  if(id==='sign_visual'){const l=document.createElement('label');l.textContent='Gambar tanda tangan PNG/JPG (opsional jika tidak menggambar langsung)';const e=document.createElement('input');e.type='file';e.accept='image/png,image/jpeg';e.id='sigImage';l.appendChild(e);p.appendChild(l);const wrap=document.createElement('div');wrap.className='sigpad-wrap';wrap.innerHTML='<div class="small"><b>Tanda tangan dengan touchpad / mouse</b><br>Usap langsung di kotak berikut. Jika kamu menggambar di sini, hasilnya bisa dipakai tanpa upload gambar.</div><canvas id="sigPad" width="520" height="150"></canvas><div class="sigpad-actions"><button type="button" id="sigClear">Bersihkan tanda tangan</button><button type="button" id="sigUse">Gunakan gambar tanda tangan ini</button></div><div id="sigInfo" class="small">Belum ada goresan tanda tangan.</div>';p.appendChild(wrap);setTimeout(setupSignaturePad,0)}
+ if(id==='extract_objects')renderExtractOptions(p); else updateExtractOverlay();
  const staged=STAGED_TOOLS.has(id);
  $('#selectionPanel').classList.remove('hide');$('#selectPage').classList.remove('hide');
  $('#editbar').classList.toggle('hide',id!=='edit'&&id!=='sign_visual');document.body.classList.toggle('sign-mode',id==='sign_visual');$('#batchPanel').classList.remove('hide');
  $('#properties').classList.toggle('hide',id!=='edit'&&id!=='sign_visual');
- $('#singleNameField').classList.toggle('hide',id==='edit'||staged);
- $('#process').classList.toggle('hide',id==='edit'||staged);$('#keepWorkspaceRow').classList.toggle('hide',id==='edit'||staged);
+ $('#singleNameField').classList.toggle('hide',id==='edit'||staged||id==='extract_objects');
+ $('#process').classList.toggle('hide',id==='edit'||staged||id==='extract_objects');$('#keepWorkspaceRow').classList.toggle('hide',id==='edit'||staged);
  $('#targetPanel').classList.toggle('hide',!staged);$('#redactConfirmRow').classList.toggle('hide',id!=='redact');$('#redactConfirm').checked=false;
  $('#historyPanel').classList.remove('hide');
  $('#process').textContent='Proses: '+t[1];
@@ -189,6 +260,7 @@ function recordCheckpoint(targets=[{fileIndex:activeIndex,page}],label='Edit obj
 function checkpoint(){recordCheckpoint()}
 function updateUndoControls(){
  $('#undoAll').disabled=unifiedHistory.length===0;$('#redoAll').disabled=unifiedRedo.length===0;
+ $('#resetPage').disabled=!currentDoc()?.numPages||!pdfDoc;
  if($('#undoStage'))$('#undoStage').disabled=unifiedHistory.length===0;
  if($('#redoStage'))$('#redoStage').disabled=unifiedRedo.length===0;
 }
@@ -216,13 +288,31 @@ async function redoUnified(){if(!unifiedRedo.length)return;
  await restoreTargetSnapshots(change.after);updateUndoControls();renderStageHistory();
 }
 $('#undoAll').onclick=undoUnified;$('#redoAll').onclick=redoUnified;
+// Reset hanya halaman yang sedang terbuka, bukan seluruh file atau keranjang pilihan.
+// Semua perubahan objek dan tindakan halaman masuk dalam satu checkpoint Undo/Redo.
+async function resetActivePage(){
+ const d=currentDoc();if(!d?.numPages||!pdfDoc){setInfo('Buka PDF dahulu sebelum reset.');return}
+ saveCurrentPage();
+ const target={fileIndex:activeIndex,page};
+ const before=snapshotTargets([target])[0];
+ if(!before?.ops.length&&!before?.actions.length){setInfo(`Halaman ${page} sudah sama dengan PDF asli. Tidak ada perubahan yang perlu direset.`);return}
+ recordCheckpoint([target],`Reset seluruh perubahan halaman ${page}`);
+ // Objek yang pernah ditambah, digeser, dihapus dan tindakan draft (watermark, crop, dsb).
+ d.ops.delete(page);
+ d.pageActions=(d.pageActions||[]).filter(a=>a.page!==page);
+ draftPreviewVersion++;
+ await drawPage();
+ renderStageHistory();updateUndoControls();
+ setInfo(`✓ Halaman ${page} kembali ke kondisi PDF asli. Halaman lain dan keranjang tetap. Klik Undo untuk mengembalikan editan.`);
+}
+$('#resetPage').onclick=resetActivePage;
 // Akses keyboard pada editor, kecuali saat mengetik dalam kotak input.
 document.addEventListener('keydown',e=>{
  if(!(e.ctrlKey||e.metaKey)||!['z','y'].includes(e.key.toLowerCase()))return;
  if(e.target.closest('input,textarea,[contenteditable="true"]'))return;
  e.preventDefault();if(e.key.toLowerCase()==='y'||e.shiftKey)redoUnified();else undoUnified();
 });
-function selectNode(n){picked=n;if(tr)tr.nodes(n?[n]:[]);layer?.batchDraw();updateProperties();setInfo(n?'Objek dipilih: '+(n.meta?.kind||'baru')+'. Ubah propertinya di panel sebelah kanan.':'Pilih objek untuk mengedit.')}
+function selectNode(n){picked=n;if(choice==='extract_objects'&&extractMode==='object'&&$('#extractHint'))$('#extractHint').textContent=n?.meta?.kind==='original_image'?'Gambar dipilih. Klik + Tambahkan objek / area terpilih.':'Pilih kotak gambar asli pada halaman. Untuk scan atau logo vektor, gunakan Mode B.';if(tr)tr.nodes(n?[n]:[]);layer?.batchDraw();updateProperties();setInfo(n?'Objek dipilih: '+(n.meta?.kind||'baru')+'. Ubah propertinya di panel sebelah kanan.':'Pilih objek untuk mengedit.')}
 function nodeCoords(n){return {x:n.x()/scale,y:n.y()/scale,w:n.width()*n.scaleX()/scale,h:n.height()*n.scaleY()/scale}}
 function changedFromOriginal(n){const m=n.meta, v=nodeCoords(n),o=m.original;return !!(m.changed||(o&&(Math.abs(v.x-o.x)>0.7||Math.abs(v.y-o.y)>0.7||Math.abs(v.w-o.w)>0.7||Math.abs(v.h-o.h)>0.7)))}
 function snapshotImage(orig){
@@ -288,7 +378,7 @@ function renderWorkspace(){const wrap=$('#workspace');wrap.replaceChildren();if(
  documents.forEach((d,i)=>{const row=document.createElement('div');row.className='workspace-row'+(i===activeIndex?' active':'');const cb=document.createElement('span');cb.className='pill';cb.textContent=selectedQueue.filter(x=>x.fileIndex===i).length+' ✓';cb.title='Jumlah halaman terpilih dari file ini';const btn=document.createElement('button');btn.className='edit-file';btn.textContent=`${i+1}. ${d.file.name} (${d.numPages||'…'} hal)`;btn.title='Edit dokumen ini';btn.onclick=()=>switchDocument(i);row.append(cb,btn);
   wrap.append(row)});
  $('#fileInfo').textContent=`${documents.length} dokumen. ${selectedQueue.length} halaman dipilih untuk hasil. Edit tetap ada di draft sampai tab ditutup.`;renderTargetDocs()}
-async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();selectedQueue=[];rangeCounter=0;stageHistory=[];stageRedo=[];unifiedHistory=[];unifiedRedo=[];updateUndoControls();
+async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();selectedQueue=[];rangeCounter=0;stageHistory=[];stageRedo=[];unifiedHistory=[];unifiedRedo=[];extractEntries=[];extractRect=null;renderExtractList();updateExtractOverlay();updateUndoControls();
  documents=fs.slice(0,12).map(f=>({file:f,pdfDoc:null,page:1,ops:new Map(),pageActions:[],included:true,ranges:'',numPages:0,password:$('#password').value||''}));activeIndex=-1;nameOverrides.clear();renderSelectedQueue();
  $('#combinedName').value=documents.length===1?stemName(documents[0].file.name)+'_edited.pdf':'PDF_Playfull_gabungan.pdf';
  $('#filename').value=stemName(documents[0].file.name);if(fs.length>12)error('Maksimal 12 dokumen; hanya 12 file pertama yang dimuat.');await switchDocument(0)}
@@ -301,7 +391,7 @@ async function switchDocument(i){if(i<0||i>=documents.length)return;if(activeInd
  catch(e){error('Tidak dapat membuka PDF '+d.file.name+': '+e.message)}}
 async function drawPage(){if(!pdfDoc)return;const seq=++readVersion;
  try{const pg=await pdfDoc.getPage(page);const base=pg.getViewport({scale:1});const available=Math.max(300,Math.min(880,$('#viewer').clientWidth-48));scale=Math.min(1.6,available/base.width);
- const viewport=pg.getViewport({scale});const canvas=$('#pdfCanvas');canvas.width=Math.round(viewport.width);canvas.height=Math.round(viewport.height);$('#paper').style.width=canvas.width+'px';$('#paper').style.height=canvas.height+'px';
+ const viewport=pg.getViewport({scale});const canvas=$('#pdfCanvas');canvas.width=Math.round(viewport.width);canvas.height=Math.round(viewport.height);extractRect=null;updateExtractOverlay();$('#paper').style.width=canvas.width+'px';$('#paper').style.height=canvas.height+'px';
  await pg.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
  const fd=new FormData();fd.append('file',pdfFile);fd.append('page',page);fd.append('password',$('#password').value);
  const r=await fetch('/advanced/inspect',{method:'POST',body:fd});const info=await r.json();if(!r.ok)throw new Error(info.detail||'Gagal membaca objek.');if(seq!==readVersion)return;
@@ -371,7 +461,7 @@ function parseSegments(raw,total){const value=(raw||'').trim();if(!value)throw E
  const pages=[];for(let n=a; a<=b?n<=b:n>=b; n+=a<=b?1:-1)pages.push(n);segments.push(pages)}return segments}
 function pageKey(fileIndex,pageNo){return `${fileIndex}:${pageNo}`}
 function chosen(fileIndex,pageNo){return selectedQueue.some(q=>q.fileIndex===fileIndex&&q.page===pageNo)}
-function updatePageSelectionButton(){const b=$('#selectPage');const d=currentDoc();const yes=!!(d&&chosen(activeIndex,page));b.textContent=yes?'☑ Halaman ini terpilih':'☐ Pilih halaman ini';b.classList.toggle('select-current',yes);b.disabled=!(d&&d.numPages)}
+function updatePageSelectionButton(){const b=$('#selectPage');const d=currentDoc();const yes=!!(d&&chosen(activeIndex,page));b.textContent=yes?'☑ Halaman ini terpilih':'☐ Pilih halaman ini';b.classList.toggle('select-current',yes);b.disabled=!(d&&d.numPages);updateUndoControls()}
 function renderSelectedQueue(){const list=$('#chosenList');list.replaceChildren();$('#selectedCount').textContent=`${selectedQueue.length} halaman`;
  if(!selectedQueue.length){const hint=document.createElement('p');hint.className='small';hint.textContent='Belum ada pilihan. Buka PDF lalu klik Pilih halaman ini atau isi nomor halaman.';list.append(hint);}
  selectedQueue.forEach((q,i)=>{const d=documents[q.fileIndex];if(!d)return;const row=document.createElement('div');row.className='selection-entry';
@@ -408,7 +498,7 @@ function buildGroups(){if(!selectedQueue.length)throw Error('Belum ada halaman y
  }else throw Error('Bentuk hasil tidak dikenali.');
  if(style==='combined'){return result}
  if(result.length>350)throw Error('Maksimal 350 PDF per unduhan. Gunakan gabung atau per dokumen.');return result}
-function renderNames(){const parent=$('#outputNames');parent.replaceChildren();if(choice!=='edit')return;const style=$('#outputStyle').value;
+function renderNames(){const parent=$('#outputNames');parent.replaceChildren();const style=$('#outputStyle').value;
  const combined=style==='combined';$('#outputNames').classList.toggle('hide',combined);document.querySelector('label[for="outputNames"]').classList.toggle('hide',combined);$('#zipName').classList.toggle('hide',combined);document.querySelector('label[for="zipName"]').classList.toggle('hide',combined);$('#combinedName').classList.toggle('hide',!combined);document.querySelector('label[for="combinedName"]').classList.toggle('hide',!combined);
  $('#nameTemplate').classList.toggle('hide',combined);document.querySelector('label[for="nameTemplate"]').classList.toggle('hide',combined);
  try{plannedGroups=buildGroups()}catch(e){plannedGroups=[];parent.textContent='Nama hasil akan muncul setelah kamu memilih halaman.';$('#planSummary').textContent=e.message;$('#processQuick').disabled=true;return}
@@ -451,7 +541,7 @@ async function submit(tool,overrideFile=null){const active=currentDoc();const fs
  $('#result').append(b);
  if(tool!=='edit'&&$('#keepWorkspace').checked&&documents.length<12)await b.onclick();
  }
- }catch(e){error(e.message)}finally{btn.disabled=false;if(tool==='edit')btn.textContent='⬇ Buat & Unduh Hasil Pilihan';choose(tool)}}
+ }catch(e){error(e.message)}finally{if(tool==='edit'){btn.textContent='⬇ Buat & Unduh Hasil Pilihan';renderNames()}else{btn.disabled=false;btn.textContent='Proses: '+(TOOLS.find(x=>x[0]===tool)?.[1]||'Alat Dokumen')}}}
 $('#process').onclick=()=>submit(choice);
 $('#processQuick').onclick=()=>submit('edit');
 let camStream=null,cameraBlob=null,cameraDataUrl='';
