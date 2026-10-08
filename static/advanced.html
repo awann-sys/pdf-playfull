@@ -43,7 +43,7 @@ input[type=checkbox]{accent-color:#0d9488}
 #historyList li{margin:5px 0}
 #cropGuide{position:absolute;pointer-events:none;border:2px dashed #d97706;z-index:2;display:none;box-shadow:0 0 0 2000px #142a3e35}
 #draftStatus{font-size:12px;color:#175d79;margin:8px 0}
-.export-help{font-size:12px;color:#436c7d;background:#eff8fc;padding:10px;border-radius:8px}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}.panel-scroll{max-height:58vh;overflow-y:auto}.camera-preview{width:100%;max-height:280px;object-fit:contain;border:1px solid #c9dce6;border-radius:10px;background:#f6fbfe}.sigpad-wrap{border:1px dashed #b7d0dd;border-radius:10px;background:#fff;padding:8px}.sigpad-wrap canvas{width:100%;height:150px;border-radius:8px;border:1px solid #dce9f0;background:#fff;touch-action:none;cursor:crosshair}.sigpad-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.export-help{font-size:12px;color:#436c7d;background:#eff8fc;padding:10px;border-radius:8px}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}.panel-scroll{max-height:62vh;overflow-y:auto;overscroll-behavior:contain}.camera-preview{width:100%;max-height:280px;object-fit:contain;border:1px solid #c9dce6;border-radius:10px;background:#f6fbfe}.sigpad-wrap{border:1px dashed #b7d0dd;border-radius:10px;background:#fff;padding:8px}.sigpad-wrap canvas{width:100%;height:150px;border-radius:8px;border:1px solid #dce9f0;background:#fff;touch-action:none;cursor:crosshair}.sigpad-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.sign-mode #editbar button:not(#delobj){display:none}
 @media(max-width:1180px){.layout{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}#exportAside{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}}@media(max-width:820px){#exportAside{display:block}.layout{grid-template-columns:1fr}.viewer{max-height:57vh}header{position:relative}}
 </style></head><body>
 <header><a href="/">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
@@ -53,10 +53,11 @@ input[type=checkbox]{accent-color:#0d9488}
 <div class="small">Untuk Edit PDF, pilih beberapa berkas PDF sekaligus (maksimal 12). Klik nama file untuk berpindah editor; perubahan tetap tersimpan selama tab ini terbuka.</div>
 <div id="workspace"></div><label for="upload2">Dokumen kedua (khusus Bandingkan)</label><input id="upload2" type="file" accept=".pdf"/>
 <div id="fileInfo" class="small">Pilih PDF untuk menampilkan editor.</div><div class="sep"></div><div id="singleNameField"><label for="filename">Nama hasil (alat selain Edit Visual)</label><input id="filename" type="text" placeholder="Mengikuti nama dokumen"/></div><label for="password">Password PDF jika terkunci</label><input id="password" type="password" autocomplete="off"/></div>
+<div class="panel panel-scroll" id="toolPanel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div></div>
 </aside><section>
-<div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button><button id="selectPage" class="select-current" type="button">☐ Pilih halaman ini</button></div></div>
+<div class="panel"><div class="stagehead"><h2>🖼️ Preview & Editor</h2><div class="bar" style="margin:0"><button id="prev">◀</button><span id="pageno" class="pill">Hal. – / –</span><button id="next">▶</button><button id="zoomout">−</button><button id="zoomin">+</button><button id="undoAll" type="button" disabled title="Batalkan perubahan terakhir">↶ Undo</button><button id="redoAll" type="button" disabled title="Ulangi perubahan">↷ Redo</button><button id="selectPage" class="select-current" type="button">☐ Pilih halaman ini</button></div></div>
 <p class="small">Klik objek untuk memilih, lalu tarik untuk memindahkannya. Gambar/teks yang dipindah langsung terlihat pada posisi baru. Edit otomatis tersimpan sebagai draft selama tab terbuka. Centang halaman yang ingin diekspor; hanya halaman terpilih yang masuk hasil.</p>
-<div class="bar" id="editbar"><button id="addtext">✎ Tambah teks</button><button id="addimage">▧ Tambah gambar</button><button id="addrect">▢ Kotak</button><button id="addhighlight">🖍 Sorot</button><button id="delobj">🗑 Hapus pilihan</button><button id="undo">↶ Undo</button><button id="redo">↷ Redo</button></div><input type="file" id="imgInput" accept="image/png,image/jpeg" hidden/>
+<div class="bar" id="editbar"><button id="addtext">✎ Tambah teks</button><button id="addimage">▧ Tambah gambar</button><button id="addrect">▢ Kotak</button><button id="addhighlight">🖍 Sorot</button><button id="delobj">🗑 Hapus pilihan</button></div><input type="file" id="imgInput" accept="image/png,image/jpeg" hidden/>
 <div class="editorrow"><div class="viewer" id="viewer"><div class="paper" id="paper"><canvas id="pdfCanvas"></canvas><div id="cropGuide"></div><div id="konvaOverlay"></div></div></div>
 <div class="properties" id="properties"><h3>🔤 Properti objek</h3><p class="small" id="propsHint">Klik teks atau gambar pada halaman. Panel ini menggantikan popup teks.</p>
 <div id="propsForm" class="hide">
@@ -66,7 +67,7 @@ input[type=checkbox]{accent-color:#0d9488}
 <div class="fieldgrid"><label>Warna teks<input id="propColor" type="color" value="#17324d"></label><label>Perataan<select id="propAlign"><option value="left">Kiri</option><option value="center">Tengah</option><option value="right">Kanan</option></select></label></div>
 </div><div class="sep"></div><strong class="small">Letak dan ukuran (pt)</strong><div class="fieldgrid"><label>X<input id="propX" type="number" step="1"></label><label>Y<input id="propY" type="number" step="1"></label><label>Lebar<input id="propW" type="number" min="2" step="1"></label><label>Tinggi<input id="propH" type="number" min="2" step="1"></label></div>
 <p class="small">Perubahan properti langsung tampil pada preview. Edit otomatis tercatat sebagai draft; unduh menggunakan panel Ekspor Halaman Terpilih.</p></div></div></div><p id="draftStatus" aria-live="polite">Tindakan halaman disimpan sebagai draft, belum diunduh.</p><p class="small" id="editinfo">Pilih PDF untuk menampilkan isi halaman.</p></div>
-<div class="panel panel-scroll" id="toolPanel"><h2>🧰 Pilih fitur</h2><h3>Tahap 1 — Edit PDF Bebas</h3><div class="toolgroup" id="group1"></div><h3>Tahap 2 — Konversi</h3><div class="toolgroup" id="group2"></div><h3>Tahap 3 — Keamanan & Dokumen</h3><div class="toolgroup" id="group3"></div><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div>
+<div class="panel" id="toolControls"><h2>⚙️ Pengaturan fitur aktif</h2><div class="sep"></div><strong id="toolTitle">Edit Visual</strong><div id="toolDesc"></div><div id="params"></div>
 <div id="targetPanel" class="hide"><strong>🎯 Terapkan tindakan ke halaman</strong>
 <label for="targetScope">Target tindakan</label><select id="targetScope"><option value="current">Halaman yang sedang dibuka (default)</option><option value="basket">Semua halaman di keranjang</option><option value="range">Rentang per dokumen</option><option value="all">Seluruh halaman dokumen pilihan</option></select>
 <div id="targetDocs" class="hide"></div><label id="redactConfirmRow" class="hide" style="font-size:12px"><input type="checkbox" id="redactConfirm"> Saya memahami redaksi permanen menghapus informasi dari PDF hasil.</label><div id="targetSummary">Pilih PDF untuk melihat target.</div>
@@ -133,7 +134,7 @@ let stageHistory=[],stageRedo=[],draftPreviewVersion=0;
 
 function cfg(){for(const [id,n,g,desc] of TOOLS){const btn=document.createElement('button');btn.textContent=n;btn.dataset.tool=id;btn.onclick=()=>choose(id);$('#group'+g).appendChild(btn)}choose('edit')}
 let signaturePadData='';
-function setupSignaturePad(){const c=$('#sigPad');if(!c)return;const info=$('#sigInfo');const ctx=c.getContext('2d');ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#17324d';ctx.lineWidth=2.2;let drawing=false,moved=false;const pos=e=>{const r=c.getBoundingClientRect();const p=e.touches?e.touches[0]:e;return {x:(p.clientX-r.left)*(c.width/r.width),y:(p.clientY-r.top)*(c.height/r.height)}};const start=e=>{drawing=true;moved=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);e.preventDefault?.()};const move=e=>{if(!drawing)return;const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();signaturePadData=c.toDataURL('image/png');window.signaturePadData=signaturePadData;if(info)info.textContent='Tanda tangan siap dipakai dari goresan touchpad / mouse.';e.preventDefault?.()};const end=e=>{drawing=false;e.preventDefault?.()};['mousedown','touchstart'].forEach(ev=>c.addEventListener(ev,start,{passive:false}));['mousemove','touchmove'].forEach(ev=>c.addEventListener(ev,move,{passive:false}));['mouseup','mouseleave','touchend','touchcancel'].forEach(ev=>c.addEventListener(ev,end,{passive:false}));$('#sigClear')?.addEventListener('click',()=>{ctx.clearRect(0,0,c.width,c.height);signaturePadData='';window.signaturePadData='';if(info)info.textContent='Belum ada goresan tanda tangan.'});$('#sigUse')?.addEventListener('click',()=>{signaturePadData=c.toDataURL('image/png');window.signaturePadData=signaturePadData;if(info)info.textContent='Tanda tangan gambar ini akan dipakai saat diterapkan ke draft atau diproses.'})}
+function setupSignaturePad(){const c=$('#sigPad');if(!c)return;const info=$('#sigInfo');const ctx=c.getContext('2d');if(signaturePadData){const old=new Image();old.onload=()=>ctx.drawImage(old,0,0,c.width,c.height);old.src=signaturePadData}ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#17324d';ctx.lineWidth=2.2;let drawing=false,moved=false;const pos=e=>{const r=c.getBoundingClientRect();const p=e.touches?e.touches[0]:e;return {x:(p.clientX-r.left)*(c.width/r.width),y:(p.clientY-r.top)*(c.height/r.height)}};const start=e=>{drawing=true;moved=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);e.preventDefault?.()};const move=e=>{if(!drawing)return;const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();signaturePadData=c.toDataURL('image/png');window.signaturePadData=signaturePadData;if(info)info.textContent='Tanda tangan siap dipakai dari goresan touchpad / mouse.';e.preventDefault?.()};const end=e=>{drawing=false;e.preventDefault?.()};['mousedown','touchstart'].forEach(ev=>c.addEventListener(ev,start,{passive:false}));['mousemove','touchmove'].forEach(ev=>c.addEventListener(ev,move,{passive:false}));['mouseup','mouseleave','touchend','touchcancel'].forEach(ev=>c.addEventListener(ev,end,{passive:false}));$('#sigClear')?.addEventListener('click',()=>{ctx.clearRect(0,0,c.width,c.height);signaturePadData='';window.signaturePadData='';if(info)info.textContent='Belum ada goresan tanda tangan.'});$('#sigUse')?.addEventListener('click',()=>{signaturePadData=c.toDataURL('image/png');window.signaturePadData=signaturePadData;if(info)info.textContent='Tanda tangan gambar ini akan dipakai saat diterapkan ke draft atau diproses.'})}
 const extraParams={
  watermark:[['text','Teks watermark','DRAFT'],['fontSize','Ukuran tulisan','42'],['color','Warna (#hex)','#777777'],['angle','Rotasi (0,90,180,270)','0'],['opacity','Transparansi (0.05–1)','0.32'],['x','X posisi (%)','15'],['y','Y posisi (%)','52']],
  crop:[['left','Potong kiri (pt)','20'],['top','Potong atas (pt)','20'],['right','Potong kanan (pt)','20'],['bottom','Potong bawah (pt)','20']],
@@ -154,8 +155,8 @@ function choose(id){choice=id;for(const b of document.querySelectorAll('.toolgro
  if(id==='sign_visual'){const l=document.createElement('label');l.textContent='Gambar tanda tangan PNG/JPG (opsional jika tidak menggambar langsung)';const e=document.createElement('input');e.type='file';e.accept='image/png,image/jpeg';e.id='sigImage';l.appendChild(e);p.appendChild(l);const wrap=document.createElement('div');wrap.className='sigpad-wrap';wrap.innerHTML='<div class="small"><b>Tanda tangan dengan touchpad / mouse</b><br>Usap langsung di kotak berikut. Jika kamu menggambar di sini, hasilnya bisa dipakai tanpa upload gambar.</div><canvas id="sigPad" width="520" height="150"></canvas><div class="sigpad-actions"><button type="button" id="sigClear">Bersihkan tanda tangan</button><button type="button" id="sigUse">Gunakan gambar tanda tangan ini</button></div><div id="sigInfo" class="small">Belum ada goresan tanda tangan.</div>';p.appendChild(wrap);setTimeout(setupSignaturePad,0)}
  const staged=STAGED_TOOLS.has(id);
  $('#selectionPanel').classList.remove('hide');$('#selectPage').classList.remove('hide');
- $('#editbar').classList.toggle('hide',id!=='edit');$('#batchPanel').classList.remove('hide');
- $('#properties').classList.toggle('hide',id!=='edit');
+ $('#editbar').classList.toggle('hide',id!=='edit'&&id!=='sign_visual');document.body.classList.toggle('sign-mode',id==='sign_visual');$('#batchPanel').classList.remove('hide');
+ $('#properties').classList.toggle('hide',id!=='edit'&&id!=='sign_visual');
  $('#singleNameField').classList.toggle('hide',id==='edit'||staged);
  $('#process').classList.toggle('hide',id==='edit'||staged);$('#keepWorkspaceRow').classList.toggle('hide',id==='edit'||staged);
  $('#targetPanel').classList.toggle('hide',!staged);$('#redactConfirmRow').classList.toggle('hide',id!=='redact');$('#redactConfirm').checked=false;
@@ -171,8 +172,56 @@ function error(t){$('#result').replaceChildren();const d=document.createElement(
 // Lapisan putih menutupi lokasi lama; lapisan pratinjau menampilkan isi yang digeser.
 // PDF.js tetap menjadi sumber halaman asli. Perubahan sesungguhnya disimpan oleh PyMuPDF.
 let maskLayer=null, previewLayer=null;
-function state(){return {nodes:nodes.map(n=>({attrs:{...n.attrs},meta:{...n.meta}}))}}
-function checkpoint(){hist.push(state());if(hist.length>20)hist.shift();redos=[]}
+// Satu riwayat perubahan: teks/gambar, tanda tangan, watermark, crop, dsb.
+let unifiedHistory=[],unifiedRedo=[],historyRestore=false;
+const clonePlain=value=>JSON.parse(JSON.stringify(value));
+function snapshotTargets(targets){const arr=[];for(const {fileIndex,page:pageNo} of targets){const d=documents[fileIndex];if(!d)continue;const curr=fileIndex===activeIndex&&pageNo===page&&layer&&pdfDoc;
+ const ops=curr?operations():(d.ops.get(pageNo)||[]);
+ const actions=(d.pageActions||[]).filter(a=>a.page===pageNo);
+ arr.push({fileIndex,page:pageNo,ops:clonePlain(ops),actions:clonePlain(actions)});
+ }return arr}
+function recordCheckpoint(targets=[{fileIndex:activeIndex,page}],label='Edit objek'){
+ if(historyRestore||targets.some(t=>t.fileIndex<0))return;
+ const unique=[...new Map(targets.map(t=>[`${t.fileIndex}:${t.page}`,t])).values()];
+ unifiedHistory.push({targets:unique,before:snapshotTargets(unique),label});
+ if(unifiedHistory.length>80)unifiedHistory.shift();unifiedRedo=[];updateUndoControls();
+}
+function checkpoint(){recordCheckpoint()}
+function updateUndoControls(){
+ $('#undoAll').disabled=unifiedHistory.length===0;$('#redoAll').disabled=unifiedRedo.length===0;
+ if($('#undoStage'))$('#undoStage').disabled=unifiedHistory.length===0;
+ if($('#redoStage'))$('#redoStage').disabled=unifiedRedo.length===0;
+}
+async function restoreTargetSnapshots(snaps){historyRestore=true;try{
+ for(const x of snaps){const d=documents[x.fileIndex];if(!d)continue;
+ d.ops.set(x.page,clonePlain(x.ops));
+ d.pageActions=(d.pageActions||[]).filter(a=>a.page!==x.page).concat(clonePlain(x.actions));
+ }
+ const doc=currentDoc();if(doc){pageOps=doc.ops;await drawPage()}
+ }finally{historyRestore=false;updateUndoControls()}
+}
+async function undoUnified(){if(!unifiedHistory.length)return;
+ saveCurrentPage();let change;
+ // Melewati fokus input/klik tanpa perubahan, agar Undo hanya membatalkan edit sungguhan.
+ do {change=unifiedHistory.pop();if(!change)break;
+  const after=snapshotTargets(change.targets);
+  if(JSON.stringify(after)!==JSON.stringify(change.before)){
+    unifiedRedo.push({...change,after});await restoreTargetSnapshots(change.before);break;
+  }
+ }while(unifiedHistory.length);
+ updateUndoControls();renderStageHistory();
+}
+async function redoUnified(){if(!unifiedRedo.length)return;
+ saveCurrentPage();const change=unifiedRedo.pop();unifiedHistory.push({targets:change.targets,before:change.before,label:change.label});
+ await restoreTargetSnapshots(change.after);updateUndoControls();renderStageHistory();
+}
+$('#undoAll').onclick=undoUnified;$('#redoAll').onclick=redoUnified;
+// Akses keyboard pada editor, kecuali saat mengetik dalam kotak input.
+document.addEventListener('keydown',e=>{
+ if(!(e.ctrlKey||e.metaKey)||!['z','y'].includes(e.key.toLowerCase()))return;
+ if(e.target.closest('input,textarea,[contenteditable="true"]'))return;
+ e.preventDefault();if(e.key.toLowerCase()==='y'||e.shiftKey)redoUnified();else undoUnified();
+});
 function selectNode(n){picked=n;if(tr)tr.nodes(n?[n]:[]);layer?.batchDraw();updateProperties();setInfo(n?'Objek dipilih: '+(n.meta?.kind||'baru')+'. Ubah propertinya di panel sebelah kanan.':'Pilih objek untuk mengedit.')}
 function nodeCoords(n){return {x:n.x()/scale,y:n.y()/scale,w:n.width()*n.scaleX()/scale,h:n.height()*n.scaleY()/scale}}
 function changedFromOriginal(n){const m=n.meta, v=nodeCoords(n),o=m.original;return !!(m.changed||(o&&(Math.abs(v.x-o.x)>0.7||Math.abs(v.y-o.y)>0.7||Math.abs(v.w-o.w)>0.7||Math.abs(v.h-o.h)>0.7)))}
@@ -206,7 +255,7 @@ function syncVisual(n){
      n.visualLoading=true;const img=new Image();const source=m.image;
      img.onload=()=>{if(!n.getStage()||n.meta.image!==source)return;n.visual=new Konva.Image({image:img,listening:false});previewLayer.add(n.visual);syncVisual(n)};
      img.onerror=()=>{n.visualLoading=false;setInfo('Gambar tidak dapat ditampilkan. Gunakan PNG/JPG.')};img.src=source||'';
-   } else {n.visual.setAttrs(v);n.visual.visible(true)}
+   } else if(n.visual){n.visual.setAttrs(v);n.visual.visible(true)}
  } else if(m.kind==='text'&&active){
    if(!n.visual){n.visual=new Konva.Text({listening:false});previewLayer.add(n.visual)}
    n.visual.setAttrs({...v,text:m.text||'',fontSize:(m.fontSize||12)*scale,fill:m.color||'#17324d',fontFamily:fontCSS(m.font),fontStyle:fontStyle(m),align:m.align||'left',wrap:'word'});n.visual.visible(true);
@@ -239,7 +288,7 @@ function renderWorkspace(){const wrap=$('#workspace');wrap.replaceChildren();if(
  documents.forEach((d,i)=>{const row=document.createElement('div');row.className='workspace-row'+(i===activeIndex?' active':'');const cb=document.createElement('span');cb.className='pill';cb.textContent=selectedQueue.filter(x=>x.fileIndex===i).length+' ✓';cb.title='Jumlah halaman terpilih dari file ini';const btn=document.createElement('button');btn.className='edit-file';btn.textContent=`${i+1}. ${d.file.name} (${d.numPages||'…'} hal)`;btn.title='Edit dokumen ini';btn.onclick=()=>switchDocument(i);row.append(cb,btn);
   wrap.append(row)});
  $('#fileInfo').textContent=`${documents.length} dokumen. ${selectedQueue.length} halaman dipilih untuk hasil. Edit tetap ada di draft sampai tab ditutup.`;renderTargetDocs()}
-async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();selectedQueue=[];rangeCounter=0;stageHistory=[];stageRedo=[];
+async function loadPdf(){const fs=[...$('#upload').files];if(!fs.length)return;readVersion++;if(documents.length)saveCurrentPage();selectedQueue=[];rangeCounter=0;stageHistory=[];stageRedo=[];unifiedHistory=[];unifiedRedo=[];updateUndoControls();
  documents=fs.slice(0,12).map(f=>({file:f,pdfDoc:null,page:1,ops:new Map(),pageActions:[],included:true,ranges:'',numPages:0,password:$('#password').value||''}));activeIndex=-1;nameOverrides.clear();renderSelectedQueue();
  $('#combinedName').value=documents.length===1?stemName(documents[0].file.name)+'_edited.pdf':'PDF_Playfull_gabungan.pdf';
  $('#filename').value=stemName(documents[0].file.name);if(fs.length>12)error('Maksimal 12 dokumen; hanya 12 file pertama yang dimuat.');await switchDocument(0)}
@@ -309,8 +358,7 @@ function restoreSnapshot(prev){if(!layer)return;
  for(const n of nodes)n.destroy();nodes=[];maskLayer.destroyChildren();previewLayer.destroyChildren();
  for(const item of prev.nodes){const a=item.attrs;const n=makeRect({x:a.x/scale,y:a.y/scale,w:a.width*(a.scaleX||1)/scale,h:a.height*(a.scaleY||1)/scale},item.meta);if(item.meta.deleted)syncVisual(n)}
  selectNode(null);saveCurrentPage()}
-$('#undo').onclick=()=>{if(!hist.length||!layer)return;redos.push(state());restoreSnapshot(hist.pop())};
-$('#redo').onclick=()=>{if(!redos.length||!layer)return;hist.push(state());restoreSnapshot(redos.pop())};
+
 function operations(){const o=[];if(!layer)return o;
  for(const n of nodes){const m=n.meta;const original=m.original;const v=nodeCoords(n);const box={page:m.page||page,...v};const changed=changedFromOriginal(n);
  if(m.kind==='original_text'){if(m.deleted||changed){o.push({type:'delete_text',page:m.page,...original});if(!m.deleted)o.push({type:'text',...box,text:m.text,fontSize:m.fontSize||12,font:m.font||'sans',bold:!!m.bold,italic:!!m.italic,color:m.color||'#17324d',align:m.align||'left'})}}
@@ -458,9 +506,9 @@ function updateTargetSummary(){
 }
 $('#targetScope').onchange=renderTargetDocs;
 function collectStageParams(){const opts={};for(const el of document.querySelectorAll('#params [data-key]'))opts[el.dataset.key]=el.value;return opts}
-function renderStageHistory(){const list=$('#historyList');list.replaceChildren();for(const item of stageHistory.slice(-8).reverse()){
- const li=document.createElement('li');li.textContent=`${item.tool} · ${item.targets.length} halaman`;list.append(li)}
- $('#undoStage').disabled=!stageHistory.length;$('#redoStage').disabled=!stageRedo.length;
+function renderStageHistory(){const list=$('#historyList');list.replaceChildren();for(const item of unifiedHistory.slice(-8).reverse()){
+ const li=document.createElement('li');li.textContent=`${item.label||'Perubahan'} · ${item.targets.length} halaman`;list.append(li)}
+ updateUndoControls();
 }
 function updatePageDraftStatus(){const d=currentDoc();if(!d)return;const entries=(d.pageActions||[]).filter(x=>x.page===page);
  const suffix=entries.map(x=>x.tool).join(', ');$('#draftStatus').textContent=entries.length?`✓ ${entries.length} tindakan draft di halaman ini: ${suffix}. `+'Watermark dan objek lain tampil di preview; batas crop/rotasi baru final setelah ekspor.':
@@ -491,6 +539,24 @@ async function applyStage(){
   if(choice==='sign_visual'){const img=$('#sigImage')?.files[0];if(img)options.image=await readData(img); else if(window.signaturePadData) options.image=window.signaturePadData; else throw Error('Unggah gambar tanda tangan atau gambar langsung dengan touchpad / mouse.')}
   if(choice==='redact'&&!$('#redactConfirm').checked)throw Error('Centang konfirmasi redaksi permanen terlebih dahulu.');
   saveCurrentPage();
+  recordCheckpoint(targets,choice==='sign_visual'?'Tambah tanda tangan':`Terapkan ${choice}`);
+  // TTD visual disimpan sebagai objek gambar di setiap halaman yang ditargetkan,
+  // BUKAN hasil permanen dari aksi server. Objek ini bisa dipindah, resize, hapus.
+  if(choice==='sign_visual'){
+    for(const target of targets){
+      const d=documents[target.fileIndex],current=d.ops.get(target.page)||[];
+      const operation={type:'image',page:target.page,x:Number(options.x)||100,y:Number(options.y)||150,
+        w:Math.max(10,Number(options.w)||200),h:Math.max(10,Number(options.h)||75),image:options.image};
+      d.ops.set(target.page,[...current,operation]);
+    }
+    stageRedo=[];await drawPage();
+    if(targets.some(t=>t.fileIndex===activeIndex&&t.page===page)){
+      const signedNode=nodes.filter(n=>n.meta.kind==='image').at(-1);if(signedNode)selectNode(signedNode);
+    }
+    renderStageHistory();
+    setInfo(`✓ Tanda tangan menjadi objek gambar pada ${targets.length} halaman. Pilih tanda tangan di preview untuk geser/resize/hapus. Edit tersimpan di draft.`);
+    return;
+  }
   const entry={tool:choice,targets:targets.map(x=>({...x})),entries:[]};
   for(let i=0;i<targets.length;i++){
    const target=targets[i],document=documents[target.fileIndex];
@@ -503,13 +569,7 @@ async function applyStage(){
  }catch(e){error(e.message)}
 }
 $('#applyDraft').onclick=applyStage;
-$('#undoStage').onclick=async()=>{const h=stageHistory.pop();if(!h)return;
- for(const {fileIndex,action} of h.entries){const d=documents[fileIndex];d.pageActions=d.pageActions.filter(x=>x.id!==action.id)}
- stageRedo.push(h);renderStageHistory();await drawPage();
-};
-$('#redoStage').onclick=async()=>{const h=stageRedo.pop();if(!h)return;
- for(const {fileIndex,action} of h.entries)documents[fileIndex].pageActions.push(action);
- stageHistory.push(h);renderStageHistory();await drawPage();
-};
+$('#undoStage').onclick=undoUnified;
+$('#redoStage').onclick=redoUnified;
 $('#qualityMatch').checked=true;if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';cfg();
 </script></body></html>
