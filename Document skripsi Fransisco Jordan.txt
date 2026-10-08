@@ -1,0 +1,4349 @@
+===== HALAMAN 1 =====
+ 
+SKRIPSI 
+PENGARUH AKTIVITAS CONVECTIVELY COUPLED KELVIN WAVES 
+TERHADAP KEJADIAN HUJAN EKSTREM DI ​
+KALIMANTAN SELATAN 
+THE INFLUENCE OF CONVECTIVELY COUPLED KELVIN WAVE 
+ACTIVITY ON EXTREME RAINFALL EVENTS IN SOUTH KALIMANTAN 
+ 
+ 
+ 
+ 
+ 
+FRANSISCO JORDAN N D S I 
+11.22.0057 
+ 
+ 
+ 
+ 
+PROGRAM STUDI SARJANA TERAPAN METEOROLOGI 
+SEKOLAH TINGGI METEOROLOGI KLIMATOLOGI DAN GEOFISIKA 
+TANGERANG  
+2026
+
+===== HALAMAN 2 =====
+ 
+SKRIPSI 
+PENGARUH AKTIVITAS CONVECTIVELY COUPLED KELVIN WAVES 
+TERHADAP KEJADIAN HUJAN EKSTREM DI ​
+KALIMANTAN SELATAN 
+THE INFLUENCE OF CONVECTIVELY COUPLED KELVIN WAVE 
+ACTIVITY ON EXTREME RAINFALL EVENTS IN SOUTH KALIMANTAN 
+Diajukan untuk memenuhi salah satu syarat memperoleh derajat​
+Sarjana Terapan Meteorologi  
+ 
+ 
+FRANSISCO JORDAN N D S I 
+11.22.0057 
+ 
+ 
+ 
+ 
+PROGRAM STUDI SARJANA TERAPAN METEOROLOGI 
+SEKOLAH TINGGI METEOROLOGI KLIMATOLOGI DAN GEOFISIKA 
+TANGERANG  
+2026
+
+===== HALAMAN 3 =====
+ 
+ 
+HALAMAN PENGESAHAN 
+SKRIPSI 
+PENGARUH AKTIVITAS CONVECTIVELY COUPLED KELVIN WAVES 
+TERHADAP KEJADIAN HUJAN EKSTREM ​
+DI KALIMANTAN SELATAN 
+Telah dpersiapkan dan disusun oleh: 
+FRANSISCO JORDAN N D S I 
+11.22.0057 
+ 
+Telah dipertahankan di depan Tim Penguji dan dinyatakan lulus​
+pada tanggal 29 Juli 2026​
+​
+Susunan Tim Penguji 
+ 
+ 
+​
+​
+Tangerang, 26 Agustus 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+2 
+ 
+Pembimbing Utama 
+ 
+ 
+ 
+Dr. Aries Kristianto, S.T., M. Si.​
+NIP. 197504071997031001 
+Penguji 
+ 
+ 
+ 
+Hasti Amrih Rejeki, SST, M.Si.   
+NIP. 199101202010122001 
+ 
+ 
+Ketua Program Studi  
+Sarjana Terapan Meteorologi 
+ 
+ 
+ 
+ 
+Dr. Yosafat Donni Haryanto, SP., M.Si​
+NIP. 1976122819990310021 
+Ketua Sekolah Tinggi Meteorologi 
+Klimatologi dan Geofisika 
+ 
+ 
+ 
+ 
+Dr. Deni Septiadi, M.Si 
+NIP. 197809302000121001
+
+===== HALAMAN 4 =====
+ 
+ 
+PERNYATAAN ORISINALITAS 
+ 
+Fransisco Jordan N D S I NPT. 11.22.0057, menyatakan bahwa skripsi 
+saya yang berjudul “Pengaruh Aktivitas Convectively Coupled Kelvin Waves 
+Terhadap Kejadian hujan Ekstrem Di Kalimantan Selatan” merupakan karya 
+asli. Seluruh ide yang ada dalam skripsi ini merupakan hasil penelitian yang saya 
+susun sendiri dan sepanjang pengetahuan saya juga tidak terdapat karya atau 
+pendapat yang pernah ditulis atau diterbitkan oleh orang lain, kecuali yang secara 
+tertulis diacu dalam naskah ini serta disebutkan dalam daftar pustaka. Selain itu, 
+tidak ada bagian dari skripsi ini yang telah digunakan sebelumnya untuk 
+memperoleh gelar kesarjanaan maupun sertifikat akademik di suatu Perguruan 
+Tinggi. 
+Jika pernyataan di atas terbukti sebaliknya, maka saya bersedia menerima 
+sanksi yang ditetapkan oleh Sekolah Tinggi Meteorologi Klimatologi dan 
+Geofisika. 
+ 
+ 
+ 
+ 
+ 
+3 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Tangerang, 29 Juli 2026 
+Penulis, 
+ 
+ 
+ 
+ 
+ 
+ 
+Fransisco Jordan N D S I 
+NPT. 11.22.0057
+
+===== HALAMAN 5 =====
+ 
+ 
+KATA PENGANTAR 
+ 
+Puji syukur penulis panjatkan ke hadirat Allah SWT atas segala rahmat, 
+karunia, dan pertolongan-Nya sehingga skripsi yang berjudul "Pengaruh 
+Aktivitas Convectively Coupled Kelvin Waves Terhadap Kejadian Hujan 
+Ekstrem Di Kalimantan Selatan" ini dapat diselesaikan sebagai salah satu syarat 
+untuk memperoleh gelar Sarjana Terapan Meteorologi pada Program Studi 
+Sarjana Terapan Meteorologi, Sekolah Tinggi Meteorologi, Klimatologi, dan 
+Geofisika. Penyusunan skripsi ini tidak terlepas dari bantuan, bimbingan, doa, 
+serta dukungan dari berbagai pihak. Oleh karena itu, dengan penuh rasa hormat 
+dan terima kasih, penulis menyampaikan apresiasi yang sebesar-besarnya kepada: 
+1.​
+Bapak Dr. Deni Septiadi, M.Si selaku Ketua Sekolah Tinggi Meteorologi 
+Klimatologi dan Geofisika;  
+2.​
+Bapak Dr. Yosafat Donni Haryanto, S.P., M.Si selaku Ketua Program Studi 
+Sarjana Terapan Meteorologi Sekolah Tinggi Meteorologi Klimatologi dan 
+Geofisika;  
+3.​
+Bapak Dr. Aries Kristianto, S.T., M.Si selaku dosen pembimbing , yang 
+dengan penuh dedikasi telah membimbing, memberikan berbagai masukan, 
+serta mengarahkan penulis dalam setiap tahapan penyusunan skripsi ini; 
+4.​
+Bapak Ahmad Fadlan, SST., M.Si.  dan  Ibu Hasti Amrih Rejeki, SST.,  
+M.Si selaku dosen penguji yang telah memberikan kritik, saran, dan 
+masukan yang membangun sehingga skripsi ini menjadi lebih baik dan 
+berguna bagi masyrakat kedepanya;  
+5.​
+Bapak/Ibu Dosen dan seluruh civitas akademika Sekolah Tinggi 
+Meteorologi Klimatologi dan Geofisika yang telah memberikan ilmu, 
+pengalaman, dan pembelajaran selama menempuh pendidikan; 
+6.​
+Bapak Dr. Aries Kristianto, S.T., M.Si selaku Dosen Pembimbing 
+Akademik dan Ibu Menik Setiyowati, S.S. selaku Dosen Pembimbing 
+Mental yang senantiasa memberikan pendampingan, masukan, serta 
+dorongan kepada penulis selama menempuh pendidikan; 
+4
+
+===== HALAMAN 6 =====
+ 
+ 
+7.​
+Kedua orang tua tercinta, Bapak Palas Siahaan dan Ibu Dina Uli Marpaung 
+yang telah senantiasa mencurahkan doa dan kasih sayang serta 
+dukungannya untuk menyelesaikan skripsi ini; 
+8.​
+Rekan-rekan satu bimbingan, teman-teman kelas Meteorologi B Angkatan 
+2022, serta keluarga besar Askarajaswala, yang telah menjadi bagian dari 
+perjalanan akademik penulis melalui kebersamaan, bantuan, doa, serta 
+dukungan selama menempuh perkuliahan hingga skripsi ini dapat 
+diselesaikan; 
+9.​
+Seluruh pihak yang telah memberikan bantuan, dukungan, dan kontribusi 
+kepada penulis selama proses penyusunan skripsi ini, baik secara langsung 
+maupun tidak langsung, yang tidak dapat disebutkan satu per satu.  
+Penulis menyadari bahwa skripsi ini masih memiliki keterbatasan sehingga 
+kritik dan saran yang membangun sangat diharapkan demi perbaikan di masa 
+mendatang. Penulis berharap skripsi ini dapat bermanfaat dan menjadi referensi 
+bagi pembaca. 
+ 
+ 
+ 
+ 
+ 
+5 
+ 
+ 
+Tangerang, 29 Juli 2026
+ 
+ 
+ 
+  Penulis
+
+===== HALAMAN 7 =====
+ 
+ 
+DAFTAR ISI 
+ 
+HALAMAN PERSETUJUAN.................................................................................ii 
+PERNYATAAN ORISINALITAS.......................................................................... iii 
+KATA PENGANTAR............................................................................................. iv 
+DAFTAR ISI...........................................................................................................vi 
+DAFTAR TABEL................................................................................................. viii 
+DAFTAR GAMBAR.............................................................................................. ix 
+DAFTAR LAMPIRAN............................................................................................ x 
+INTISARI................................................................................................................xi 
+ABSTRACT...........................................................................................................xii 
+BAB I PENDAHULUAN........................................................................................1 
+1.1​
+Latar Belakang......................................................................................... 1 
+1.2​
+Rumusan Masalah....................................................................................3 
+1.3​
+Batasan Masalah.......................................................................................3 
+1.4​
+Tujuan dan Manfaat Penelitian................................................................ 4 
+1.5​
+Sistematika Penulisan...............................................................................4 
+BAB II DASAR TEORI...........................................................................................6 
+2.1.​
+Tinjauan Pustaka...................................................................................... 6 
+2.2.​
+Landasan Teori.........................................................................................7 
+2.2.1​
+Hujan ekstrem​
+7 
+2.2.2​
+Gelombang ekuatorial​
+8 
+2.2.3​
+Kelvin waves dan convectively coupled kelvin waves​
+9 
+2.2.4​
+Fourier transform​
+12 
+6
+
+===== HALAMAN 8 =====
+ 
+ 
+2.2.5​
+Probabilitas Kejadian Bersama​
+13 
+BAB III METODE PENELITIAN.........................................................................17 
+3.1.​
+Jenis Penelitian.......................................................................................17 
+3.2.​
+Prosedur Penelitian.................................................................................17 
+3.2.1​
+Lokasi dan waktu penelitian​
+18 
+3.2.2​
+Data penelitian​
+19 
+3.2.3​
+Alat penelitian​
+20 
+3.2.4​
+Teknik pengolahan data​
+20 
+3.2.5​
+Teknik analisis data​
+22 
+3.3.​
+Diagram Alir Penelitian......................................................................... 22 
+BAB IV HASIL DAN PEMBAHASAN............................................................... 24 
+4.1.​
+Hasil Penelitian...................................................................................... 24 
+4.1.1​
+Karakteristik spektral CCKW​
+24 
+4.1.2​
+Karakteristik Propagasi dan Dinamika CCKW saat Hujan ​
+Ekstrem​
+25 
+4.1.3​
+Karakteristik Spasial dan Temporal Hujan Ekstrem​
+28 
+4.1.4​
+Analisis Probabilitas dan Evaluasi Lag​
+29 
+4.2.​
+Pembahasan............................................................................................31 
+4.2.1​
+Karakteristik Kejadian Hujan Ekstrem pada Fase Aktif CCKW​ 31 
+4.2.2​
+Peningkatan Probabilitas dan Keterbatasan Metrik Operasional​ 33 
+BAB V KESIMPULAN.........................................................................................35 
+5.1​
+Kesimpulan............................................................................................ 35 
+5.2​
+Saran.......................................................................................................35 
+DAFTAR PUSTAKA.............................................................................................37 
+7
+
+===== HALAMAN 9 =====
+ 
+ 
+LAMPIRAN...........................................................................................................44 
+ 
+ 
+DAFTAR TABEL 
+Tabel 4.1 CCKW disertai dengan curah hujan ekstrem (P95)​
+ 31 
+Tabel 4.2 Tabel Kontingensi 2×2  CCKW dan Hujan Ekstrem​
+ 32 
+Tabel 4.3 Analisis waktu jeda (Lag analysis) menggunakan Fisher's Exact Test​ 33 
+ 
+ 
+ 
+ 
+ 
+8
+
+===== HALAMAN 10 =====
+ 
+ 
+DAFTAR GAMBAR 
+ 
+Gambar 2.1 Diagram spektrum Wheeler-Kiladis​
+​ 9 
+Gambar 2.2 Struktur horizontal convectively coupled kelvin waves​
+​11 
+Gambar 3.1 Peta lokasi penelitian​
+​18 
+Gambar 3.2 Diagram alir penelitian ​
+​23 
+Gambar 4.1 Diagram Wheeler Kiladis 2015-2024​
+​26 
+Gambar 4.2 Diagram Hovmöller angin zonal terfilter kelvin wave​
+​28 
+Gambar 4.3 Vektor Angin Aktual Lapisan 850 hPa dan 200 hPa​
+​29 
+ 
+ 
+9
+
+===== HALAMAN 11 =====
+ 
+ 
+DAFTAR LAMPIRAN 
+Lampiran 1. Tabel CCKW Aktif periode 2015 - 2024​
+​45 
+Lampiran 2. Tabel Curah hujan ekstrem di wilayah Kalimantan Selatan periode 
+2015-2024​
+​47 
+Lampiran 3. Script pengolahan data penelitian​
+​55 
+ 
+ 
+ 
+​
+ 
+10
+
+===== HALAMAN 12 =====
+ 
+INTISARI 
+ 
+PENGARUH AKTIVITAS CONVECTIVELY COUPLED KELVIN WAVES 
+TERHADAP KEJADIAN HUJAN EKSTREM DI ​
+KALIMANTAN SELATAN 
+ 
+Oleh 
+Fransisco Jordan N D S 
+11.22.00.57 
+Kejadian hujan ekstrem merupakan salah satu pemicu utama bencana 
+hidrometeorologi di Kalimantan Selatan. Penelitian ini bertujuan untuk 
+menganalisis karakteristik serta pengaruh statistik aktivitas Convectively Coupled 
+Kelvin Waves (CCKW) terhadap peluang terjadinya hujan ekstrem (≥ persentil 
+ke-95/P95) di Provinsi Kalimantan Selatan selama periode 2015–2024 (3.653 hari 
+pengamatan). Menggunakan data Outgoing Longwave Radiation (OLR) dan 
+reanalisis angin zonal ERA5 ECMWF serta curah hujan harian satelit GPM 
+IMERG. Superposisi kedua data mengisolasi 8 kejadian hujan ekstrem yang 
+beririsan langsung dengan lintasan CCKW, yang didukung oleh terbentuknya 
+struktur baroklin berupa konvergensi di lapisan 850 hPa dan divergensi di 200 
+hPa. Analisis probabilitas bersyarat dan Fisher's Exact Test membuktikan bahwa 
+kehadiran CCKW aktif melipatgandakan risiko hujan ekstrem secara signifikan 
+dari 4,07% menjadi 12,70% (Risk Ratio = 3,12; p-value = 0.0045) pada Lag 0, 
+namun signifikansi statistik ini runtuh pada Lag 1 hingga Lag 3 (p-value > 0,05) 
+yang mengonfirmasi sifat gelombang yang sementara tanpa lag effect. Evaluasi 
+metrik operasional merekam Probability of Detection (POD) sebesar 5,2%, False 
+Alarm Ratio (FAR) sebesar 87,3%, dan Critical Success Index (CSI) sebesar 
+3,8%. Penelitian ini menyimpulkan bahwa CCKW berperan sebagai modulator 
+kerentanan atmosfer jangka sangat pendek (nowcasting 0–24 jam) yang 
+membutuhkan interferensi konstruktif dengan lingkungan latar regional seperti 
+Monsun Asia, sehingga tidak dapat dijadikan instrumen prediktor tunggal untuk 
+prakiraan cuaca deterministik jangka menengah. 
+Kata Kunci : Convectively Coupled Kelvin Waves (CCKW), hujan ekstrem, P95, 
+Kalimantan Selatan, analisis lag, probabilitas bersyarat.
+
+===== HALAMAN 13 =====
+ 
+ 
+ABSTRACT 
+ 
+THE INFLUENCE OF CONVECTIVELY COUPLED KELVIN WAVE 
+ACTIVITY ON EXTREME RAINFALL EVENTS IN SOUTH 
+KALIMANTAN 
+ 
+By 
+Fransisco Jordan N D S I 
+11.22.0057 
+Extreme rainfall events are one of the primary triggers of hydrometeorological 
+disasters in South Kalimantan. This study aims to analyze the characteristics and 
+statistical influence of Convectively Coupled Kelvin Wave (CCKW) activity on 
+the likelihood of extreme rainfall occurrences (≥ 95th percentile/P95) in South 
+Kalimantan Province over the 2015–2024 period (3,653 observation days). 
+Utilizing ECMWF ERA5 Outgoing Longwave Radiation (OLR) and zonal wind 
+reanalysis alongside daily GPM IMERG. Superimposing both datasets isolated 8 
+specific extreme rainfall events directly coinciding with active CCKW passages, 
+supported by a baroclinic structure featuring low-level convergence (850 hPa) and 
+upper-level divergence (200 hPa). Conditional probability analysis and Fisher's 
+Exact Test demonstrated that active CCKW passages significantly amplified 
+extreme rainfall risk from 4.07% to 12.70% (Risk Ratio = 3.12; p-value = 0.0045) 
+at Lag 0, yet this statistical significance collapsed rapidly from Lag 1 to Lag 3 
+(p-value > 0.05), confirming the wave's strictly temporary nature with no 
+lingering lag effect. Operational performance metrics recorded a Probability of 
+Detection (POD) of 5.2%, a False Alarm Ratio (FAR) of 87.3%, and a Critical 
+Success Index (CSI) of 3.8%. The study concludes that CCKW acts as a 
+short-range atmospheric susceptibility modulator (nowcasting 0–24 hours) 
+requiring constructive interference with regional background environments such 
+as the Asian Monsoon, rather than functioning as a standalone deterministic 
+predictor for medium-range forecasting. 
+Keywords : Convectively Coupled Kelvin Waves (CCKW), extreme rainfall, P95, 
+South Kalimantan, lag analysis, conditional probability.  
+12
+
+===== HALAMAN 14 =====
+ 
+ 
+BAB I​
+PENDAHULUAN 
+1.1​
+Latar Belakang​
+ 
+Kejadian hujan ekstrem di wilayah Kalimantan Selatan merupakan 
+fenomena 
+hidrometeorologis 
+yang 
+menimbulkan 
+risiko tinggi terhadap 
+keselamatan dan aktivitas masyarakat, terutama karena keterkaitannya dengan 
+berbagai bencana turunan seperti banjir dan gangguan ketahanan pangan (Wells 
+dkk., 2016; Fitriati dkk., 2025). Meskipun secara statistik hujan ekstrem tergolong 
+kejadian yang relatif jarang, setiap kemunculannya hampir selalu menimbulkan 
+dampak sosial dan ekonomi yang signifikan (Kotz dkk., 2022). Beberapa 
+peristiwa penting seperti kejadian hujan berkepanjangan yang mempengaruhi 
+penurunan produksi padi pada tahun 2012 – 2021 di Kalimantan Selatan 
+(Ramadhani dan Setiawan, 2022) atau banjir besar Kalimantan Selatan pada 
+Januari 2021 dengan curah hujan tercatat 255 mm dalam sehari (Pratama dkk., 
+2021)  
+menunjukkan bahwa pemahaman yang lebih mendalam mengenai 
+dinamika atmosfer penyebab hujan ekstrem sangat diperlukan. 
+Secara geografis, Kalimantan Selatan berada di wilayah Maritime 
+Continent yang dikenal memiliki pola curah hujan tinggi sepanjang tahun akibat 
+interaksi kompleks antara daratan luas dan perairan tropis yang hangat (Aslam, 
+2025). Kontras termal antara darat dan laut berperan penting dalam membentuk 
+sirkulasi lokal yang mendukung perkembangan konveksi, khususnya di wilayah 
+Kalimantan Selatan yang merupakan bagian dari Maritime Continent (Yamanaka 
+dkk., 2018). Selain pengaruh sirkulasi lokal, aktivitas konveksi di Kalimantan 
+Selatan juga dimodulasi oleh berbagai fenomena atmosfer skala regional dan 
+intraseasonal, seperti monsun Asia, ENSO, dan Madden–Julian Oscillation 
+(MJO), yang secara kolektif berkontribusi terhadap variabilitas curah hujan di 
+wilayah ini (Qian dan Moron, 2013; Anis dkk., 2022). 
+1
+
+===== HALAMAN 15 =====
+2 
+ 
+Meskipun berbagai penelitian telah mengkaji pengaruh fenomena atmosfer 
+tersebut terhadap curah hujan di Kalimantan, sebagian besar studi masih berfokus 
+pada faktor musiman dan osilasi iklim berskala besar. Informasi mengenai peran 
+gelombang ekuatorial, khususnya sebagai mekanisme dinamis yang secara 
+langsung terkopel dengan aktivitas konveksi, masih relatif terbatas di wilayah 
+Kalimantan Selatan. Padahal, gelombang ekuatorial merupakan komponen 
+penting dinamika atmosfer tropis yang diketahui berperan signifikan dalam 
+memodulasi variabilitas curah hujan di kawasan Asia Tenggara, termasuk 
+Indonesia (Ferrett dkk., 2019). 
+Gelombang ekuatorial yang memiliki keterkaitan erat dengan aktivitas 
+konveksi di tropis dinamakan Convectively Coupled Equatorial Waves (CCEWs) 
+(Nakamura dan Takayabu, 2019; Wang dkk., 2019). Salah satu jenis CCEWs yang 
+paling dominan adalah Convectively Coupled Kelvin Waves (CCKW), yang 
+ditandai oleh propagasi ke arah timur dan fase konvektif yang mampu 
+meningkatkan intensitas curah hujan. Sejumlah penelitian menunjukkan bahwa 
+keberadaan fase aktif CCKW dapat meningkatkan peluang terjadinya hujan 
+ekstrem secara signifikan dibandingkan kondisi normal (Baranowski dan 
+Matthews, 2016; Hermawan dkk., 2024). Hal ini menunjukkan bahwa CCKW 
+berpotensi menjadi faktor dinamis penting dalam memicu hujan ekstrem di 
+wilayah tropis maritim. 
+Tantangan mendasar dalam mengkaji dampak fenomena skala sinoptik 
+seperti CCKW terhadap variabilitas hujan lokal adalah keterbatasan kerapatan dan 
+kontinuitas jaringan observasi permukaan (Jackson dkk., 2019). Ketiadaan data 
+in-situ yang merata secara spasial sering kali menghambat identifikasi distribusi 
+hujan ekstrem yang bersifat lokal. Pemanfaatan teknologi penginderaan jauh 
+seperti satelit Global Precipitation Measurement (GPM) menjadi solusi untuk 
+mengatasi kendala ketiadaan data observasi (Huffman dkk., 2015). Penggunaan 
+data satelit harian periode 10 tahun dinilai representatif untuk memetakan 
+karakteristik curah hujan dan menangkap interaksi dinamis antara CCKW dan 
+​
+
+===== HALAMAN 16 =====
+3 
+ 
+curah hujan di wilayah yang luas tanpa terbatasi oleh kekosongan data titik (Yang 
+dkk., 2025). 
+Berdasarkan uraian tersebut, hujan ekstrem di Kalimantan Selatan tidak 
+hanya dipengaruhi oleh proses lokal dan faktor musiman, tetapi juga oleh 
+dinamika atmosfer skala sinoptik hingga intraseasonal yang memodulasi aktivitas 
+konveksi. CCKW merupakan salah satu dinamika atmosfer tropis yang berpotensi 
+berperan penting dalam meningkatkan peluang terjadinya hujan ekstrem di 
+wilayah ini. Namun demikian, kajian yang secara khusus mengaitkan aktivitas 
+CCKW dengan kejadian hujan ekstrem di Kalimantan Selatan masih terbatas. 
+Oleh karena itu, penelitian ini difokuskan untuk menganalisis pengaruh aktivitas 
+CCKW terhadap kejadian hujan ekstrem di Kalimantan Selatan secara statistik, 
+guna memperjelas peran dinamika atmosfer ekuatorial dalam mendukung 
+terjadinya hujan ekstrem di wilayah tersebut. 
+1.2​
+Rumusan Masalah 
+1.​ Bagaimana karakteristik kejadian hujan ekstrem di Kalimantan Selatan 
+pada saat fase aktif Convectively Coupled Kelvin Waves? 
+2.​ Apakah probabilitas kejadian hujan ekstrem di Kalimantan Selatan 
+meningkat secara signifikan pada saat fase aktif CCKW dibandingkan 
+dengan fase tidak aktif? 
+1.3​
+Batasan Masalah 
+Batasan masalah yang digunakan dalam penelitian ini adalah sebagai 
+berikut: 
+1.​ Penelitian difokuskan pada CCKW. Kriteria CCKW didasari oleh 
+penelitian Wheeler dan Kiladis (1999) yang menyatakan bahwa definisi 
+CCKW merupakan gelombang yang berpropogasi kearah timur konsisten, 
+memiliki wavenumber 1 - 14, dan periode 2,5 - 20 hari. 
+2.​ Wilayah kajian dibatasi pada Provinsi Kalimantan Selatan. 
+3.​ Data curah hujan menggunakan produk satelit GPM harian periode 
+2015–2024. 
+​
+
+===== HALAMAN 17 =====
+4 
+ 
+4.​ Hujan ekstrem didefinisikan sebagai curah hujan harian >150 mm/hari 
+berdasarkan peraturan BMKG (2023). 
+1.4​
+Tujuan dan Manfaat Penelitian  
+Adapun tujuan penelitian sebagai berikut : 
+1.​Menganalisis pengaruh statistik CCKW terhadap kejadian hujan ekstrem 
+di Kalimantan Selatan pada fase aktif CCKW. 
+2.​Membandingkan frekuensi hujan ekstrem antara kondisi aktif dan tidak 
+aktif CCKW 
+Adapun manfaat penelitian diharapkan dapat memberikan kontribusi 
+positif, yaitu : 
+1.​ Manfaat secara akademis dari penelitian ini yaitu menambah 
+pengetahuan CCKW sebagai faktor pendukung terjadinya hujan 
+ekstrem di Indonesia. 
+2.​ Mendukung  mitigasi bencana di Indonesia dan akurasi prakiraan 
+cuaca dengan mempertimbangkan fase aktif CCKW dalam prakiraan 
+dan peringatan dini. 
+1.5​
+ Sistematika Penulisan 
+Sistematika penulisan terdiri dari beberapa bab, yaitu : 
+1.​ BAB I PENDAHULUAN 
+Bab ini memuat latar belakang permasalahan, rumusan masalah, 
+batasan masalah, tujuan dan manfaat penelitian, dan sistematika 
+penulisan. 
+2.​ BAB II DASAR TEORI 
+Bab ini memuat tinjauan pustaka yang berkaitan dengan penelitian 
+dan landasan teori yang dapat mendukung penelitian. 
+3.​ BAB III METODE PENELITIAN 
+Bab ini mencakup model penelitian, prosedur penelitian, evaluasi, dan 
+diagram alir dari penelitian. 
+​
+
+===== HALAMAN 18 =====
+5 
+ 
+ 
+4.​ BAB IV HASIL DAN PEMBAHASAN 
+Bab ini memuat hasil pengolahan data dan pembahasan dari hasil 
+penelitian. 
+5.​ BAB V PENUTUP 
+Bab ini memuat kesimpulan mencakup keseluruhan pembahasan serta 
+saran untuk kemajuan penelitian di masa mendatang. 
+​
+
+===== HALAMAN 19 =====
+ 
+BAB II​
+DASAR TEORI 
+2.1.​
+Tinjauan Pustaka 
+Senior dkk. (2025) menganalisis mekanisme abrupt ending fase aktif 
+Madden-Julian Oscillation (MJO) oleh CCKW menggunakan data reanalisis 
+ERA5 dan observasi satelit GPM IMERG. Studi ini membedah peristiwa banjir 
+besar pada Juli 2021, di mana interaksi gelombang tercatat menyebabkan anomali 
+curah hujan melebihi 50 mm/hari di wilayah Kalimantan dan Sulawesi. Analisis 
+neraca kelembapan kolom atmosfer menunjukkan bahwa CCKW yang bergerak 
+cepat (~15 m/s) melintasi selubung MJO yang bergerak lambat (~5 m/s), memicu 
+konvergensi kelembapan yang signifikan namun singkat. Temuan statistik kunci 
+dari penelitian ini adalah identifikasi efek pengeringan pasca-interaksi, di mana 
+amplitudo MJO mengalami penurunan drastis dari nilai indeks RMM >1,5 
+menjadi netral (<1,0) dalam waktu kurang dari 5 hari setelah lintasan CCKW, 
+yang secara efektif mematikan potensi konveksi skala besar di wilayah tersebut. 
+Selain itu Senior dkk. (2023) mengevaluasi dampak CCKW terhadap 
+statistik kejadian hujan ekstrem di pesisir barat Sumatera (Padang) menggunakan 
+data observasi jangka panjang (2001–2019). Penelitian ini mendefinisikan hujan 
+ekstrem sebagai curah hujan harian yang melampaui persentil ke-95. Hasil 
+analisis statistik menunjukkan bahwa keberadaan fase aktif CCKW secara 
+signifikan memodulasi siklus diurnal dan meningkatkan probabilitas terjadinya 
+hari hujan ekstrem sebesar 59% dibandingkan kondisi netral. Sebagai validasi 
+kasus, studi ini mengangkat peristiwa hujan ekstrem pada 21 Agustus 2017 yang 
+mencatat akumulasi curah hujan harian sebesar 137 mm. Secara fisis, CCKW 
+terbukti memperkuat fase darat dari siklus diurnal, menggeser puncak konveksi 
+yang biasanya terjadi pada sore hari menjadi lebih intens pada dini hari akibat 
+penguatan konvergensi angin baratan tingkat rendah. 
+Kompleksitas interaksi gelombang atmosfer dikaji lebih lanjut oleh Latos 
+dkk. (2021) melalui analisis statistik klimatologis (1998–2019) terhadap kejadian 
+6
+
+===== HALAMAN 20 =====
+7 
+ 
+banjir di Sulawesi Selatan. Menggunakan data TRMM 3B42 dan reanalisis 
+ERA-Interim, penelitian ini menemukan bahwa 92% kejadian banjir pada periode 
+musim hujan (Desember-Februari) didahului oleh anomali angin baratan pada 
+lapisan 850 hPa. Temuan yang paling signifikan adalah perhitungan probabilitas 
+risiko banjir berdasarkan superposisi gelombang: CCKW atau Equatorial Rossby 
+Waves (ER) yang terjadi secara tunggal masing-masing meningkatkan peluang 
+hujan ekstrem sekitar 2 kali lipat. Namun, ketika terjadi interferensi konstruktif 
+antara fase aktif MJO, CCKW, dan ER secara bersamaan, probabilitas kejadian 
+ekstrem semakin tinggi hingga 8 kali lipat dibandingkan kondisi tanpa aktivitas 
+gelombang. Studi kasus banjir Januari 2019 yang dianalisis mencatat akumulasi 
+curah hujan melebihi 200 mm dalam 48 jam di wilayah Makassar, yang dikaitkan 
+langsung dengan penguatan aliran lintas ekuator (Cross-Equatorial Flow) akibat 
+gabungan gelombang tersebut. 
+Zibrah dan Sagita (2023) melakukan studi komparasi antara data observasi 
+dan model numerik Weather Research and Forecasting (WRF) untuk menilai 
+dampak CCKW dan Gelombang Rossby di Sulawesi. Penelitian ini mencakup 
+analisis klimatologis dari 2011–2020 serta simulasi sebuah kasus pada kejadian 
+hujan lebat 6-7 Desember 2021. Model dikonfigurasi dengan resolusi spasial 
+ganda (27 km dan 9 km) untuk menangkap interaksi topografi. Evaluasi statistik 
+menunjukkan bahwa model WRF memiliki korelasi spasial yang bervariasi (r = 
+0,4 hingga 0,7) terhadap data observasi satelit GSMaP. Hasil penelitian 
+mengidentifikasi bahwa kontribusi gelombang Rossby (ER) lebih dominan dalam 
+menciptakan pusaran angin (vorteks) yang memperlama durasi hujan, sementara 
+CCKW cenderung meningkatkan intensitas curah hujan sesaat dengan laju 
+presipitasi yang dapat melebihi 20 mm/jam pada fase puncaknya. 
+2.2.​
+Landasan Teori 
+2.2.1​ Hujan ekstrem 
+Hujan ekstrem adalah curah hujan yang sangat tinggi dalam waktu singkat, 
+yang dapat menyebabkan banjir bandang dan kerusakan serius. Hujan ekstrem 
+juga dipengaruhi oleh interaksi kompleks antara sistem atmosfer besar, seperti
+
+===== HALAMAN 21 =====
+8 
+ 
+sirkulasi angin, suhu permukaan laut, dan pola kelembapan, yang dapat memicu 
+peristiwa hujan luar biasa di berbagai wilayah (Nana, dkk., 2025). Mekanisme 
+dinamis seperti pengangkutan horizontal air hujan dalam badai konvektif 
+mesoskal juga berperan penting dalam menghasilkan curah hujan ekstrem secara 
+lokal (Yin, dkk., 2022). 
+Pendefinisian ambang batas hujan ekstrem menggunakan ambang batas 
+berbasis persentil yang bersifat relatif terhadap klimatologi lokal suatu wilayah. 
+Penelitian ini digunakan ambang batas persentil ke-95 (P95) dari distribusi curah 
+hujan harian, yaitu nilai curah hujan yang hanya dilampaui oleh 5% hari terbasah 
+dalam rekaman historis suatu lokasi. Pendekatan P95 dipilih karena mampu 
+merepresentasikan kondisi yang benar-benar ekstrem bagi setiap wilayah secara 
+proporsional, terlepas dari perbedaan karakteristik curah hujan antar lokasi yang 
+sangat bervariasi di wilayah tropis (Zhang dkk., 2011). Pendekatan berbasis 
+persentil ini juga direkomendasikan oleh Expert Team on Climate Change 
+Detection and Indices (ETCCDI) sebagai indeks standar internasional untuk 
+kajian curah hujan ekstrem dalam konteks perubahan iklim maupun variabilitas 
+atmosfer (Sillmann dkk., 2013). 
+2.2.2​ Gelombang ekuatorial 
+Gelombang ekuatorial muncul dari solusi persamaan shallow-water atau 
+persamaan primitif yang dilinierkan pada equatorial β-plane, yang pertama kali 
+diturunkan oleh Matsuno (1966). Solusi ini menghasilkan beberapa jenis 
+gelombang yang terperangkap di sekitar ekuator akibat lemahnya gaya coriolis 
+dan kecilnya gradien tekanan meridional yang kemudian di klasifikasikan masing 
+- masing gelombang oleh Wheeler dan Kiladis (1999) berdasarkan data Ongoing 
+Longwave Radiation dan dibuat diagram Spektrum Wavenumber-Frequency atau 
+sering disebut sebagai Diagram Wheeler-Kiladis (Gambar 2.1).
+
+===== HALAMAN 22 =====
+9 
+ 
+ 
+Gambar 2.1 Diagram spektrum Wheeler-Kiladis (Kiladis, dkk. 2009) 
+Gambar 2. 1 menampilkan spektrum bilangan gelombang–frekuensi (k–ω) 
+hasil transformasi Fourier dua dimensi dari data suhu kecerahan CLAUS 
+Tb/Ongoing Longwave Radiaton yang telah dipisahkan menjadi komponen 
+simetris (gambar a) dan antisimetris (gambar b) terhadap ekuator. Sumbu 
+horizontal merepresentasikan bilangan gelombang zonal (k) dengan arah 
+propagasi barat dan timur, sedangkan sumbu vertikal menunjukkan frekuensi (ω) 
+yang sesuai dengan periode osilasi. Arsiran warna menunjukkan distribusi energi 
+spektral yang berkaitan dengan variabilitas konveksi tropis, sementara garis 
+lengkung hitam merepresentasikan hubungan dispersi teoritis gelombang 
+ekuatorial berdasarkan kedalaman ekuivalen. Pola energi yang terorganisasi 
+sepanjang kurva dispersi tersebut mengindikasikan keberadaan mode gelombang 
+ekuatorial yang terkopel dengan konveksi, sehingga diagram ini digunakan 
+sebagai dasar untuk menentukan domain penyaringan (filtering) dalam ruang 
+bilangan gelombang–frekuensi guna mengekstraksi sinyal gelombang atmosfer 
+tertentu dari data observasi. 
+2.2.3​ Kelvin waves dan convectively coupled kelvin waves 
+Kelvin wave adalah solusi gelombang linier dari persamaan shallow water 
+di ekuator, bergerak ke timur dengan kecepatan tinggi yaitu ~15–20 m/s untuk 
+mode troposfer bawah (Kiladis, dkk., 2009; Mayta, dkk., 2021). Ketika 
+gelombang ini berinteraksi kuat dengan konveksi lembap tropis, terbentuklah
+
+===== HALAMAN 23 =====
+10 
+ 
+convectively coupled Kelvin wave (CCKW), yang memiliki kecepatan propagasi 
+lebih lambat dengan kecepatan ~10–17 m/s (Nakamura dan Takayabu, 2022). 
+​
+Convectively Coupled Kelvin Waves (CCKW) merupakan bentuk 
+gelombang Kelvin ekuatorial yang terkopel secara langsung dengan aktivitas 
+konveksi tropis. Berbeda dengan Kelvin wave teoritis yang bersifat kering, 
+CCKW melibatkan interaksi dua arah antara dinamika atmosfer dan proses 
+konvektif, di mana gangguan gelombang membantu sistem konveksi, sementara 
+pelepasan panas laten dari konveksi memperkuat struktur gelombang (Wheeler 
+dan Kiladis, 1999; Kiladis, dkk., 2009). Kopling menghasilkan sistem gangguan 
+atmosfer yang terorganisasi secara spasial dan temporal di sepanjang ekuator 
+dengan propagasi dominan ke arah timur.  
+Identifikasi CCKW secara observasional umumnya dilakukan dengan 
+memanfaatkan kombinasi parameter konvektif dan dinamika atmosfer. Aktivitas 
+konveksi direpresentasikan menggunakan Outgoing Longwave Radiation (OLR), 
+di mana nilai OLR yang lebih rendah menunjukkan peningkatan tutupan awan 
+tinggi dan konveksi dalam (Liebmann dan Smith, 1996). Domain Kelvin wave 
+ditentukan berdasarkan sinyal berpropagasi ke timur (bilangan gelombang zonal 
+positif) dengan rentang k = 1–14 dan periode 2.5–20 hari, serta dibatasi oleh 
+kurva dispersi gelombang Kelvin ekuatorial dengan kedalaman ekuivalen 8–90 m. 
+Koefisien Fourier yang berada di luar domain ini dihilangkan, sementara 
+komponen di dalam domain dipertahankan untuk rekonstruksi sinyal CCKW 
+melalui inverse Fourier transform (Wheeler dan Kiladis, 1999).  
+Selain parameter konvektif, CCKW juga memiliki ciri dinamika atmosfer 
+yang khas. Pada lapisan bawah troposfer, umumnya sekitar 850 hPa, terdapat 
+konvergensi angin zonal yang berasosiasi dengan fase konvektif aktif. 
+Konvergensi ini berperan dalam mengakumulasi massa udara dan uap air, 
+sehingga memperkuat gerak naik. Pada lapisan atas troposfer, sekitar 200 hPa, 
+terbentuk divergensi angin yang berfungsi sebagai saluran pelepasan massa udara 
+hasil konveksi (Kiladis, dkk., 2009; Yang, dkk., 2003). Keberadaan pasangan 
+konvergensi lapisan bawah dan divergensi lapisan atas merupakan indikator utama
+
+===== HALAMAN 24 =====
+11 
+ 
+terbentuknya kopling antara dinamika dan konveksi pada CCKW. Gambar 2.2 
+menampilkan struktur horizontal dari CCKW. 
+ 
+Gambar 2.2 Struktur horizontal convectively coupled kelvin waves 
+(Matthews, 2021) 
+Gambar 2.2 menggambarkan struktur horizontal CCKW pada lintang 
+15°LU - 15°LS (ekuator), yang ditunjukkan melalui pola anomali vortisitas relatif 
+menggunakan arsiran warna dan anomali angin zonal yang ditunjukkan dengan 
+panah hitam. Warna kecokelatan merepresentasikan vortisitas positif (siklonik), 
+sedangkan warna kebiruan menunjukkan vortisitas negatif (antisiklonik). Pola 
+vortisitas tersebut tersusun secara bergantian sepanjang arah zonal dan simetris 
+terhadap ekuator. Di belahan bumi utara (BBU), vortisitas positif berkaitan 
+dengan sirkulasi siklonik yang berputar berlawanan arah jarum jam, sedangkan 
+vortisitas negatif berkaitan dengan sirkulasi antisiklonik yang berputar searah 
+jarum jam. Sebaliknya, di belahan bumi selatan (BBS), arah putaran tersebut 
+berbalik akibat pengaruh gaya Coriolis, sehingga vortisitas positif menghasilkan 
+sirkulasi siklonik searah jarum jam, sedangkan vortisitas negatif menghasilkan 
+sirkulasi antisiklonik berlawanan arah jarum jam. Susunan pasangan vortisitas 
+yang simetris terhadap ekuator ini merupakan salah satu karakteristik dinamis 
+gelombang Kelvin yang terkopel dengan respons gelombang Rossby. Lingkaran
+
+===== HALAMAN 25 =====
+12 
+ 
+biru putus-putus menunjukkan inti fase aktif konveksi pada CCKW yang 
+berkaitan dengan konvergensi angin lapisan bawah dan peningkatan gerak naik, 
+yang ditandai oleh pertemuan arah panah hitam. Sementara itu, lingkaran merah 
+menunjukkan pasangan gyre Rossby di BBU dan BBS yang terbentuk sebagai 
+respons atmosfer terhadap pemanasan laten akibat konveksi. Keberadaan 
+pasangan gyre Rossby yang simetris terhadap ekuator bersama inti gelombang 
+Kelvin mencerminkan struktur dinamis khas CCKW yang bergerak ke arah timur 
+yang merepresentasikan kopling dua arah antara pemanasan laten akibat konveksi 
+dan respons sirkulasi atmosfer, sehingga menghasilkan struktur gelombang yang 
+koheren dan berperan penting dalam modulasi variabilitas hujan di wilayah tropis. 
+2.2.4​ Fourier transform 
+Transformasi Fourier merupakan metode matematis yang digunakan untuk 
+merepresentasikan suatu sinyal dalam domain waktu atau ruang ke dalam domain 
+frekuensi. Prinsip dasar transformasi ini adalah bahwa setiap sinyal kompleks 
+dapat dinyatakan sebagai superposisi dari gelombang sinus dan kosinus dengan 
+berbagai frekuensi, amplitudo, dan fase (Bracewell, 2000). Dengan demikian, 
+Transformasi Fourier memungkinkan identifikasi komponen periodik yang 
+tersembunyi di dalam suatu data deret waktu maupun medan spasial. 
+Secara konseptual, Transformasi Fourier menguraikan variasi suatu 
+besaran fisik menjadi spektrum frekuensi, sehingga informasi yang semula tersaji 
+sebagai perubahan terhadap waktu atau posisi dapat dianalisis berdasarkan 
+kontribusi masing-masing frekuensi. Pendekatan ini sangat berguna dalam kajian 
+atmosfer, karena banyak fenomena dinamika atmosfer bersifat osilatori dan 
+memiliki skala waktu serta panjang gelombang tertentu (Wilks, 2011). Bentuk 
+kontinu Transformasi Fourier dua dimensi dapat dinyatakan sebagai: 
+​
+​
+(2.1) 
+𝐹𝑘, ω
+(
+) = ∬ 
+ 𝑓(𝑥, 𝑡)𝑒
+−𝑖(𝑘𝑥+ω𝑡)𝑑𝑥𝑑𝑡
+f(t) merupakan fungsi dalam domain waktu,  F(ω) adalah representasi dalam 
+domain frekuensi sudut ω, dan i menyatakan bilangan imajiner. Transformasi 
+balik Fourier diberikan oleh:
+
+===== HALAMAN 26 =====
+13 
+ 
+​
+​
+(2.2) 
+𝑓𝑥, 𝑡
+(
+) = ∬ 
+ 𝐹(𝑘, ω)𝑒
+𝑖(𝑘𝑥+ω𝑡)𝑑𝑘𝑑ω
+Persamaan ini menunjukkan bahwa transformasi bersifat dua arah, 
+sehingga informasi dapat dikonversi dari domain waktu ke domain frekuensi dan 
+sebaliknya tanpa kehilangan kandungan sinyal (Bracewell, 2000). 
+Praktik pengolahan data numerik, Transformasi Fourier umumnya 
+diterapkan dalam bentuk diskrit melalui Discrete Fourier Transform (DFT). Untuk 
+efisiensi komputasi, DFT biasanya dihitung menggunakan algoritma Fast Fourier 
+Transform (FFT), yang secara signifikan mengurangi kompleksitas perhitungan 
+(Cooley dan Tukey, 1965). FFT memungkinkan analisis spektral terhadap data 
+berdimensi besar, seperti deret waktu panjang atau medan dua dimensi. 
+Transformasi Fourier dua dimensi atau ruang–waktu menguraikan data 
+berdasarkan bilangan gelombang spasial dan frekuensi temporal secara 
+bersamaan. Pendekatan ini memungkinkan identifikasi mode gelombang yang 
+memiliki karakteristik propagasi tertentu, seperti arah perambatan dan kecepatan 
+fase. Representasi spektrum ruang–waktu memberikan gambaran distribusi energi 
+sinyal terhadap skala ruang dan waktu, sehingga memudahkan pemisahan 
+berbagai mode dinamika atmosfer (Sakazaki dan Hamilton, 2020). 
+2.2.5​ Probabilitas Kejadian Bersama 
+Untuk mengkaji hubungan antara dua kejadian meteorologis yang bersifat 
+kategorik, seperti fase aktif CCKW dan kejadian hujan ekstrem, digunakan 
+pendekatan analisis probabilitas berbasis tabel kontingensi. Tabel kontingensi 2×2 
+merupakan kerangka dasar yang menyusun frekuensi kejadian ke dalam empat 
+kategori: kejadian kedua variabel aktif secara bersamaan (a), variabel pertama 
+aktif tanpa disertai variabel kedua (b), variabel kedua aktif tanpa disertai variabel 
+pertama (c), dan kedua variabel tidak aktif secara bersamaan (d). Dari keempat 
+kategori tersebut diturunkan seluruh metrik probabilitas yang digunakan dalam 
+penelitian ini (Wilks, 2011).
+
+===== HALAMAN 27 =====
+14 
+ 
+ 
+ 
+1.​ Probabilitas Bersyarat  
+Probabilitas bersyarat P(E|A) menyatakan peluang terjadinya kejadian E 
+(hujan ekstrem) dengan syarat kejadian A (CCKW aktif) diketahui telah 
+terjadi, dan dihitung sebagai: 
+​
+​
+(2.3) 
+𝑃(𝐸|𝐴) = 𝑎 / (𝑎 + 𝑏)
+Sebagai perbandingan, probabilitas bersyarat P(E|Ā) menyatakan 
+peluang terjadinya hujan ekstrem pada kondisi CCKW tidak aktif: 
+​
+​
+(2.4) 
+𝑃(𝐸|𝐴) = 𝑐 / (𝑐 + 𝑑)
+Dari kedua nilai probabilitas bersyarat tersebut dihitung Risk Ratio 
+(RR) yang mengukur seberapa besar peningkatan risiko kejadian hujan 
+ekstrem pada saat CCKW aktif dibandingkan dengan saat CCKW tidak aktif 
+(Rothman dkk., 2008): 
+​
+​
+(2.5) 
+𝑅𝑅 = 𝑃(𝐸|𝐴) / 𝑃(𝐸|Ā)
+Nilai RR = 1 menunjukkan tidak ada perbedaan risiko antara kedua 
+kondisi, RR > 1 menunjukkan bahwa kehadiran CCKW meningkatkan 
+risiko hujan ekstrem, dan RR < 1 menunjukkan bahwa kehadiran CCKW 
+justru menurunkan risiko. Risk Ratio merupakan metrik yang paling banyak 
+digunakan dalam kajian hubungan gelombang ekuatorial dengan kejadian 
+curah hujan ekstrem karena interpretasinya yang langsung dan intuitif 
+(Lubis dan Respati, 2020). 
+2.​ Odds Ratio 
+Odds Ratio (OR) merupakan metrik alternatif yang mengukur 
+perbandingan odds kejadian hujan ekstrem antara kondisi CCKW aktif dan 
+tidak aktif, dihitung sebagai (Szumilas, 2010):
+
+===== HALAMAN 28 =====
+15 
+ 
+​
+​
+(2.6) 
+𝑂𝑅 = (𝑎 × 𝑑) / (𝑏 × 𝑐)
+Nilai OR dan RR akan memberikan arah interpretasi yang sama, namun 
+OR cenderung memberikan nilai yang sedikit lebih besar dari RR ketika 
+kejadian yang dikaji bersifat jarang. OR memiliki keunggulan dalam 
+pengujian statistik formal karena berkaitan langsung dengan uji Fisher's 
+Exact Test. 
+3.​ Fisher's Exact Test 
+Fisher's Exact Test merupakan uji statistik yang digunakan untuk 
+menguji apakah terdapat asosiasi yang signifikan antara dua variabel 
+kategorik dalam tabel kontingensi 2×2. Uji ini dipilih dibandingkan uji 
+Chi-square karena memiliki akurasi yang lebih baik ketika frekuensi di 
+salah satu atau lebih sel tabel bernilai kecil, yaitu kurang dari 5, yang 
+umumnya terjadi pada kajian kejadian atmosfer ekstrem yang bersifat jarang 
+(Fisher, 1922; Agresti, 2002). Fisher's Exact Test menghitung p-value secara 
+eksak berdasarkan distribusi hipergeometrik tanpa bergantung pada asumsi 
+distribusi asimtotik. Hipotesis nol yang diuji adalah bahwa CCKW dan 
+hujan ekstrem saling independen atau tidak memiliki asosiasi. Apabila 
+p-value yang diperoleh lebih kecil dari taraf signifikansi α = 0,05, maka 
+hipotesis nol ditolak dan disimpulkan bahwa terdapat asosiasi yang 
+signifikan secara statistik antara kedua kejadian tersebut. 
+4.​ Analisis Lag Waktu 
+Analisis lag waktu dilakukan untuk mengkaji apakah terdapat selang 
+waktu optimal antara aktivasi CCKW dan terjadinya hujan ekstrem. Dalam 
+analisis ini, status CCKW aktif pada hari ke-(t − n) dibandingkan dengan 
+status hujan ekstrem pada hari ke-t, dengan n merupakan nilai lag yang diuji 
+(Ferrett dkk., 2019). Seluruh metrik probabilitas termasuk RR, OR, dan 
+p-value Fisher's Exact Test dihitung ulang untuk setiap nilai lag yang diuji. 
+Lag dengan nilai RR tertinggi dan p-value terkecil mengindikasikan selang 
+waktu tunda yang paling optimal antara aktivasi CCKW dan respons curah
+
+===== HALAMAN 29 =====
+16 
+ 
+hujan ekstrem di wilayah kajian. Analisis lag ini penting karena mekanisme 
+fisik yang menghubungkan kehadiran CCKW dengan terjadinya hujan 
+ekstrem—termasuk penguatan konvergensi lapisan bawah, peningkatan 
+kelembapan troposfer, dan destabilisasi kolom atmosfer—memerlukan 
+waktu sebelum menghasilkan curah hujan yang melampaui ambang P95. 
+5.​ Skill Scores Verifikasi Probabilistik 
+Tiga skill score tambahan digunakan untuk melengkapi evaluasi 
+hubungan CCKW dengan hujan ekstrem dari perspektif verifikasi prakiraan. 
+Probability of Detection (POD) mengukur fraksi kejadian hujan ekstrem 
+yang berhasil terdeteksi bersamaan dengan CCKW aktif terhadap seluruh 
+kejadian hujan ekstrem yang ada (Wilks, 2011): 
+​
+​
+(2.7) 
+𝑃𝑂𝐷 = 𝑎 / (𝑎 + 𝑐)
+False Alarm Ratio (FAR) mengukur fraksi hari CCKW aktif yang tidak 
+disertai hujan ekstrem terhadap seluruh hari CCKW aktif: 
+​
+​
+(2.8) 
+𝐹𝐴𝑅 = 𝑏 / (𝑎 + 𝑏)
+Critical Success Index (CSI) merupakan gabungan dari kedua metrik di 
+atas yang memperhitungkan sekaligus kejadian yang terdeteksi, kejadian 
+yang terlewat, dan kejadian yang salah terdeteksi (Schaefer, 1990): 
+ 
+​
+​
+(2.9) 
+𝐶𝑆𝐼 = 𝑎 / (𝑎 + 𝑏 + 𝑐)
+Nilai POD berkisar antara 0 hingga 1, di mana nilai mendekati 1 
+menunjukkan bahwa hampir seluruh kejadian hujan ekstrem terjadi 
+bersamaan dengan CCKW aktif. Nilai FAR berkisar antara 0 hingga 1, di 
+mana nilai mendekati 0 menunjukkan bahwa hampir seluruh hari CCKW 
+aktif disertai hujan ekstrem. Nilai CSI berkisar antara 0 hingga 1, di mana 
+nilai mendekati 1 menunjukkan kesesuaian yang tinggi antara kejadian 
+CCKW aktif dan hujan ekstrem secara keseluruhan.
+
+===== HALAMAN 30 =====
+17
+
+===== HALAMAN 31 =====
+ 
+BAB III​
+METODE PENELITIAN 
+3.1.​
+Jenis Penelitian 
+Penelitian ini merupakan penelitian kuantitatif dengan pendekatan 
+deskriptif–komparatif berbasis data observasi atmosfer. Menurut Sihotang (2023), 
+pendekatan kuantitatif melibatkan angka-angka dalam analisis statistik untuk 
+memecahkan masalah penelitian. Maka dari itu, pendekatan kuantitatif digunakan 
+karena seluruh analisis didasarkan pada pengolahan data numerik berupa curah 
+hujan harian dan indeks aktivitas CCKW.     
+Pendekatan deskriptif merupakan jenis pendekatan yang digunakan untuk 
+menyelesaikan 
+masalah 
+dengan 
+cara 
+menganalisis, 
+menyajikan, 
+dan 
+menginterpretasikan variabel-variabel sesuai dengan apa adanya tanpa adanya 
+manipulasi variabel maupun kontrol terhadap variabel penelitian (Zellatifanny dan 
+Mudjiyanto, 2018). Pendekatan deskriptif digunakan untuk menggambarkan 
+karakteristik kejadian hujan ekstrem yang sudah di sesuaikan dengan berbagai 
+kondisi aktivitas CCKW.  
+Selanjutnya, pendekatan komparatif digunakan  untuk melihat variasi dua 
+atau lebih kondisi, kejadian, maupun aktifitas. Perbandingan tersebut menelaah 
+bagaimana elemen-elemen dalam komponen kajian saling terhubung (Agustianti, 
+dkk, 2022). Dalam penelitian ini, penerapan kuantitatif secara komparatif 
+dilakukan untuk membandingkan probabilitas kejadian hujan ekstrem antara fase 
+aktif dan fase tidak aktif CCKW. Penentuan fase aktif dan tidak aktif CCKW 
+dalam penelitian ini dilakukan dengan memanfaatkan indeks CCKW berbasis data 
+OLR yang telah melalui proses penyaringan spektral ruang–waktu menggunakan 
+metode Wheeler–Kiladis. 
+3.2.​
+Prosedur Penelitian 
+​
+Subbab ini memberi penjelasan terkait lokasi dan waktu penelitian, alat 
+penelitian, data penelitian, teknik pengolahan data, dan teknik analisis data yang 
+digunakan dalam penelitian ini. 
+18
+
+===== HALAMAN 32 =====
+19 
+ 
+3.2.1​ Lokasi dan waktu penelitian 
+Wilayah kajian dalam penelitian ini adalah Provinsi Kalimantan Selatan 
+yang secara geografis terletak pada kisaran lintang 1°–4° LS dan bujur 114°–116° 
+BT. Wilayah ini dipilih karena memiliki tingkat kerentanan tinggi terhadap 
+kejadian hujan ekstrem serta berada pada wilayah tropis maritim yang sensitif 
+terhadap dinamika atmosfer ekuatorial. Peta lokasi penelitian dapat dilihat pada 
+Gambar 3.1 berikut. 
+ 
+Gambar 3.1 Peta lokasi penelitian  
+Penelitian ini menggunakan data periode Januari 2015 hingga Desember 
+2024. Pemilihan rentang waktu sepuluh tahun dimaksudkan untuk memperoleh 
+jumlah kejadian hujan ekstrem yang memadai secara statistik serta untuk 
+menangkap variasi aktivitas CCKW pada skala intraseasonal dan antar-tahunan.
+
+===== HALAMAN 33 =====
+20 
+ 
+3.2.2​ Data penelitian 
+​
+Data yang digunakan dalam penelitian ini adalah sebagai berikut: 
+1.​ Data OLR 
+Data OLR yang digunakan merupakan Data reanalysis ERA5 ECMWF 
+single level dalam rentang lintang 15°LU - 15°LS dan bujur 95°BT - 
+141°BT yang akan diolah untuk mengidentifikasikan CCKW.  Data OLR 
+memiliki resolusi harian 0,25º x 0,25º. Data ERA5 ini memiliki format 
+netcdf (.nc). Data ini dipakai sebagai proksi konveksi dalam (Deep 
+Convection) sebab CCKW didefinisikan sebagai gelombang ekuatorial yang 
+terkopel langsung dengan aktivitas konveksi dalam. 
+2.​ Data curah hujan 
+Data curah hujan yang digunakan merupakan data GPM-IMERG Daily 
+mean precipitation rate (combined microwave-IR) estimate - Final Run  
+(GPM_3IMERGDF v07) yang berasal dari Satelit Global Precipitation 
+Measurement (GPM). Data diambil pada rentang tahun 2015 – 2024 yang 
+memiliki resolusi harian berukuran 0,1º x 0,1º. Data GPM-IMERG ini 
+memiliki format netcdf (.nc). Data ini dipilih untuk memastikan konsistensi 
+spasial dan temporal dalam identifikasi kejadian hujan ekstrem, yang dalam 
+penelitian ini didefinisikan sebagai curah hujan harian lebih dari 150 
+mm/hari, terutama pada wilayah yang memiliki keterbatasan jumlah stasiun 
+pengamatan permukaan. 
+3.​ Data angin zonal 
+Data angin yang digunakan merupakan data angin zonal (komponen u) 
+lapisan 850mb dan 200mb dari reanalysis ERA5 ECMWF single level 
+dalam rentang lintang 15°LU–15°LS dan bujur 95°BT - 141°BT dengan 
+resolusi harian 0,25º × 0,25º dan format netcdf (.nc). Data angin zonal ini 
+dimanfaatkan untuk mengidentifikasi respons dinamis atmosfer yang 
+berkaitan dengan aktivitas CCKW yang ditandai oleh penguatan angin zonal 
+berpropagasi ke timur yang terkopel dengan peningkatan aktivitas konveksi.
+
+===== HALAMAN 34 =====
+21 
+ 
+3.2.3​ Alat penelitian 
+Adapun alat dan aplikasi yang digunakan dalam penelitian ini adalah 
+sebagai berikut: 
+1.​ QGIS 3.34 
+Software ini merupakan perangkat pengolahan sistem informasi geografis 
+yang digunakan untuk mengolah beberapa file .shp untuk menjadi peta 
+lokasi penelitian. 
+2.​ Google colab 
+Google colab merupakan platform pengolahan data berbasis pemrograman 
+Python untuk memproses data numerik model ECMWF dan satelit GPM. 
+Tools ini memungkinkan pengolahan data skala besar secara efisien 
+melalui cloud computing. Dalam penelitian ini, Google Colab digunakan 
+untuk mengolah data OLR, curah hujan, temperatur udara, dan angin 
+zonal. 
+3.2.4​ Teknik pengolahan data 
+Dalam penelitian ini, teknik pengolahan data yang dijalankan adalah 
+sebagai berikut: 
+1.​ Identifikasi convectively coupled kelvin waves 
+Identifikasi CCKW dilakukan menggunakan metode analisis spektrum 
+bilangan gelombang–frekuensi yang diadaptasi dari Wheeler dan Kiladis 
+(1999) yang meliputi langkah sebagai berikut: 
+a.​ Penghilangan siklus musiman dan tren dilakukan untuk mengekstraksi 
+variabilitas intramusiman yang berkaitan dengan CCKW. Langkah ini 
+diawali dengan mengurangkan klimatologi harian multi-tahun dari data 
+OLR untuk memperoleh anomali, kemudian menghilangkan tren linier 
+pada setiap grid menggunakan regresi terhadap waktu. Proses ini 
+bertujuan menyingkirkan pengaruh variasi tahunan, antar-tahunan, dan 
+perubahan jangka panjang sehingga sinyal yang tersisa didominasi oleh 
+fluktuasi berskala sinoptik hingga intramusiman.
+
+===== HALAMAN 35 =====
+22 
+ 
+b.​ Transformasi fourier ruang–waktu terhadap data OLR dengan 
+mentransformasi domain bujur ke bilangan gelombang zonal (k) agar 
+menghasilkan gelombang ke timur dan ke barat, dan mentransformasi 
+deret waktu ke domain frekuensi (ω). 
+c.​ Pembentukan spektrum bilangan gelombang–frekuensi dengan hasilnya 
+berupa diagram wheeler-kiladis untuk menunjukkan arah propagasi, 
+skala spasial, dan periode dominan. 
+d.​ Identifikasi 
+kelvin 
+wave 
+dilakukan 
+pada 
+diagram 
+bilangan 
+gelombang–frekuensi dengan memilih sinyal yang merambat ke timur 
+(bilangan gelombang positif), memiliki periode sekitar 2–20 hari, serta 
+menunjukkan konsentrasi energi yang mengikuti kurva dispersi 
+gelombang Kelvin ekuatorial. Area spektrum yang memenuhi kriteria 
+tersebut didefinisikan sebagai domain Kelvin wave dan digunakan 
+sebagai batas penyaringan, sementara komponen di luar domain 
+diasumsikan berasal dari mode gelombang lain dan noise latar 
+belakang. 
+e.​ Menyaring data OLR yang sudah di transformasi yang memiliki periode 
+antara 2 - 20 hari dan bilangan gelombang zonal 1 – 14 berdasarkan 
+diagram wheeler-kiladis untuk mendapatkan sinyal CCKW saja. 
+Menghilangkan gangguan MJO, ER wave, dan noise dengan 
+mempertahankan koefisien Fourier yang ada dalam domain Kelvin 
+wave kemudian melakukan inverse Fourier transform. Koefisien fourier 
+diluar domain kelvin diabaikan.  
+2.​ Verifikasi kopling dinamika-konveksi 
+Verifikasi kopling antara konveksi dan dinamika atmosfer dengan  
+menganalisis respon angin zonal pada lapisan 850 dan 200 terhadap fase 
+konvektif CCKW. Keberadaan konvergensi di lapisan bawah dengan 
+anomali OLR negatif serta divergensi lapisan atas yang sesuai digunakan 
+sebagai indikator terbentuknya kopling dinamika-konveksi.   
+3.​ Menentukan fase aktif dan fase tidak aktif CCKW dengan melihat anomali 
+OLR negatif dari OLR yang sudah terfilter kelvin wave, propagasi timur
+
+===== HALAMAN 36 =====
+23 
+ 
+yang konsisten, amplitudo signifikan, dan sirkulasi vertikal berupa 
+konvergensi angin zonal lapisan bawah (850 hPa) dan divergensi lapisan 
+atas (200 hPa). Kelvin waves yang terkopel dengan aktifitas konveksi 
+merupakan fase aktif CCKW dan sebaliknya jika tidak ada aktifitas 
+konveksi. 
+4.​ Mengidentifikasi hujan ekstrem dengan definisi curah hujan harian 
+>150mm/hari menggunakan data GPM. Data hujan ekstrem akan 
+digunakan untuk mengidentifikasi frekuensi kejadian hujan ekstrem 
+selama fase aktif dan tidak aktif CCKW. 
+3.2.5​ Teknik analisis data 
+Teknik analisis data pada penelitian ini sebagai berikut. 
+1.​ Menganalisis 
+analisis 
+secara 
+deskriptif 
+spektrum 
+bilangan 
+gelombang–frekuensi untuk mengidentifikasi karakteristik CCKW. 
+2.​ Analisis komposit untuk menggambarkan respon dinamika atmosfer dan 
+curah hujan pada fase aktif dan tidak aktif CCKW secara statistik. 
+3.​ Analisis probabilitas kejadian hujan ekstrem dengan membandingkan 
+frekuensi kejadian hujan ekstrem pada fase aktif CCKW terhadap fase 
+tidak aktif, sehingga dapat dievaluasi peran CCKW dalam meningkatkan 
+peluang terjadinya hujan ekstrem di Kalimantan Selatan. 
+3.3.​
+Diagram Alir Penelitian 
+Alur pengolahan dalam penelitian ini secara sistematis digambarkan dalam 
+diagram alir penelitian pada Gambar 3.2.
+
+===== HALAMAN 37 =====
+24 
+ 
+ 
+Gambar 3.2 Diagram alir penelitian
+
+===== HALAMAN 38 =====
+25 
+ 
+BAB IV​
+HASIL DAN PEMBAHASAN 
+4.1.​
+Hasil Penelitian 
+Bab ini memaparkan hasil ekstraksi data dan pengujian statistik yang 
+dieksekusi berdasarkan kerangka metodologi pada bab sebelumnya. Seluruh 
+temuan empiris diorganisasikan secara sistematis guna merepresentasikan 
+interaksi dinamis antara propagasi CCKW dan probabilitas kejadian hujan 
+ekstrem di wilayah Kalimantan Selatan. Rangkaian hasil ini selanjutnya menjadi 
+landasan objektif untuk penjabaran komprehensif pada sub bab pembahasan. 
+4.1.1​ Karakteristik spektral CCKW  
+CCKW di wilayah kajian dibuktikan melalui Diagram Wheeler-Kiladis 
+yang memetakan spektrum daya bilangan gelombang-frekuensi dari data OLR 
+pada gambar 4.1. Konsentrasi energi spektral tertinggi terdeteksi secara persis 
+pada kuadran propagasi ke arah timur (bilangan gelombang zonal positif).  
+ 
+Gambar 4.1 Diagram Wheeler Kiladis 2015-2024
+
+===== HALAMAN 39 =====
+26 
+ 
+Konsentrasi energi signifikan terdeteksi pada sisi positif bilangan 
+gelombang (eastward propagation) dalam rentang bilangan gelombang zonal k = 
+1–14 dan periode 2,5–20 hari, mengikuti kurva dispersi gelombang Kelvin 
+ekuatorial untuk kedalaman ekuivalen h = 12–50 m. Nilai log₁₀ rasio sinyal 
+terhadap latar belakang di domain Kelvin bernilai positif, menandakan bahwa 
+energi sinyal secara statistik melampaui energi latar belakang pada rentang 
+parameter tersebut. Pada komponen antisimetris (panel kanan), terdeteksi pula 
+konsentrasi energi pada posisi yang bersesuaian dengan gelombang Mixed 
+Rossby-Gravity (MRG) dan gelombang Inertio-Gravity ke arah timur (n=0 EIG), 
+namun dengan intensitas yang lebih lemah dibandingkan sinyal Kelvin pada 
+komponen simetris.  
+4.1.2​ Karakteristik Propagasi dan Dinamika CCKW saat Hujan Ekstrem  
+Diagram Hovmöller pada Gambar 4.2 merepresentasikan evolusi 
+spasial-temporal 
+anomali 
+angin 
+zonal 
+untuk 
+memverifikasi 
+propagasi 
+Convectively Coupled Kelvin Waves (CCKW) pada empat kejadian sampel (23 
+Maret 2016, 4 Januari 2017, 6 Juni 2020, dan 9 Juli 2020). Garis miring hijau utuh 
+(solid) mengindikasikan referensi teoretis propagasi CCKW dengan kecepatan 15 
+m/s, sedangkan garis hijau putus-putus merepresentasikan gelombang Kelvin 
+ekuatorial bebas pada kecepatan 30 m/s. Anomali angin zonal pada lapisan 200 
+hPa divisualisasikan melalui gradasi warna, di mana anomali baratan (westerly) 
+ditunjukkan oleh warna merah dan anomali timuran (easterly) oleh warna biru. 
+Anomali pada lapisan 850 hPa ditunjukkan melalui garis kontur, dengan kontur 
+utuh merepresentasikan angin baratan dan kontur putus-putus untuk angin 
+timuran. 
+Analisis pada keempat kejadian tersebut secara konsisten memperlihatkan 
+pola pita anomali yang miring dari kiri atas ke kanan bawah, merepresentasikan 
+pergerakan sistem atmosfer dari barat ke timur. Kemiringan pita anomali angin 
+zonal tersebut secara visual lebih selaras dengan kurva referensi kelvin wave (15 
+m/s), mengonfirmasi bahwa kecepatan fase sistem berada pada rentang 
+observasional 10–17 m/s. Pada saat sistem melintasi wilayah kajian,
+
+===== HALAMAN 40 =====
+27 
+ 
+teridentifikasi kopling struktur baroklin yang kuat. Pergeseran kontur angin di 
+lapisan 850 hPa memicu konvergensi tingkat rendah yang diwaktu bersamaan 
+ditimpa oleh transisi anomali angin di lapisan 200 hPa yang menciptakan 
+divergensi tingkat atas. Konfigurasi dinamis ini mengonfirmasi terjadinya 
+pemaksaan pergerakan massa udara naik (updraft) dan memvalidasi bahwa fase 
+aktif CCKW berpropagasi melintasi wilayah tersebut pada tanggal pengamatan. 
+Gambar 4.2 Diagram Hovmöller angin zonal terfilter kelvin wave
+
+===== HALAMAN 41 =====
+28 
+ 
+Gambar 4.3 menyajikan pemetaan vektor angin aktual pada lapisan 850 
+hPa dan 200 hPa untuk empat representasi tanggal kejadian (23 Maret 2016, 04 
+Januari 2017, 06 Juni 2020, dan 09 Juli 2020). Pada lapisan bawah (850 hPa) di 
+keempat panel kiri, terlihat aliran angin baratan aktual yang sangat masif mengalir 
+melintasi ekuator dan menabrak langsung wilayah Kalimantan Selatan. Vektor 
+panah ini saling berpusat dan bertumpuk, menciptakan zona konvergensi regional 
+yang riil. Secara simultan, pada lapisan atas di panel kanan, arah vektor angin 
+berbalik 180 derajat menjadi angin timuran yang menyebar kuat menjauhi wilayah 
+kajian. 
+Gambar 4.3 Vektor Angin Aktual Lapisan 850 hPa dan 200 hPa
+
+===== HALAMAN 42 =====
+29 
+ 
+Konsistensi propagasi anomali OLR ke arah timur pada kecepatan 10–17 
+m/s, yang diiringi oleh interaksi konvergensi dan divergensi vertikal, merupakan 
+bukti fisis dari 63 kejadian CCKW pada Lampiran 1 yang melintasi Kalimantan 
+Selatan selama 10 tahun observasi. Rangkaian kejadian atmosferik ini menjadi 
+parameter independen yang akan disuperposisikan dengan data satelit curah hujan. 
+Langkah ini esensial untuk memetakan karakteristik spasial dan temporal hujan 
+ekstrem yang secara langsung terpicu oleh fase aktif gelombang tersebut.   
+4.1.3​ Karakteristik Spasial dan Temporal Hujan Ekstrem  
+Identifikasi 63 kejadian fase aktif CCKW di Kalimantan Selatan selama 
+periode 2015–2024 telah divalidasi melalui konsistensi propagasi anomali OLR 
+ke arah timur serta terbentuknya kopling struktur baroklin di wilayah kajian. 
+Populasi kejadian dinamis ini selanjutnya dijadikan landasan komparatif untuk 
+mengevaluasi distribusi spasial dan temporal hujan ekstrem, guna mengukur 
+sejauh mana kondisi prasyarat atmosfer tersebut mampu merealisasikan presipitasi 
+di atas ambang batas P95. 
+Berdasarkan ekstraksi data Global Precipitation Measurement (GPM) 
+IMERG selama 10 tahun observasi, teridentifikasi 154 hari yang memenuhi 
+kriteria presipitasi ekstrem (curah hujan harian ≥ P95) pada Lampiran 2. Pemetaan 
+spasial menunjukkan bahwa pemusatan (centroid) dari seluruh kejadian ekstrem 
+ini berada pada koordinat rata-rata 2,45°LS dan 115,28°BT, yang secara geografis 
+mendominasi wilayah tengah hingga timur Kalimantan Selatan. 
+Secara temporal, distribusi hujan ekstrem terkonsentrasi secara absolut 
+pada periode Monsun Asia. Bulan Februari dan Maret merekam frekuensi 
+tertinggi dengan masing-masing 28 kejadian (18,2%), diikuti oleh Januari dengan 
+18 kejadian (11,7%). Profil tahunan mengekspos eskalasi kejadian yang tajam 
+pada tahun 2020 (22 kejadian) dan 2021 (20 kejadian). Proses superposisi antara 
+63 hari fase aktif CCKW dengan 154 hari hujan ekstrem (≥ P95) mengisolasi 8 
+kejadian spesifik di mana lintasan gelombang berinterferensi secara konstruktif
+
+===== HALAMAN 43 =====
+30 
+ 
+dengan realisasi presipitasi ekstrem. Parameter hidrometeorologis dari kedelapan 
+kejadian tersebut dijabarkan pada Tabel 4.1. 
+ 
+ 
+Tabel 4.1 CCKW disertai dengan curah hujan ekstrem (≥P95) 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+(mm) 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah 
+hujan rata 
+rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+Kecepatan 
+propagasi 
+(m/s) 
+2016-03-2
+3 
+121 
+72.09 
+-2.45 
+114.15 
+43.58 
+-2.531 
+114.982 
+12.71  
+2017-01-0
+4 
+144 
+96.34 
+-1.35 
+115.25 
+47.34 
+-1.875 
+115.021 
+12.11  
+2018-06-2
+0 
+186 
+91.54 
+-3.85 
+115.75 
+51.04 
+-2.835 
+115.887 
+13.23  
+2018-06-2
+6 
+158 
+103.51 
+-3.95 
+116.45 
+53.29 
+-3.293 
+115.91 
+11.29  
+2020-01-3
+0 
+240 
+167.6 
+-3.95 
+114.05 
+52.8 
+-2.731 
+115.018 
+13.23  
+2020-06-0
+6 
+254 
+112.33 
+-3.25 
+116.45 
+55.7 
+-1.828 
+115.311 
+12.21  
+2020-07-0
+9 
+226 
+115.89 
+-2.65 
+116.35 
+60.83 
+-3.08 
+115.798 
+14.9  
+2024-12-1
+4 
+225 
+108.24 
+-1.55 
+116.25 
+46.3 
+-2.492 
+115.341 
+11.95
+
+===== HALAMAN 44 =====
+31 
+ 
+Data ekstraksi di atas mengekspos karakteristik anomali yang sangat 
+krusial seperti kejadian ekstrem satu titik seperti 30 Januari 2020 dengan 167,60 
+mm terjadi pada periode basah (Monsun). Akan tetapi, kejadian dengan luasan 
+spasial gridpoint terbesar dan curah hujan rata-rata area tertinggi justru terjadi 
+pada bulan Juni dan Juli 2020 (di luar puncak Monsun). Hal ini membuktikan 
+keandalan dinamika CCKW sebagai gaya angkat paksa yang mampu 
+mengekstraksi uap air secara masif untuk menghasilkan hujan area yang luas, 
+terlepas dari bulan kejadiannya, asalkan terjadi interferensi yang tepat dengan 
+kondisi sirkulasi lokal. 
+4.1.4​ Analisis Probabilitas dan Evaluasi Lag  
+Evaluasi pengaruh dinamis CCKW terhadap realisasi hujan ekstrem diukur 
+menggunakan probabilitas bersyarat melalui Tabel Kontingensi 2x2 pada Tabel 
+4.2. Dari total observasi 3.653 hari (2015–2024), probabilitas klimatologis 
+kejadian hujan ekstrem secara keseluruhan berada di angka 4,22%. Ekstraksi data 
+menunjukkan bahwa fase aktif CCKW melintasi wilayah Kalimantan Selatan 
+selama 63 hari, di mana 8 hari di antaranya (12,70%) menghasilkan hujan 
+ekstrem. Sebaliknya, pada 3.590 hari di mana atmosfer tidak dilewati CCKW 
+(fase pasif), kejadian hujan ekstrem tetap muncul sebanyak 146 hari, yang 
+merepresentasikan 4,07% dari populasi hari pasif.  
+Tabel 4.2 Tabel Kontingensi 2×2  CCKW dan Hujan Ekstrem 
+ 
+Hujan ekstrem  
+Hujan tidak 
+ekstrem  
+Total 
+CCKW aktif 
+8 
+55 
+63 
+CCKW tidak aktif 146 
+3444 
+3590 
+Total 
+154 
+3499 
+3653 
+Guna menguji validitas dan persistensi pengaruh gelombang ini, dilakukan 
+analisis waktu jeda (lag analysis) menggunakan Fisher's Exact Test dari Hari H
+
+===== HALAMAN 45 =====
+32 
+ 
+(Lag 0) hingga H+3 (Lag 3). Hasil pengujian pada Tabel 4.3 mendokumentasikan 
+degradasi nilai statistik secara sistematis:  
+−​ Lag 0: Menghasilkan irisan 8 kejadian dengan Risk Ratio (RR) 3,12 dan Odds 
+Ratio (OR) 3,43. Signifikansi statistik tervalidasi dengan p-value = 0.0045 (p 
+< 0,05). 
+−​ Lag 1: Terjadi penurunan drastis menjadi 4 kejadian, dengan RR 1,52 dan OR 
+1,55. Nilai p-value melonjak ke 0.3386, sehingga kehilangan signifikansi 
+statistik. 
+−​ Lag 2: Hanya menyisakan 3 kejadian, dengan RR 1,13 dan OR 1,14 (p-value 
+= 0.7480). 
+−​ Lag 3: Menyusut menjadi 1 kejadian, dengan rasio probabilitas negatif atau 
+RR 0,37 dan OR 0,36 (p-value = 0.5214). 
+ 
+ 
+ 
+  Tabel 4.3 Analisis waktu jeda (Lag analysis) menggunakan Fisher's Exact Test 
+Lag 
+(hari) 
+CCKW 
+dengan 
+hujan 
+esktrem 
+CCKW
+tanpa 
+hujan 
+ekstrem 
+Hujan 
+ekstrem 
+tanpa 
+CCKW 
+Tidak 
+ekstrem 
+dan CCKW 
+tidak aktif 
+RR 
+OR 
+p-fisher 
+0 
+8 
+55 
+146 
+3444 
+3.12 
+3.43 
+0.0045 
+1 
+4 
+59 
+150 
+3439 
+1.52 
+1.55 
+0.3386 
+2 
+3 
+60 
+151 
+3437 
+1.13 
+1.14 
+0.7480 
+3 
+1 
+62 
+153 
+3434 
+0.37 
+0.36 
+0.5214
+
+===== HALAMAN 46 =====
+33 
+ 
+Berdasarkan Tabel Kontingensi pada Lag 0, performa pendeteksian 
+operasional CCKW terhadap curah hujan ekstrem mencatat metrik dengan tingkat 
+Probability of Detection (POD) sebesar 5,2%, tingkat alarm palsu atau False 
+Alarm Ratio (FAR) mencapai 87,3%, dan nilai akurasi presisi atau Critical 
+Success Index (CSI) sebesar 3,8%. 
+4.2.​
+Pembahasan 
+Subbab ini mensintesis hasil pengolahan data untuk menjawab dua 
+rumusan masalah penelitian secara komprehensif. Pembahasan difokuskan pada 
+evaluasi karakteristik hujan ekstrem saat fase aktif CCKW melintas, serta 
+pengukuran tingkat signifikansi probabilitas dan limitasi operasionalnya. 
+4.2.1​ Karakteristik Kejadian Hujan Ekstrem pada Fase Aktif CCKW 
+Sintesis terhadap 8 kejadian persinggungan antara fase aktif CCKW dan 
+hujan ekstrem mengekspos karakteristik dinamis yang secara spesifik mendikte 
+presipitasi di Kalimantan Selatan. Secara kinematik, pemaksaan sistem atmosfer 
+ini murni bersifat sementara. Kecepatan propagasi yang terukur konstan pada 
+rentang 11,29 m/s hingga 14,90 m/s menyebabkan durasi persinggahan 
+pemaksaan konveksi di wilayah kajian sangat singkat, yakni maksimal 24 jam. 
+Sifat transient dan respon instan ini selaras dengan temuan Zibrah dan 
+Sagita (2023) di Sulawesi, yang mengidentifikasi bahwa CCKW berkarakteristik 
+menguatkan intensitas curah hujan sesaat dengan laju presipitasi tinggi pada 
+puncak fasenya, berbeda dengan gelombang Equatorial Rossby yang cenderung 
+bertahan lebih lama akibat struktur sikloniknya. Namun, tidak seperti Senior dkk. 
+(2023) yang menemukan bahwa CCKW secara dominan memodulasi fase darat 
+siklus diurnal di Pesisir Barat Sumatera hingga menggeser puncak hujan ke dini 
+hari melalui konvergensi baratan, di Kalimantan Selatan konvergensi baratan 850 
+hPa yang dibawa CCKW lebih berperan sebagai penyedia mekanisme forced 
+lifting skala sinoptik yang berinteraksi dengan topografi lokal dan pemanasan 
+lokal.
+
+===== HALAMAN 47 =====
+34 
+ 
+Karakteristik intensitas hujan ekstrem yang dihasilkan di Kalimantan 
+Selatan terbukti tidak memiliki korelasi linear secara langsung dengan besaran 
+energi gelombang itu sendiri. Anomali OLR yang merepresentasikan kekuatan 
+konveksi CCKW bervariasi secara ekstrem, mulai dari -37,24 W/m² hingga -13,27 
+W/m², namun seluruhnya sama-sama berujung pada curah hujan harian 
+melampaui P95. Lebih jauh, sebaran spasial luasan ekstrem tertinggi (menutupi 
+254 gridpoint) justru terealisasi pada bulan Juni (06 Juni 2020), di luar fase 
+puncak pasokan uap air Monsun Asia. 
+Fakta empiris ini mendefinisikan bahwa hujan ekstrem yang dipicu oleh 
+CCKW tidak ditentukan secara absolut oleh amplitudo gelombang tersebut, 
+melainkan oleh efisiensi interferensi konstruktifnya dengan sirkulasi regional. Hal 
+ini memperkuat konsep superposisi gelombang yang dipaparkan oleh Latos dkk. 
+(2021). Latos dkk. mencatat bahwa di Sulawesi Selatan, kejadian tunggal 
+gelombang ekuatorial hanya memberikan dorongan moderat, namun ketika terjadi 
+superposisi atau interferensi konstruktif dengan latar kelembapan regional atau 
+gelombang lain, penguatan presipitasi meningkat secara eksponensial. CCKW 
+secara mandiri di Kalimantan Selatan hanya menyediakan kerangka struktur 
+baroklin yang memaksakan updraft. Akan tetapi, seberapa masif curah hujan yang 
+jatuh sepenuhnya dikendalikan oleh ketersediaan uap air di background moisture 
+serta sirkulasi lokal yang ada saat gelombang tersebut melintas. 
+4.2.2​ Peningkatan Probabilitas dan Keterbatasan Metrik Operasional 
+Kehadiran fase aktif CCKW terbukti meningkatkan probabilitas kejadian 
+hujan ekstrem di Kalimantan Selatan secara signifikan. Loncatan probabilitas dari 
+4,07% 
+pada 
+kondisi 
+pasif 
+menjadi 
+12,70% 
+saat 
+CCKW 
+melintas, 
+merepresentasikan amplifikasi risiko sebesar 3,12 kali lipat dibanding kondisi 
+pasif CCKW. Peningkatan risiko ini sejalan dengan temuan Lubis dan Respati 
+(2020) di Jawa serta Senior dkk. (2023) di Sumatera yang mengonfirmasi bahwa 
+penyeberangan fase aktif CCEWs/CCKW secara konsisten menaikkan peluang 
+kemunculan hari-hari hujan ekstrem di atas persentil ke-95.
+
+===== HALAMAN 48 =====
+35 
+ 
+Namun demikian, analisis lag waktu yang dilakukan dalam penelitian ini 
+mengungkap fakta penting mengenai sifat durasi pengaruh gelombang. 
+Peningkatan probabilitas mutlak terbatas pada saat terjadinya interaksi tepat di 
+titik nol (Lag 0) dengan p-value = 0,0045. Keruntuhan p-value yang drastis pada 
+Lag 1 (p = 0,3386) hingga Lag 3 membuktikan ketiadaan memori kelabilan 
+atmosfer setelah sistem CCKW bergeser ke luar batas timur Kalimantan Selatan. 
+Dampaknya tidak berlaku surut dan tidak memiliki lag effect. 
+Fenomena hilangnya signifikansi statistik secara mendadak pasca-Lag 0 
+ini memberikan gambaran fisis yang relevan dengan mekanisme abrupt ending 
+yang 
+diteliti 
+oleh 
+Senior 
+dkk. 
+(2025). 
+Dalam 
+studinya 
+di wilayah 
+Indonesia/Kalimantan, Senior dkk. (2025) menemukan bahwa pergerakan cepat 
+CCKW (~15 m/s) yang melintasi wilayah konvektif tidak hanya memicu 
+presipitasi singkat yang masif, tetapi juga menyapu dan menguras persediaan 
+kelembapan kolom atmosfer (moisture desiccation). Akibatnya, atmosfer di 
+kawasan yang baru saja dilintasi CCKW mengalami fase pengeringan relatif, yang 
+menjelaskan mengapa peluang terjadinya hujan ekstrem pada H+1 (Lag 1) hingga 
+H+3 drop secara signifikan di Kalimantan Selatan. 
+Metrik performa operasional dalam penelitian ini mendelegitimasi peran 
+CCKW sebagai pemicu deterministik tunggal. FAR yang mencapai 87,3% 
+mengonfirmasi bahwa sebagian besar lintasan CCKW di Kalimantan Selatan 
+berlalu sebagai gelombang hampa yang gagal mencapai ambang ekstrem akibat 
+ketiadaan kelembapan latar yang selaras. Di sisi lain, POD yang bertengger di 
+angka 5,2% memaparkan realitas bahwa hampir 95% kejadian hujan ekstrem di 
+wilayah kajian dipicu oleh mekanisme eksklusif yang terlepas dari sistem CCKW 
+seperti Monsun, pemaksaan orografis Pegunungan Meratus, atau Borneo Vortex. 
+Oleh karena itu, probabilitas hujan ekstrem memang meningkat secara 
+signifikan pada saat CCKW aktif, namun kapasitas gelombang ini harus 
+diklasifikasikan secara ketat sebagai modulator kerentanan atmosfer jangka sangat 
+pendek (nowcasting 0–24 jam), yang sangat bergantung pada interferensi kondisi
+
+===== HALAMAN 49 =====
+36 
+ 
+latar regional, dan bukan merupakan instrumen peramalan cuaca deterministik 
+mandiri untuk jangka menengah.
+
+===== HALAMAN 50 =====
+37 
+ 
+BAB V​
+KESIMPULAN 
+5.1​
+Kesimpulan 
+Karakteristik utama hujan ekstrem (≥ P95) yang beririsan dengan fase 
+aktif CCKW di Kalimantan Selatan bersifat murni sementara dan sangat 
+bergantung 
+pada 
+interferensi 
+konstruktif 
+lingkungan 
+latar 
+(background 
+environment). CCKW berpropagasi cepat (11,29 - 14,90 m/s ) dan hanya melintasi 
+wilayah kajian maksimal selama 24 jam, dengan menyediakan struktur baroklin 
+berupa konvergensi paksa di lapisan 850 hPa dan divergensi di 200 hPa. Akan 
+tetapi, realisasi dan luasan hujan ekstrem tidak memiliki korelasi linear dengan 
+besaran energi gelombang. CCKW bertindak sebagai penyedia gaya angkat 
+vertikal, sementara intensitas ekstremnya baru akan terealisasi jika ditunjang oleh 
+ketersediaan uap air dari sirkulasi regional yang sedang aktif di Kalimantan 
+Selatan.  
+Kehadiran 
+fase 
+aktif 
+CCKW 
+terbukti 
+secara 
+statistik 
+mampu 
+melipatgandakan probabilitas kejadian hujan ekstrem di Kalimantan Selatan dari 
+4,07% menjadi 12,70% saat aktif, dengan nilai Risk Ratio 3,12. Namun, analisis 
+Lag mendokumentasikan bahwa signifikansi ini (p = 0.0045) secara eksklusif 
+hanya terjadi seketika pada saat kejadian (Lag 0), dan runtuh sepenuhnya pada 
+hari berikutnya (Lag 1 hingga Lag 3). Lebih jauh, nilai FAR yang mencapai 
+87,3% dan POD yang hanya 5,2% memvalidasi bahwa CCKW gagal berfungsi 
+sebagai prediktor deterministik mandiri. CCKW adalah modulator kelabilan 
+jangka sangat pendek, yang keberhasilannya memicu cuaca ekstrem hanya 
+merangkum sebagian kecil (<6%) dari total populasi kejadian hujan ekstrem di 
+wilayah kajian. 
+5.2​
+Saran 
+Merespons temuan fisis dan kelemahan metrik operasional pada 
+kesimpulan di atas, rekomendasi strategis yang dapat diberikan adalah sebagai 
+berikut:
+
+===== HALAMAN 51 =====
+38 
+ 
+1.​
+Pemantauan lintasan CCKW tidak direkomendasikan untuk digunakan 
+sebagai justifikasi peringatan dini hujan ekstrem dengan waktu tenggang 
+(lead time) multi-hari (H+1 atau H+2). Output analisis lag membuktikan 
+hal tersebut tidak valid secara statistik. CCKW harus diintegrasikan secara 
+spesifik ke dalam sistem nowcasting (0–24 jam), dan mutlak 
+disuperposisikan dengan peta kelembapan udara aktual dan vektor angin 
+lapisan bawah untuk menekan FAR yang terlampau tinggi. 
+2.​
+Penelitian selanjutnya tidak boleh lagi menganalisis CCKW di ruang 
+hampa. Diperlukan analisis superposisi yang menggabungkan indeks 
+CCKW dengan indeks Osilasi Madden-Julian, Borneo Vortex, atau intrusi 
+monsun dingin. Fokus riset harus dialihkan untuk mencari formulasi atau 
+ambang batas interaksi kapan CCKW akan memicu interferensi konstruktif 
+serta kapan CCKW akan mengalami interferensi destruktif. Selain itu, 
+penggunaan data observasi dengan resolusi spasial yang lebih tinggi 
+disarankan untuk mengukur pemaksaan orografis saat gelombang ini 
+melintas.
+
+===== HALAMAN 52 =====
+39 
+ 
+DAFTAR PUSTAKA 
+Agresti, A. (2002). Categorical Data Analysis (2nd ed.). John Wiley & Sons. 
+Agustianti, R., Nussifera, L., Angelianawati, L., Meliana, I., Sidik, E.A., Nurlaila, 
+Q., Simarmata, N., Himawan, I.S., Pawan, E., Ikhram, F., & Andriani, A.D., 
+(2022). Metode penelitian kuantitatif dan kualitatif. Tohar Media. 
+Anis, P., Sandro, L., Eddy, H., Teguh, H., Dian, N., Pinaringan, S., Ainur, R., 
+Fatria, A., Risyanto, R., Purwaningsih, A., Lubis, S., Hermawan, E., Harjana, T., 
+Ratri, D., Sujalu, A., Ridho, A., Andarini, D., & , R. (2022). Moisture Origin and 
+Transport for Extreme Precipitation over Indonesia’s New Capital City, Nusantara 
+in August 2021. Atmosphere. 
+Ariska, M., , S., , S., Irfan, M., dan Iskandar, I. (2024). Detection of Dominant 
+Rainfall Patterns in Indonesian Regions Using Empirical Orthogonal Function 
+(EOF) and Its Relation with ENSO and IOD Events. Science and Technology 
+Indonesia. 
+Aslam, A. (2025). Rainfall over the Maritime Continent: key processes, scale 
+interactions and model representation. Weather, 80. 
+Baranowski, D., Flatau, M., Flatau, P., dan Matthews, A. (2016). Phase locking 
+between atmospheric convectively coupled equatorial Kelvin waves and the 
+diurnal cycle of precipitation over the Maritime Continent. Geophysical Research 
+Letters, 43, 8269 - 8276. 
+Chen, Y., Teo, F. Y., Wong, S. Y., Chan, A., Weng, C., & Falconer, R. A. (2024). 
+Monsoonal extreme rainfall in Southeast Asia: A review. Water, 17(1), 5. 
+Ferrett, S., Yang, G., Woolnough, S., Methven, J., Hodges, K., & Holloway, C. 
+(2019). Linking extreme precipitation in Southeast Asia to equatorial waves. 
+Quarterly Journal of the Royal Meteorological Society, 146, 665 - 684. 
+Fisher, R. A. (1922). On the interpretation of χ² from contingency tables, and the 
+calculation of P. Journal of the Royal Statistical Society, 85(1), 87–94.
+
+===== HALAMAN 53 =====
+40 
+ 
+Fitriati, U., Rusmayadi, G., Hatta, G., & Anggraini, D. (2025). Extreme Climate 
+Change, Rainfall and Temperature in South Kalimantan Province, Indonesia. 
+Journal of Lifestyle and SDGs Review. 
+Hermawan, E., Risyanto, R., Purwaningsih, A., Ratri, D., Ridho, A., Harjana, T., 
+Andarini, D., Satyawardhana, H., & Sujalu, A. (2024). Characteristics of 
+Mesoscale Convective Systems and Their Impact on Heavy Rainfall in 
+Indonesia’s New Capital City, Nusantara, in March 2022. Advances in 
+Atmospheric Sciences. 
+Huffman, G., Bolvin, D., & Nelkin, E. (2015). Integrated Multi-satellitE 
+Retrievals for GPM (IMERG) Technical Documentation. . 
+Isnoor, K., Firdianto, P., & Rejeki, H. (2019). The activity of Borneo Vortex as a 
+trigger for extreme rain in West Borneo (case study: 24th – 25th January 2017). 
+IOP Conference Series: Earth and Environmental Science, 303. 
+Jackson, L., Keane, R., Finney, D., Marsham, J., Parker, D., , C., & Stratton, R. 
+(2019). Regional Differences in the Response of Rainfall to Convectively Coupled 
+Kelvin Waves over Tropical Africa. Journal of Climate. 
+Kiladis, G., Wheeler, M., Haertel, P., Straub, K., & Roundy, P. (2009). 
+Convectively coupled equatorial waves. Reviews of Geophysics, 47. 
+Kotz, M., Levermann, A., & Wenz, L. (2022). The effect of rainfall changes on 
+economic production. Nature, 601, 223 - 227. 
+Liang, J., Catto, J., Hawcroft, M., Tan, M., Hodges, K., & Haywood, J. (2023). 
+Borneo Vortices in a warmer climate. npj Climate and Atmospheric Science, 6, 
+1-8. 
+Liebmann, B., & Smith, C. A. (1996). Description of a complete (interpolated) 
+outgoing longwave radiation dataset. Bulletin of the American Meteorological 
+Society, 77(6), 1275-1277.
+
+===== HALAMAN 54 =====
+41 
+ 
+Lubis, S. W., & Respati, M. R. (2020). Impacts of convectively coupled equatorial 
+waves on rainfall extremes in Java, Indonesia. International Journal of 
+Climatology, 41(4), 2418-2440. 
+Matthews, A. J. (2021). Dynamical propagation and growth mechanisms for 
+convectively coupled equatorial Kelvin waves over the Indian Ocean. Quarterly 
+Journal of the Royal Meteorological Society, 147(741), 4310-4336. 
+Matsuno, T. (1966). Quasi-geostrophic motions in the equatorial area. Journal of 
+the Meteorological Society of Japan, 44, 25-43 
+Mayta, V., Kiladis, G., Dias, J., Dias, P., & Gehne, M. (2021). Convectively 
+Coupled Kelvin Waves Over Tropical South America. Journal of Climate. 
+Nakamura, Y., & Takayabu, Y. (2022). Convective couplings with equatorial 
+Rossby waves and equatorial Kelvin waves. Part II: Coupled precipitation 
+characteristics. Journal of the Atmospheric Sciences. 
+Nana, H., Gudoshava, M., Tanessong, R., Tamoffo, A., & Vondou, D. (2025). 
+Diverse causes of extreme rainfall in November 2023 over Equatorial 
+Africa. Weather and Climate Dynamics. 
+Pratama, M., Multazima, R., & Azkiarizqi, I. (2021). Hydro-Meteorological 
+Aspects of the 2021 South Kalimantan Flood: Topography, Tides, and 
+Precipitation. International Journal of Remote Sensing and Earth Sciences 
+(IJReSES). 
+Qian, J., Robertson, A., & Moron, V. (2013). Diurnal Cycle in Different Weather 
+Regimes and Rainfall Variability over Borneo Associated with ENSO. Journal of 
+Climate, 26, 1772-1790. 
+Ramadhani, E. L., & Setiawan, I. (2022). Analisis Dampak Banjir Terhadap 
+Ketahanan Pangan di Kalimantan Selatan. Jurnal Teknologi Berkelanjutan, 
+11(02), 76-82.
+
+===== HALAMAN 55 =====
+42 
+ 
+Rothman, K. J., Greenland, S., & Lash, T. L. (2008). Modern Epidemiology (3rd 
+ed.). Lippincott Williams & Wilkins. 
+Sakaeda, N., Kiladis, G., & Dias, J. (2020). The diurnal cycle of rainfall and the 
+convectively coupled equatorial waves over the Maritime Continent. Journal of 
+Climate, 33(8), 3307-3331. 
+Sakazaki, T., & Hamilton, K. (2020). An Array of Ringing Global Free Modes 
+Discovered in Tropical Surface Pressure Data. Journal of the Atmospheric 
+Sciences. 
+Schaefer, J. T. (1990). The critical success index as an indicator of warning skill. 
+Weather and Forecasting, 5(4), 570–575. 
+Senior, N. V., Matthews, A. J., Webber, B. G., Webster, S., Jones, R. W., Permana, 
+D. S., Paski, J.A., & Fadila, R. (2023). Extreme precipitation at Padang, Sumatra 
+triggered by convectively coupled Kelvin waves. Quarterly Journal of the Royal 
+Meteorological Society, 149(755), 2281-2300. 
+Senior, N. V., Matthews, A. J., Webber, B. G., Paski, J. A., Nuryanto, D. E., Jones, 
+R. W., Permana, D.S., & Febriyanti, A. A. H. (2025). Abrupt ending of the 
+Madden–Julian Oscillation by convectively coupled Kelvin wave precipitation 
+leaves a swath of flooding across Indonesia. Quarterly Journal of the Royal 
+Meteorological Society, e4997. 
+Sihotang, H. (2023). Metode penelitian kuantitatif. 
+Sillmann, J., Kharin, V. V., Zhang, X., Zwiers, F. W., & Brogli, R. (2013). Climate 
+extremes indices in the CMIP5 multimodel ensemble: Part 1. Model evaluation in 
+the present climate. Journal of Geophysical Research: Atmospheres, 118(4), 
+1716–1733. 
+Szumilas, M. (2010). Explaining odds ratios. Journal of the Canadian Academy of 
+Child and Adolescent Psychiatry, 19(3), 227–229.
+
+===== HALAMAN 56 =====
+43 
+ 
+Wang, L., Zhou, T., Li, J., Rong, X., Chen, H., Xin, Y., & Su, J. (2019). 
+Convectively Coupled Equatorial Waves Simulated by CAMS-CSM. Journal of 
+Meteorological Research, 33, 949-959.  
+Wells, J., Wilson, K., Abram, N., Nunn, M., Gaveau, D., Runting, R., Tarniati, N., 
+Mengersen, K., & Meijaard, E. (2016). Rising floodwaters: mapping impacts and 
+perceptions of flooding in Indonesian Borneo. Environmental Research Letters, 
+11. 
+Wheeler, M., & Kiladis, G. N. (1999). Convectively coupled equatorial waves: 
+Analysis of clouds and temperature in the wavenumber–frequency domain. 
+Journal of the Atmospheric Sciences, 56(3), 374-399. 
+Wilks, D. S. (2011). Statistical Methods in the Atmospheric Sciences (3rd ed.). 
+Academic Press. 
+Yamanaka, M., Ogino, S., Wu, P., Jun‐ichi, H., Mori, S., Matsumoto, J., & 
+Syamsudin, F. (2018). Maritime continent coastlines controlling Earth’s 
+climate. Progress in Earth and Planetary Science, 5, 1-28. 
+Yang, G. Y., Hoskins, B., & Slingo, J. (2003). Convectively coupled equatorial 
+waves: A new methodology for identifying wave structures in observational 
+data. Journal of the atmospheric sciences, 60(14), 1637-1654. 
+Yang, Q., Xie, Q., & Xu, X. (2025). Reliability of Satellite Data in Capturing 
+Spatiotemporal Changes of Precipitation Extremes in the Middle Reaches of the 
+Yellow River Basin. Remote Sensing. 
+Yin, J., Gu, H., Liang, X., Yu, M., Sun, J., Xie, Y., Li, F., & Wu, C. (2022). A 
+Possible Dynamic Mechanism for Rapid Production of the Extreme Hourly 
+Rainfall in Zhengzhou City on 20 July 2021. Journal of Meteorological Research, 
+36, 6-25. 
+Zhang, X., Alexander, L., Hegerl, G. C., Jones, P., Tank, A. K., Peterson, T. C., 
+Trewin, B., & Zwiers, F. W. (2011). Indices for monitoring changes in extremes
+
+===== HALAMAN 57 =====
+44 
+ 
+based on daily temperature and precipitation data. Wiley Interdisciplinary 
+Reviews: Climate Change, 2(6), 851–870. 
+Zellatifanny, C. M., & Mudjiyanto, B. (2018). Tipe penelitian deskripsi dalam 
+ilmu komunikasi. Diakom: Jurnal Media Dan Komunikasi, 1(2), 83-90.
+
+===== HALAMAN 58 =====
+45 
+ 
+DAFTAR PUSTAKA DARI INTERNET 
+BMKG, 
+2023. 
+Standar 
+Operasional 
+Prosedur 
+(Nomor 
+SOP 
+: 
+SOP/025/KB/VIII/2023) 
+tentang 
+Penyediaan 
+dan 
+Penyebarluasan 
+Peringatan Dini Cuaca Ekstrem Sesaat (Nowcasting) 1 (Satu) sampai 3 
+(Tiga) Jam Ke Depan di Lingkungan Badan Meteorologi, Klimatologi, dan 
+Geofisika. [Online] Available at: https://jdih.bmkg.go.id/ storage/common/ 
+dokumen/2023sopbmkg025.pdf  [Diakses tanggal 11 Januari 2026]. 
+Comet, 
+2012. 
+Weather 
+Radar 
+Fundamental. 
+[Online] 
+Available 
+at: 
+https://www.meted.ucar.edu/radar/basic_wxradar/ [Diakses tanggal 17 Januari 
+2026].
+
+===== HALAMAN 59 =====
+46 
+ 
+LAMPIRAN 
+ 
+Lampiran 1. Tabel CCKW Aktif periode 2015 – 2024 
+Event 
+no 
+Tanggal 
+mulai 
+Tanggal 
+akhir 
+c_ms 
+Olr min 
+(wm2) 
+N hari di 
+kalsel 
+Tanggal 
+pertama di 
+kalsel 
+Tanggal 
+Terakhir Di 
+Kalsel 
+1 
+2020-01-05 
+2020-01-19 14.28 
+-49.49 
+1 
+2020-01-11 2020-01-11 
+2 
+2019-06-17 
+2019-06-24 12.76 
+-42.08 
+1 
+2019-06-23 2019-06-23 
+4 
+2020-05-13 
+2020-05-27 12.41 
+-37.43 
+1 
+2020-05-19 2020-05-19 
+5 
+2023-04-20 
+2023-04-27 
+14.4 
+-37.35 
+1 
+2023-04-20 2023-04-20 
+6 
+2020-01-24 
+2020-02-04 13.23 
+-37.24 
+1 
+2020-01-30 2020-01-30 
+13 
+2021-04-14 
+2021-04-24 17.61 
+-34.67 
+1 
+2021-04-18 2021-04-18 
+16 
+2016-04-19 
+2016-05-05 12.08 
+-34.39 
+1 
+2016-04-26 2016-04-26 
+19 
+2022-05-03 
+2022-05-14 15.88 
+-33.5 
+1 
+2022-05-08 2022-05-08 
+21 
+2015-05-08 
+2015-05-21 15.18 
+-33.3 
+1 
+2015-05-14 2015-05-14 
+22 
+2015-06-02 
+2015-06-17 12.74 
+-33.02 
+1 
+2015-06-08 2015-06-08 
+33 
+2022-03-13 
+2022-03-21 13.36 
+-30.92 
+1 
+2022-03-19 2022-03-19 
+37 
+2016-04-03 
+2016-04-17 12.34 
+-30.47 
+1 
+2016-04-09 2016-04-09 
+38 
+2020-05-31 
+2020-06-15 12.21 
+-30.43 
+1 
+2020-06-06 2020-06-06 
+40 
+2020-07-04 
+2020-07-17 
+14.9 
+-29.78 
+1 
+2020-07-09 2020-07-09 
+41 
+2016-11-24 
+2016-12-01 
+11.08 
+-29.76 
+1 
+2016-11-30 2016-11-30 
+43 
+2023-07-15 
+2023-07-24 12.72 
+-29.37 
+1 
+2023-07-21 2023-07-21 
+44 
+2024-05-26 
+2024-06-07 13.24 
+-29.1 
+1 
+2024-06-02 2024-06-02 
+47 
+2016-12-29 
+2017-01-10 
+12.11 
+-28.57 
+1 
+2017-01-04 2017-01-04 
+51 
+2020-03-14 
+2020-03-30 
+11.0 
+-28.33 
+1 
+2020-03-20 2020-03-20 
+52 
+2019-12-10 
+2019-12-25 
+11.23 
+-27.9 
+1 
+2019-12-17 2019-12-17 
+57 
+2020-05-23 
+2020-05-29 13.15 
+-26.84 
+1 
+2020-05-28 2020-05-28 
+58 
+2016-03-17 
+2016-03-26 12.71 
+-26.61 
+1 
+2016-03-23 2016-03-23 
+65 
+2022-06-10 
+2022-06-20 10.79 
+-26.05 
+1 
+2022-06-17 2022-06-17 
+67 
+2024-01-20 
+2024-01-30 10.79 
+-25.99 
+1 
+2024-01-20 2024-01-20 
+69 
+2023-06-15 
+2023-06-30 
+11.9 
+-25.73 
+1 
+2023-06-20 2023-06-20 
+75 
+2023-02-08 
+2023-02-18 
+13.2 
+-25.38 
+1 
+2023-02-13 2023-02-13 
+82 
+2023-12-29 
+2024-01-06 10.57 
+-24.72 
+1 
+2024-01-05 2024-01-05
+
+===== HALAMAN 60 =====
+47 
+ 
+87 
+2020-04-06 
+2020-04-20 13.15 
+-24.36 
+1 
+2020-04-11 2020-04-11 
+92 
+2020-04-20 
+2020-04-29 
+8.19 
+-23.86 
+1 
+2020-04-28 2020-04-28 
+93 
+2022-07-29 2022-08-07 10.22 
+-23.82 
+1 2022-08-05 2022-08-05 
+101 
+2024-01-31 2024-02-13 
+13.4 -23.34 
+1 2024-02-05 2024-02-05 
+114 
+2024-08-06 2024-08-15 
+12.09 -22.64 
+1 2024-08-12 2024-08-12 
+115 
+2016-04-20 2016-04-29 14.69 
+-22.62 
+1 2016-04-21 2016-04-21 
+120 
+2015-07-14 2015-07-22 12.48 
+-22.42 
+1 2015-07-21 2015-07-21 
+133 
+2020-06-17 2020-07-03 
+10.12 -21.78 
+1 2020-06-24 2020-06-24 
+139 
+2017-08-07 2017-08-15 16.34 
+-21.52 
+1 2017-08-08 2017-08-08 
+145 
+2024-06-10 2024-06-23 11.26 
+-21.19 
+1 2024-06-14 2024-06-14 
+148 
+2021-02-11 2021-02-22 12.28 
+-21.08 
+1 2021-02-13 2021-02-13 
+151 
+2022-09-03 2022-09-10 12.15 
+-20.88 
+1 2022-09-09 2022-09-09 
+164 
+2016-05-09 2016-05-18 11.21 
+-20.27 
+1 2016-05-16 2016-05-16 
+172 
+2016-09-08 2016-09-20 16.23 
+-19.96 
+1 2016-09-13 2016-09-13 
+187 
+2015-11-10 2015-11-17 
+11.4 -19.27 
+1 2015-11-17 2015-11-17 
+190 
+2024-04-28 2024-05-06 12.13 
+-19.18 
+1 2024-04-29 2024-04-29 
+197 
+2020-02-10 2020-02-21 14.15 
+-18.85 
+1 2020-02-16 2020-02-16 
+204 
+2024-09-07 2024-09-17 13.87 
+-18.41 
+1 2024-09-09 2024-09-09 
+212 
+2024-07-28 2024-08-05 
+13.12 -18.07 
+1 2024-08-02 2024-08-02 
+218 
+2017-02-03 2017-02-11 10.78 
+-17.67 
+1 2017-02-09 2017-02-09 
+222 
+2015-04-18 2015-04-26 
+11.06 -17.48 
+1 2015-04-25 2015-04-25 
+233 
+2018-01-12 2018-01-22 12.59 
+-17.04 
+1 2018-01-14 2018-01-14 
+244 
+2015-08-10 2015-08-21 13.51 
+-16.24 
+1 2015-08-12 2015-08-12 
+247 
+2022-06-10 2022-06-15 11.51 
+-16.17 
+1 2022-06-13 2022-06-13 
+249 
+2015-02-26 2015-03-03 
+14.12 -16.08 
+1 2015-03-02 2015-03-02 
+253 
+2023-12-22 2024-01-01 
+16.2 -15.85 
+1 2023-12-25 2023-12-25 
+262 
+2018-07-05 2018-07-13 10.98 
+-15.35 
+1 2018-07-05 2018-07-05 
+264 
+2018-06-15 2018-06-21 13.23 
+-15.28 
+1 2018-06-20 2018-06-20 
+270 
+2021-08-16 2021-08-28 12.19 
+-14.97 
+1 2021-08-19 2021-08-19 
+281 
+2017-03-25 2017-04-02 
+12.06 -14.72 
+1 2017-03-25 2017-03-25 
+284 
+2023-01-29 2023-02-04 13.13 
+-14.67 
+1 2023-02-03 2023-02-03 
+287 
+2022-11-29 2022-12-08 12.23 
+-14.5 
+1 2022-12-03 2022-12-03 
+293 
+2024-12-13 2024-12-19 11.95 
+-14.28 
+1 2024-12-14 2024-12-14 
+294 
+2022-10-09 2022-10-14 
+16.11 -14.22 
+1 2022-10-09 2022-10-09
+
+===== HALAMAN 61 =====
+48 
+ 
+305 
+2020-08-06 2020-08-11 20.15 
+-13.51 
+1 2020-08-06 2020-08-06 
+309 
+2018-06-21 2018-06-26 11.29 
+-13.27 
+1 2018-06-26 2018-06-26 
+ 
+Lampiran 2. Curah hujan ekstrem di wilayah Kalimantan Selatan (2015-2024) 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+2015-01-17 
+164 
+135.66 
+-3.85 
+114.35 
+60.91 
+-2.899 
+114.521 
+2015-01-30 
+222 
+99.04 
+-1.95 
+114.35 
+52.64 
+-2.032 
+115.214 
+2015-02-04 
+156 
+148.9 
+-3.55 
+114.45 
+55.67 
+-2.742 
+114.841 
+2015-02-16 
+229 
+112.87 
+-1.05 
+115.05 
+52.94 
+-2.123 
+115.303 
+2015-02-18 
+169 
+89.2 
+-1.35 
+115.45 
+49.97 
+-2.028 
+115.148 
+2015-02-19 
+187 
+98.33 
+-3.75 
+114.65 
+53.56 
+-3.202 
+114.786 
+2015-03-14 
+211 
+116.15 
+-1.35 
+114.75 
+59.45 
+-2.264 
+115.045 
+2015-03-24 
+131 
+100.44 
+-2.95 
+114.15 
+49.83 
+-2.335 
+115.029 
+2015-04-12 
+229 
+80.85 
+-2.75 
+114.35 
+49.25 
+-2.794 
+114.969 
+2015-06-01 
+281 
+157.75 
+-1.95 
+114.75 
+56.02 
+-2.449 
+114.94 
+2015-12-12 
+335 
+124.08 
+-1.95 
+115.95 
+61.21 
+-2.59 
+115.293 
+2015-12-24 
+210 
+176 
+-1.55 
+115.45 
+67.07 
+-1.824 
+115.657 
+2016-01-03 
+199 
+99.9 
+-1.35 
+116.25 
+53.67 
+-1.789 
+115.324 
+2016-02-11 
+178 
+78.95 
+-1.25 
+116.05 
+45.88 
+-2.571 
+115.336 
+2016-02-24 
+300 
+132.47 
+-1.75 
+114.05 
+56.39 
+-2.25 
+115.034
+
+===== HALAMAN 62 =====
+49 
+ 
+2016-03-02 
+79 
+79.72 
+-1.05 
+114.65 
+49.82 
+-2.026 
+115.542 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+2016-03-04 
+204 
+116.17 
+-3.95 
+115.55 
+52.19 
+-2.925 
+115.313 
+2016-03-23 
+121 
+72.09 
+-2.45 
+114.15 
+43.58 
+-2.531 
+114.982 
+2016-04-14 
+253 
+158.59 
+-1.95 
+116.45 
+56.7 
+-1.9 
+115.698 
+2016-06-18 
+304 
+187.37 
+-3.45 
+114.45 
+65.59 
+-2.549 
+114.572 
+2016-09-20 
+160 
+124.72 
+-1.65 
+114.35 
+62.76 
+-1.645 
+114.797 
+2016-10-11 
+195 
+125.31 
+-1.05 
+114.75 
+54.62 
+-2.015 
+114.916 
+2016-11-08 
+225 
+138.35 
+-1.05 
+114.65 
+58.36 
+-1.66 
+115.062 
+2016-11-21 
+395 
+110.56 
+-3.85 
+114.15 
+57.38 
+-2.579 
+115.368 
+2016-12-05 
+142 
+80.78 
+-1.15 
+115.15 
+45.43 
+-2.775 
+115.671 
+2017-01-04 
+144 
+96.34 
+-1.35 
+115.25 
+47.34 
+-1.875 
+115.021 
+2017-01-08 
+304 
+87.98 
+-3.15 
+116.45 
+50.23 
+-2.169 
+115.462 
+2017-01-28 
+181 
+82.8 
+-1.15 
+114.75 
+45.17 
+-2.499 
+115.385 
+2017-03-04 
+137 
+98.17 
+-2.55 
+114.75 
+53.16 
+-2.03 
+114.755 
+2017-05-06 
+168 
+155.12 
+-1.85 
+115.25 
+58 
+-2.355 
+115.569 
+2017-05-14 
+306 
+119.93 
+-2.65 
+116.25 
+52.05 
+-2.66 
+115.459 
+2017-05-28 
+207 
+128.4 
+-1.35 
+114.75 
+62.28 
+-2.259 
+114.655 
+2017-06-02 
+133 
+139.34 
+-3.85 
+116.05 
+71.13 
+-3.338 
+115.945
+
+===== HALAMAN 63 =====
+50 
+ 
+2017-06-03 
+328 
+90.39 
+-2.95 
+116.35 
+55.8 
+-2.683 
+115.867 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+2017-06-12 
+193 
+75.06 
+-1.55 
+114.25 
+47.33 
+-2.929 
+114.729 
+2017-07-18 
+165 
+121.31 
+-1.15 
+114.05 
+61.7 
+-1.76 
+114.888 
+2017-08-17 
+221 
+91.86 
+-2.35 
+116.45 
+52.21 
+-2.566 
+115.888 
+2017-11-15 
+178 
+122.58 
+-1.65 
+115.95 
+53.91 
+-2.407 
+115.732 
+2017-11-25 
+165 
+88.66 
+-1.75 
+116.05 
+46.48 
+-2.155 
+115.392 
+2017-11-26 
+218 
+166.65 
+-3.35 
+116.45 
+53.61 
+-2.412 
+115.522 
+2017-11-29 
+188 
+96.42 
+-1.85 
+114.55 
+51.39 
+-1.804 
+115.198 
+2017-12-04 
+287 
+143.18 
+-1.85 
+114.05 
+62.48 
+-2.022 
+114.915 
+2017-12-29 
+142 
+133.88 
+-1.95 
+114.05 
+58.1 
+-2.491 
+114.907 
+2018-01-06 
+171 
+88.93 
+-2.45 
+114.25 
+51.06 
+-2.628 
+115.055 
+2018-01-19 
+285 
+73.89 
+-2.35 
+114.65 
+45.94 
+-3.038 
+115.117 
+2018-02-05 
+131 
+91.32 
+-1.45 
+115.65 
+51.41 
+-2.097 
+115.175 
+2018-02-06 
+146 
+69.71 
+-3.85 
+114.05 
+48.52 
+-2.351 
+114.964 
+2018-02-22 
+167 
+127.8 
+-3.35 
+114.05 
+60.75 
+-2.522 
+114.485 
+2018-02-24 
+150 
+89.82 
+-1.05 
+115.85 
+48.84 
+-1.757 
+115.421 
+2018-02-28 
+548 
+147.79 
+-3.15 
+116.25 
+71.91 
+-2.853 
+115.27 
+2018-03-04 
+169 
+119.62 
+-1.65 
+114.05 
+62.17 
+-2.357 
+114.986
+
+===== HALAMAN 64 =====
+51 
+ 
+2018-03-05 
+210 
+154.07 
+-1.45 
+114.85 
+51.93 
+-2.411 
+115.426 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+2018-03-13 
+235 
+129.96 
+-3.55 
+115.15 
+53.97 
+-3.171 
+115.262 
+2018-03-15 
+201 
+118.82 
+-1.85 
+116.15 
+55.52 
+-1.694 
+115.607 
+2018-03-17 
+344 
+160.34 
+-1.05 
+115.65 
+58.31 
+-2.352 
+115.451 
+2018-03-21 
+449 
+139.16 
+-1.15 
+116.45 
+57.9 
+-2.202 
+115.57 
+2018-03-25 
+123 
+108.41 
+-3.85 
+114.05 
+49.32 
+-2.539 
+115.113 
+2018-05-01 
+221 
+157.12 
+-1.45 
+115.05 
+63.49 
+-1.859 
+114.989 
+2018-06-20 
+186 
+91.54 
+-3.85 
+115.75 
+51.04 
+-2.835 
+115.887 
+2018-06-26 
+158 
+103.51 
+-3.95 
+116.45 
+53.29 
+-3.293 
+115.91 
+2018-06-27 
+203 
+96.24 
+-1.95 
+116.45 
+56.86 
+-3.09 
+115.879 
+2018-07-02 
+341 
+155.68 
+-3.45 
+116.35 
+66.96 
+-2.846 
+115.824 
+2018-11-25 
+148 
+95.53 
+-1.55 
+114.95 
+54.05 
+-2.038 
+115.045 
+2018-12-16 
+235 
+115.08 
+-1.05 
+116.35 
+56.26 
+-1.906 
+115.682 
+2019-01-21 
+103 
+79.86 
+-1.05 
+115.75 
+49.48 
+-2.07 
+115.167 
+2019-01-28 
+272 
+106.38 
+-1.65 
+114.15 
+51.94 
+-2.262 
+115.083 
+2019-02-05 
+138 
+96.1 
+-1.45 
+115.45 
+47.04 
+-2.251 
+115.342 
+2019-02-08 
+153 
+160.67 
+-2.65 
+114.55 
+55.12 
+-2.806 
+115.091 
+2019-03-05 
+225 
+156.99 
+-1.85 
+114.15 
+74.08 
+-2.758 
+114.436
+
+===== HALAMAN 65 =====
+52 
+ 
+2019-03-11 
+196 
+104.22 
+-2.25 
+114.05 
+53.56 
+-2.023 
+114.882 
+ 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+ 
+2019-03-13 
+131 
+109.4 
+-2.95 
+115.95 
+47.63 
+-2.152 
+115.438 
+2019-06-02 
+127 
+143.26 
+-2.75 
+116.25 
+64.82 
+-2.734 
+116.008 
+2019-06-07 
+156 
+106.92 
+-1.65 
+115.85 
+57.57 
+-2.182 
+115.971 
+2019-06-08 
+312 
+193.11 
+-3.75 
+116.05 
+79.92 
+-3.128 
+115.546 
+2019-12-30 
+255 
+136.72 
+-1.25 
+114.05 
+56.18 
+-2.838 
+114.929 
+2019-12-31 
+203 
+106.84 
+-3.75 
+115.45 
+52.3 
+-3.007 
+115.075 
+2020-01-04 
+203 
+126.05 
+-1.45 
+114.25 
+57.24 
+-1.742 
+114.816 
+2020-01-10 
+257 
+144.3 
+-1.45 
+115.85 
+58.12 
+-2.27 
+115.343 
+2020-01-30 
+240 
+167.6 
+-3.95 
+114.05 
+52.8 
+-2.731 
+115.018 
+2020-02-04 
+198 
+130.18 
+-2.05 
+115.45 
+57.3 
+-2.522 
+115.515 
+2020-02-06 
+247 
+119.32 
+-1.45 
+114.25 
+57.83 
+-2.061 
+115.263 
+2020-02-09 
+153 
+105.12 
+-3.95 
+116.05 
+48.85 
+-3.385 
+115.395 
+2020-02-15 
+222 
+122.16 
+-1.55 
+114.05 
+56.61 
+-2.236 
+114.784 
+2020-02-17 
+196 
+115.76 
+-3.95 
+116.25 
+50.23 
+-2.534 
+115.37 
+2020-03-02 
+186 
+111.01 
+-1.85 
+116.05 
+54.4 
+-2.709 
+115.045 
+2020-03-31 
+102 
+74.21 
+-1.75 
+115.25 
+43.07 
+-2.121 
+115.979
+
+===== HALAMAN 66 =====
+53 
+ 
+2020-04-10 
+203 
+97.01 
+-1.25 
+115.45 
+51.54 
+-2.019 
+114.996 
+2020-05-02 
+152 
+107.1 
+-3.65 
+114.05 
+46.77 
+-2.68 
+114.839 
+ 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+ 
+2020-05-09 
+115 
+102.72 
+-1.65 
+114.05 
+55.29 
+-1.858 
+114.738 
+2020-05-21 
+102 
+107.25 
+-1.85 
+114.75 
+46.94 
+-2.073 
+115.46 
+2020-06-06 
+254 
+112.33 
+-3.25 
+116.45 
+55.7 
+-1.828 
+115.311 
+2020-06-19 
+172 
+143.47 
+-3.45 
+116.15 
+59.18 
+-2.88 
+115.838 
+2020-07-09 
+226 
+115.89 
+-2.65 
+116.35 
+60.83 
+-3.08 
+115.798 
+2020-07-11 
+171 
+107.32 
+-3.65 
+115.55 
+53.62 
+-2.451 
+115.35 
+2020-08-09 
+361 
+122.93 
+-3.45 
+116.25 
+60.3 
+-2.884 
+115.496 
+2020-09-02 
+195 
+124.22 
+-3.85 
+115.35 
+54.44 
+-3.373 
+115.587 
+2020-10-16 
+167 
+117.33 
+-2.15 
+114.45 
+54.49 
+-2.046 
+114.694 
+2020-10-18 
+263 
+96.94 
+-2.15 
+115.85 
+53.11 
+-1.763 
+115.306 
+2021-01-07 
+186 
+86.93 
+-1.25 
+115.45 
+47.85 
+-2.431 
+115.112 
+2021-01-13 
+262 
+149.69 
+-3.45 
+114.45 
+68.46 
+-3.069 
+114.924 
+2021-01-14 
+211 
+151.59 
+-3.95 
+114.05 
+63.26 
+-3.15 
+115.283 
+2021-01-15 
+169 
+101.06 
+-3.95 
+114.05 
+49.96 
+-3.335 
+115.016 
+2021-02-19 
+98 
+88.45 
+-1.95 
+114.05 
+47.25 
+-2 
+115.261
+
+===== HALAMAN 67 =====
+54 
+ 
+2021-03-06 
+215 
+151.74 
+-1.15 
+114.45 
+57.22 
+-3.387 
+114.983 
+2021-03-09 
+108 
+77.45 
+-1.45 
+115.35 
+47.05 
+-1.834 
+115.293 
+2021-03-19 
+135 
+130.03 
+-1.45 
+114.35 
+80.54 
+-1.749 
+114.569 
+ 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+ 
+2021-03-29 
+262 
+173.15 
+-1.25 
+115.85 
+55.4 
+-2.582 
+115.122 
+2021-04-01 
+239 
+91.85 
+-3.75 
+116.35 
+50.25 
+-3.322 
+115.24 
+2021-05-18 
+277 
+116.47 
+-3.35 
+115.55 
+57.55 
+-2.464 
+115.258 
+2021-08-13 
+169 
+87.53 
+-3.45 
+114.85 
+51.8 
+-3.202 
+115.471 
+2021-09-11 
+104 
+93.02 
+-3.45 
+114.25 
+52.66 
+-2.341 
+115.404 
+2021-09-15 
+114 
+73.88 
+-1.15 
+115.95 
+43.49 
+-1.8 
+115.468 
+2021-09-21 
+108 
+72.3 
+-3.55 
+116.35 
+45.63 
+-2.957 
+115.379 
+2021-10-01 
+243 
+99.3 
+-1.85 
+116.25 
+49.3 
+-1.904 
+115.413 
+2021-10-03 
+168 
+79.34 
+-3.95 
+115.65 
+51.66 
+-2.181 
+115.72 
+2021-11-12 
+95 
+94.46 
+-3.85 
+114.05 
+51.39 
+-2.261 
+115.472 
+2021-11-27 
+138 
+93.39 
+-1.25 
+114.65 
+52.91 
+-1.886 
+115.321 
+2021-12-20 
+68 
+58.12 
+-1.65 
+115.85 
+40.63 
+-2.016 
+115.749 
+2022-03-07 
+182 
+108.9 
+-3.75 
+114.65 
+54.33 
+-3.254 
+114.757 
+2022-03-21 
+148 
+134.59 
+-3.85 
+114.15 
+50.37 
+-2.008 
+115.434
+
+===== HALAMAN 68 =====
+55 
+ 
+2022-04-26 
+162 
+77.53 
+-1.45 
+115.35 
+45.19 
+-2.248 
+115.128 
+2022-05-25 
+230 
+130.44 
+-1.95 
+114.45 
+64.73 
+-1.843 
+114.713 
+2022-07-03 
+203 
+127.61 
+-1.15 
+114.55 
+69.37 
+-1.645 
+115.165 
+2022-07-30 
+305 
+135.6 
+-2.65 
+116.45 
+57.12 
+-2.276 
+115.779 
+ 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+ 
+2022-08-29 
+168 
+121.85 
+-3.15 
+116.25 
+72.13 
+-3.407 
+115.489 
+2022-08-30 
+182 
+115.47 
+-1.25 
+115.45 
+53.26 
+-2.629 
+115.93 
+2022-09-04 
+475 
+106.14 
+-1.85 
+114.45 
+56.09 
+-2.205 
+115.198 
+2022-09-05 
+219 
+56.06 
+-3.45 
+115.35 
+41.16 
+-2.899 
+115.417 
+2022-11-17 
+171 
+103.71 
+-3.95 
+115.75 
+48.67 
+-3.483 
+115.179 
+2023-02-01 
+82 
+70.1 
+-2.45 
+116.25 
+46.67 
+-2.291 
+115.971 
+2023-02-11 
+140 
+76.75 
+-1.95 
+114.45 
+46.82 
+-2.204 
+115.156 
+2023-02-24 
+260 
+175.49 
+-3.05 
+116.15 
+62.74 
+-2.887 
+115.341 
+2023-02-28 
+95 
+71.83 
+-2.15 
+115.15 
+44.09 
+-2.284 
+115.421 
+2023-03-21 
+198 
+95.76 
+-2.85 
+114.55 
+60.09 
+-2.845 
+114.784 
+2023-03-27 
+171 
+115.86 
+-1.65 
+115.05 
+63.12 
+-1.797 
+114.847 
+2023-07-07 
+200 
+112.07 
+-3.95 
+115.55 
+52.66 
+-3.175 
+115.426 
+2023-11-26 
+124 
+75.26 
+-3.85 
+114.75 
+44.16 
+-2.64 
+115.34
+
+===== HALAMAN 69 =====
+56 
+ 
+2023-12-09 
+213 
+126.26 
+-2.15 
+115.15 
+56.18 
+-1.904 
+115.073 
+2023-12-12 
+165 
+90.78 
+-1.85 
+114.35 
+52.95 
+-1.728 
+115.193 
+2024-01-10 
+171 
+97.08 
+-3.05 
+115.65 
+51.49 
+-3.107 
+115.234 
+2024-02-04 
+172 
+87.12 
+-3.05 
+115.05 
+48.69 
+-2.403 
+115.167 
+2024-02-06 
+301 
+112.88 
+-1.35 
+114.95 
+55.76 
+-2.387 
+115.227 
+ 
+tanggal 
+Jumlah 
+gridpoint 
+ekstrem 
+Curah 
+hujan 
+maks 
+mm 
+Lintang 
+maks 
+Bujur 
+maks 
+Curah hujan 
+rata rata mm 
+Lintang 
+centroid 
+Bujur 
+centroid 
+ 
+2024-02-10 
+197 
+118.83 
+-3.35 
+116.25 
+56.67 
+-3.041 
+115.707 
+2024-02-11 
+310 
+121.18 
+-3.25 
+115.95 
+57.24 
+-2.72 
+115.607 
+2024-02-24 
+148 
+203.5 
+-3.85 
+114.05 
+67.71 
+-2.18 
+114.863 
+2024-03-09 
+122 
+90.73 
+-3.95 
+114.25 
+46.07 
+-2.855 
+115.003 
+2024-03-12 
+124 
+109.61 
+-3.55 
+115.75 
+51.39 
+-2.155 
+115.734 
+2024-04-08 
+76 
+103.54 
+-2.25 
+116.45 
+53.81 
+-2.288 
+115.439 
+2024-05-03 
+228 
+99.54 
+-3.05 
+116.25 
+55 
+-2.207 
+115.96 
+2024-06-03 
+278 
+200.27 
+-3.05 
+116.45 
+80.08 
+-3.145 
+115.729 
+2024-07-02 
+106 
+65.15 
+-3.85 
+116.25 
+45.78 
+-3.244 
+115.844 
+2024-08-06 
+266 
+261.8 
+-3.65 
+116.15 
+97.87 
+-3.227 
+115.712 
+2024-08-22 
+171 
+130.07 
+-1.25 
+114.85 
+49.16 
+-1.976 
+115.583 
+2024-12-14 
+225 
+108.24 
+-1.55 
+116.25 
+46.3 
+-2.492 
+115.341
+
+===== HALAMAN 70 =====
+57
+
+===== HALAMAN 71 =====
+58 
+ 
+Lampiran 3. Script pengolahan data penelitian 
+import os, warnings 
+import numpy as np 
+import matplotlib 
+matplotlib.use('Agg') 
+import matplotlib.pyplot as plt 
+import matplotlib.gridspec as gridspec 
+from matplotlib.colors import LinearSegmentedColormap, BoundaryNorm 
+from matplotlib.ticker import MultipleLocator 
+from scipy import signal as sp_signal 
+from scipy.signal import detrend 
+!pip install netCDF4 
+import netCDF4 as nc4 
+import datetime 
+ 
+warnings.filterwarnings('ignore') 
+def remove_annual_cycle(data): 
+    """ 
+    Hapus siklus tahunan: kurangkan klimatologi DOY (hari ke-1 s.d. 365) 
+    dari data, lalu hapus tren linier. 
+    data: (ntime, ...) ndarray 
+    """
+
+===== HALAMAN 72 =====
+59 
+ 
+    ntime = data.shape[0] 
+    doy   = (np.arange(ntime) % 365).astype(int) 
+ 
+    clim = np.zeros((365,) + data.shape[1:], dtype=np.float32) 
+    for d in range(365): 
+        idx = np.where(doy == d)[0] 
+        if len(idx): 
+            clim[d] = np.nanmean(data[idx], axis=0) 
+ 
+    anom = data.copy().astype(np.float32) 
+    for i in range(ntime): 
+        anom[i] -= clim[doy[i]] 
+ 
+    # Detrend linier 
+    anom = detrend(anom, axis=0).astype(np.float32) 
+    return anom 
+ 
+ 
+def lat_avg(data, lats, lat_min, lat_max): 
+    """Rata-rata lintang dalam rentang tertentu.""" 
+    idx = np.where((lats >= lat_min) & (lats <= lat_max))[0] 
+    return np.nanmean(data[:, idx, :], axis=1)   # (ntime, nlon)
+
+===== HALAMAN 73 =====
+60 
+ 
+def load_wind_data(u850_file, u200_file): 
+    """Muat data angin ERA5 dan konversi dari MaskedArray ke standard NumPy 
+array.""" 
+    print(f"  Membaca Angin 850 (U): {os.path.basename(u850_file)}") 
+    with nc4.Dataset(u850_file, 'r') as ds: 
+        u_n = next(n for n in ['u850','u'] if n in ds.variables) 
+        # Convert masked array to standard numpy array filling masked values with 
+0.0 
+        u850_raw = ds.variables[u_n][:] 
+        u850 = np.ma.filled(u850_raw, fill_value=0.0).astype(np.float32) 
+ 
+        lat_n = next(n for n in ['lat','latitude'] if n in ds.variables) 
+        lon_n = next(n for n in ['lon','longitude'] if n in ds.variables) 
+        lats_w = np.ma.filled(ds.variables[lat_n][:], fill_value=0.0) 
+        lons_w = np.ma.filled(ds.variables[lon_n][:], fill_value=0.0) % 360 
+ 
+    print(f"  Membaca Angin 200 (U): {os.path.basename(u200_file)}") 
+    with nc4.Dataset(u200_file, 'r') as ds: 
+        u_n = next(n for n in ['u200','u'] if n in ds.variables) 
+        u200_raw = ds.variables[u_n][:] 
+        u200 = np.ma.filled(u200_raw, fill_value=0.0).astype(np.float32) 
+ 
+    # Buat array kosong untuk V karena file tidak tersedia
+
+===== HALAMAN 74 =====
+61 
+ 
+    v850 = np.zeros_like(u850) 
+    v200 = np.zeros_like(u200) 
+ 
+    return u850, v850, u200, v200, lats_w, lons_w 
+ 
+ 
+def plot_daily_wind_vectors(target_date, level='850', output_file=None): 
+    """ 
+    Membuat visualisasi vektor angin horizontal untuk tanggal tertentu dengan 
+Cartopy. 
+ 
+    Args: 
+        target_date (datetime.date): Tanggal untuk visualisasi. 
+        level (str): Level tekanan ('850' atau '200'). Default '850'. 
+        output_file (str, optional): Path untuk menyimpan gambar. Jika None, akan 
+menampilkan plot. 
+    """ 
+    print(f"  Membuat visualisasi angin harian untuk 
+{target_date.strftime('%Y-%m-%d')} pada level {level} hPa...") 
+ 
+    # Muat data angin lengkap 
+    u850_full, v850_full, u200_full, v200_full, lats_w, lons_w = 
+load_wind_data(U850_FILE, U200_FILE)
+
+===== HALAMAN 75 =====
+62 
+ 
+    # Tentukan indeks waktu untuk target_date 
+    # Asumsi data dimulai dari 2015-01-01 
+    base_date = datetime.date(2015, 1, 1) 
+    time_delta = target_date - base_date 
+    day_idx = time_delta.days 
+ 
+    if day_idx < 0 or day_idx >= u850_full.shape[0]: 
+        print(f"Error: Tanggal {target_date.strftime('%Y-%m-%d')} di luar rentang 
+data (2015-2024).") 
+        return 
+ 
+    # Pilih data untuk tanggal dan level target 
+    if level == '850': 
+        u_slice = u850_full[day_idx, :, :] 
+        v_slice = v850_full[day_idx, :, :] # Ini akan nol, sesuai diskusi 
+    elif level == '200': 
+        u_slice = u200_full[day_idx, :, :] 
+        v_slice = v200_full[day_idx, :, :] # Ini akan nol, sesuai diskusi 
+    else: 
+        print("Error: Level angin tidak valid. Gunakan '850' atau '200'.") 
+        return 
+ 
+    # Tentukan rentang bujur dan lintang plot
+
+===== HALAMAN 76 =====
+63 
+ 
+    center_lon_ks = (LON_KS_MIN + LON_KS_MAX) / 2 
+    plot_lon_min = center_lon_ks - 40 
+    plot_lon_max = center_lon_ks + 40 
+ 
+    # Pastikan rentang bujur valid (0-360) 
+    if plot_lon_min < 0: 
+        plot_lon_min += 360 
+    if plot_lon_max > 360: 
+        plot_lon_max -= 360 
+ 
+    if plot_lon_min > plot_lon_max: # Jika melintasi garis tanggal internasional 
+(misal 340-20) 
+        lon_mask = (lons_w >= plot_lon_min) | (lons_w <= plot_lon_max) 
+    else: 
+        lon_mask = (lons_w >= plot_lon_min) & (lons_w <= plot_lon_max) 
+ 
+    lat_mask = (lats_w >= LAT_MIN) & (lats_w <= LAT_MAX) 
+ 
+    # Pilih data yang sesuai dengan mask 
+    lons_plot = lons_w[lon_mask] 
+    lats_plot = lats_w[lat_mask] 
+    u_plot    = u_slice[lat_mask, :][:, lon_mask] 
+    v_plot    = v_slice[lat_mask, :][:, lon_mask]
+
+===== HALAMAN 77 =====
+64 
+ 
+ 
+    # Buat meshgrid untuk quiver plot 
+    Lons, Lats = np.meshgrid(lons_plot, lats_plot) 
+ 
+    # Ganti plt.subplots dengan Cartopy 
+    fig = plt.figure(figsize=(12, 8)) 
+    ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree()) 
+ 
+    # Tambahkan fitur daratan dari Cartopy 
+    ax.add_feature(cfeature.LAND, facecolor='lightgray', edgecolor='black', 
+zorder=1) 
+    ax.add_feature(cfeature.COASTLINE, zorder=2) 
+    ax.add_feature(cfeature.BORDERS, linestyle=':', zorder=2) 
+ 
+    # Subsample data untuk kerapatan panah yang mudah dibaca 
+    quiver_step = 3 # Ambil setiap titik ke-3 
+ 
+    # Plot panah quiver 
+    ax.quiver(Lons[::quiver_step, ::quiver_step], 
+              Lats[::quiver_step, ::quiver_step], 
+              u_plot[::quiver_step, ::quiver_step], 
+              v_plot[::quiver_step, ::quiver_step], 
+              scale=100, # Sesuaikan skala untuk panjang panah
+
+===== HALAMAN 78 =====
+65 
+ 
+              color='blue', 
+              alpha=0.8, 
+              transform=ccrs.PlateCarree()) # Penting untuk Cartopy 
+ 
+    ax.set_title(f"Pergerakan Angin Horizontal ({level} hPa) - 
+{target_date.strftime('%d %b %Y')}", fontsize=14, fontweight='bold') 
+    ax.set_xlabel("Bujur (°)", fontsize=12) 
+    ax.set_ylabel("Lintang (°)", fontsize=12) 
+ 
+    # Set extent using Cartopy 
+    ax.set_extent([min(lons_plot), max(lons_plot), min(lats_plot), max(lats_plot)], 
+crs=ccrs.PlateCarree()) 
+ 
+    # Tambahkan gridlines dan labels 
+    gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True, linewidth=0.7, 
+color='gray', alpha=0.5, linestyle='--') 
+    gl.top_labels = False 
+    gl.right_labels = False 
+    gl.xformatter = LongitudeFormatter() 
+    gl.yformatter = LatitudeFormatter() 
+ 
+    # Tandai wilayah Kalimantan Selatan 
+    # Gunakan Cartopy untuk menambahkan poligon
+
+===== HALAMAN 79 =====
+66 
+ 
+    ax.add_patch(plt.Rectangle((LON_KS_MIN, LAT_KS_MIN), 
+                               (LON_KS_MAX - LON_KS_MIN), 
+                               (LAT_KS_MAX - LAT_KS_MIN), 
+                               facecolor='red', alpha=0.2, edgecolor='red', linewidth=2, 
+                               label='Kalimantan Selatan', 
+                               transform=ccrs.PlateCarree())) 
+    ax.legend(loc='lower right') 
+ 
+    if output_file: 
+        plt.savefig(output_file, dpi=200, bbox_inches='tight') 
+        plt.close() 
+        print(f"  ✓ Saved: {os.path.basename(output_file)}") 
+    else: 
+        plt.show() 
+def load_wind_data_with_v(u_file, v_file): 
+    """Memuat data angin U dan V serta informasi koordinat.""" 
+    with nc4.Dataset(u_file, 'r') as ds_u, nc4.Dataset(v_file, 'r') as ds_v: 
+        u_var = next(n for n in ['u850','u','u200'] if n in ds_u.variables) 
+        v_var = next(n for n in ['v850','v','v200'] if n in ds_v.variables) 
+ 
+        u = np.ma.filled(ds_u.variables[u_var][:], fill_value=0.0).astype(np.float32) 
+        v = np.ma.filled(ds_v.variables[v_var][:], fill_value=0.0).astype(np.float32)
+
+===== HALAMAN 80 =====
+67 
+ 
+ 
+        lat_n = next(n for n in ['lat','latitude'] if n in ds_u.variables) 
+        lon_n = next(n for n in ['lon','longitude'] if n in ds_u.variables) 
+        lats = ds_u.variables[lat_n][:] 
+        lons = ds_u.variables[lon_n][:] % 360 
+ 
+    return u, v, lats, lons 
+ 
+def plot_actual_wind_vectors(target_date, u_file, v_file, level='850', 
+date_idx_in_v=0, output_file=None): 
+    """Plot vektor angin dengan penanganan dimensi meshgrid yang diperbaiki.""" 
+    u_full, v_full, lats, lons = load_wind_data_with_v(u_file, v_file) 
+ 
+    base_date = datetime.date(2015, 1, 1) 
+    u_idx = (target_date - base_date).days 
+ 
+    u_slice = u_full[u_idx] 
+    v_slice = v_full[date_idx_in_v] if v_full.ndim == 3 else v_full 
+ 
+    fig = plt.figure(figsize=(12, 8)) 
+    ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree()) 
+ 
+    ax.add_feature(cfeature.LAND, facecolor='lightgray', alpha=0.5)
+
+===== HALAMAN 81 =====
+68 
+ 
+    ax.add_feature(cfeature.COASTLINE) 
+    ax.add_feature(cfeature.BORDERS, linestyle=':') 
+ 
+    step = 4 
+    lons_sub = lons[::step] 
+    lats_sub = lats[::step] 
+    uu = u_slice[::step, ::step] 
+    vv = v_slice[::step, ::step] 
+ 
+    lon_g, lat_g = np.meshgrid(lons_sub, lats_sub) 
+ 
+    if lon_g.shape != uu.shape: 
+        uu = uu.T 
+        vv = vv.T 
+ 
+    ax.quiver(lon_g, lat_g, uu, vv, color='blue', scale=200, 
+transform=ccrs.PlateCarree()) 
+ 
+    ax.set_extent([80, 160, -20, 20], crs=ccrs.PlateCarree()) 
+    plt.title(f"Actual Wind Vectors ({level} hPa) - {target_date}") 
+ 
+    if output_file: 
+        plt.savefig(output_file, dpi=200, bbo
+
+===== HALAMAN 82 =====
+69 
+ 
+x_inches='tight') 
+        plt.close() 
+        print(f"✓ Simpan: {os.path.basename(output_file)}") 
+    else: 
+        plt.show() 
+def kelvin_wave_filter(olr_lat, lons, ntime): 
+    """ 
+    Filter Kelvin wave dari anomali OLR rata-rata lintang. 
+ 
+    Prosedur: 
+      1. FFT 2D (waktu × bujur) 
+      2. Zero-out semua koefisien DI LUAR domain Kelvin: 
+           - Wavenumber: k = 1–14 (eastward) 
+           - Periode   : T = 2.5–20 hari 
+           - Dispersi  : antara kurva h=8m dan h=90m 
+      3. Inverse FFT → OLR terfilter Kelvin 
+ 
+    Catatan: Gunakan konvensi FFT yang benar (flip wavenumber) 
+    agar eastward = k positif. 
+ 
+    olr_lat : (ntime, nlon) — anomali OLR rata-rata lintang 
+    lons    : array bujur global
+
+===== HALAMAN 83 =====
+70 
+ 
+    ntime   : jumlah hari 
+    """ 
+    nlon = len(lons) 
+ 
+    # FFT 2D: axis=0 = waktu, axis=1 = bujur 
+    spec  = np.fft.fft2(olr_lat)   # (ntime, nlon) 
+ 
+    # Frekuensi dan wavenumber (konvensi standar FFT) 
+    freqs_fft = np.fft.fftfreq(ntime, d=1.0)         # CPD, belum di-shift 
+    wns_fft   = np.fft.fftfreq(nlon, d=1.0/nlon).astype(int) 
+ 
+    # Buat mask domain Kelvin 
+    # PENTING: konvensi FFT Python — sinyal eastward ada di (f<0, wn>0) 
+    # Jadi filter pada: wn > 0 DAN f < 0 (atau simetri konjugat) 
+    mask = np.zeros((ntime, nlon), dtype=bool) 
+ 
+    for it, f in enumerate(freqs_fft): 
+        # Periode dari frekuensi (ambil nilai absolut) 
+        if abs(f) < 1e-10: 
+            continue 
+        period = 1.0 / abs(f) 
+        if period < T_MIN or period > T_MAX:
+
+===== HALAMAN 84 =====
+71 
+ 
+            continue 
+ 
+        for il, k in enumerate(wns_fft): 
+            # Untuk sinyal eastward: wn > 0 saat f < 0, atau wn < 0 saat f > 0 
+            # Kelvin harus eastward → k_eastward > 0 
+            # Dalam konvensi FFT: eastward = (f<0, wn>0) atau (f>0, wn<0) 
+            k_eastward = k if f <= 0 else -k 
+            if k_eastward < K_MIN or k_eastward > K_MAX: 
+                continue 
+ 
+            # Cek kurva dispersi Kelvin (h = H_MIN s.d. H_MAX) 
+            # f_kelvin = k * sqrt(g*h) / (2π * a)  [CPD] 
+            f_low  = (k_eastward * np.sqrt(G * H_MIN) / 
+                      (2*np.pi * A_ERTH) * 86400) 
+            f_high = (k_eastward * np.sqrt(G * H_MAX) / 
+                      (2*np.pi * A_ERTH) * 86400) 
+ 
+            if f_low <= abs(f) <= f_high: 
+                mask[it, il] = True 
+ 
+    # Terapkan mask + IFFT 
+    spec_filt = spec * mask
+
+===== HALAMAN 85 =====
+72 
+ 
+    olr_filt  = np.real(np.fft.ifft2(spec_filt)).astype(np.float32) 
+ 
+    print(f"  Filter Kelvin: {mask.sum()} dari {ntime*nlon} koefisien 
+dipertahankan " 
+          f"({mask.mean()*100:.2f}%)") 
+    return olr_filt 
+def add_phase_line(ax, lon_start, day_start, c_ms, 
+                   n_days, direction='east', 
+                   color='lime', ls='-', lw=1.5, label=None): 
+    """ 
+    Tambahkan garis kecepatan fase ke diagram Hovmöller. 
+    Membuat segmen garis yang "membungkus" di bujur 360/0. 
+    """ 
+    # Konversi m/s → derajat/hari 
+    # 1° longitude ≈ 111 km × cos(lat_ekuator) = 111 km 
+    c_deg_per_day = c_ms * 86400 / 111000 
+ 
+    # Generate fine-grained time points to accurately represent wrapping 
+    # Using 10 points per day to ensure smooth wrapping segments. 
+    # We add 1 point for the end of the last day. 
+    num_points = int(n_days * 10) + 1 
+    t_fine = np.linspace(day_start, day_start + n_days, num_points)
+
+===== HALAMAN 86 =====
+73 
+ 
+    # Calculate unwrapped longitude for each time point 
+    lon_unwrapped = lon_start + c_deg_per_day * (t_fine - day_start) 
+ 
+    # Initialize lists to store segments for plotting 
+    plot_lons = [] 
+    plot_times = [] 
+ 
+    # Iterate through fine-grained points to detect wraps 
+    for i in range(len(lon_unwrapped) - 1): 
+        current_lon_wrapped = lon_unwrapped[i] % 360 
+        next_lon_wrapped = lon_unwrapped[i+1] % 360 
+ 
+        plot_lons.append(current_lon_wrapped) 
+        plot_times.append(t_fine[i]) 
+ 
+        # If a wrap occurs (e.g., going from 350 to 10 for eastward propagation) 
+        # or from 10 to 350 for westward propagation (though C_MS is positive 
+here) 
+        if (c_deg_per_day > 0 and next_lon_wrapped < current_lon_wrapped) or \ 
+           (c_deg_per_day < 0 and next_lon_wrapped > current_lon_wrapped): 
+            plot_lons.append(np.nan) # Break the line 
+            plot_times.append(np.nan)
+
+===== HALAMAN 87 =====
+74 
+ 
+    # Add the very last point 
+    plot_lons.append(lon_unwrapped[-1] % 360) 
+    plot_times.append(t_fine[-1]) 
+ 
+    ax.plot(plot_lons, plot_times, 
+            color=color, lw=lw, ls=ls, 
+            label=label, zorder=10) 
+ 
+def plot_hovmoller_dual_level(u200_f, u850_f, lons, ntime, start_date_of_plot, 
+event_date_str, output_file=None): 
+    """Plot Hovmoller for CCKW: Shading U200, Contours U850.""" 
+    event_date_obj = datetime.datetime.strptime(event_date_str, 
+'%Y-%m-%d').date() 
+    display_event_date_str = event_date_obj.strftime('%d %B %Y') # Changed 
+format to DD Month YYYY 
+    print(f"  Membuat Hovmoller Vertikal CCKW: {display_event_date_str}...") 
+    fig, ax = plt.subplots(figsize=(10, 12), facecolor='white') 
+ 
+    time_axis = np.arange(ntime) 
+ 
+    # Shading: Kelvin-Filtered U at 200 hPa 
+    vmax_wind = 5 
+    clevs = np.linspace(-vmax_wind, vmax_wind, 21)
+
+===== HALAMAN 88 =====
+75 
+ 
+    cf = ax.contourf(lons, time_axis, u200_f, levels=clevs, cmap='RdBu_r', 
+extend='both') 
+ 
+    # Contours: Kelvin-Filtered U at 850 hPa 
+    # Levels at +/- 1.0 m/s as requested 
+    ax.contour(lons, time_axis, u850_f, levels=[1.0], colors='black', linewidths=1.2, 
+linestyles='solid') 
+    ax.contour(lons, time_axis, u850_f, levels=[-1.0], colors='black', 
+linewidths=1.2, linestyles='dashed') 
+ 
+    # Add phase lines for Kelvin waves 
+    # Adjust phase line plotting parameters for better visual representation 
+    # Start the lines from the very top of the plot (day 0) and make them span the 
+full time window 
+    line_start_day = 0 
+    line_total_duration = ntime 
+ 
+    # Determine a good starting longitude for the phase lines. 
+    # Start them from the left edge of the displayed longitude range to maximize 
+their visible propagation. 
+    # The plot's xlim is 0 to 360, so starting at 0 makes sense. 
+    line_start_lon = 100 # Changed from 0 to 100 
+ 
+    # CCKW event: example lines
+
+===== HALAMAN 89 =====
+76 
+ 
+    add_phase_line(ax, lon_start=line_start_lon, day_start=line_start_day, 
+                   c_ms=15, n_days=line_total_duration, # Use full duration 
+                   color='lime', ls='-', lw=2, 
+                   label='CCKW 15 m/s') 
+ 
+    # Faster free Kelvin wave 
+    add_phase_line(ax, lon_start=line_start_lon, day_start=line_start_day, 
+                   c_ms=30, n_days=line_total_duration, # Use full duration 
+                   color='lime', ls='--', lw=1.5, 
+                   label='Kelvin bebas 30 m/s') 
+ 
+    # Add vertical lines for Kalimantan longitude boundaries 
+    ax.axvline(x=LON_KS_MIN, color='grey', linestyle='-', lw=1.5, label='Batas 
+Bujur Kalsel') 
+    ax.axvline(x=LON_KS_MAX, color='grey', linestyle='-', lw=1.5) 
+ 
+    highlight_day_index = (event_date_obj - start_date_of_plot).days 
+ 
+    # Add yellow shading for the specific date and Kalimantan Selatan region 
+    ax.axhspan(highlight_day_index - 0.5, highlight_day_index + 0.5, 
+               xmin=LON_KS_MIN/360, xmax=LON_KS_MAX/360, 
+               color='purple', alpha=0.3, zorder=6, 
+transform=ax.get_xaxis_transform())
+
+===== HALAMAN 90 =====
+77 
+ 
+ 
+    # Add a horizontal line at the event date across the entire longitude range 
+    ax.axhline(y=highlight_day_index, color='black', linestyle='--', linewidth=1.5, 
+zorder=7) 
+ 
+    # Add the event date label to the left of the horizontal line 
+    # Adjust x position based on the plot's x-limits for better visibility 
+    text_x_position = ax.get_xlim()[0] - 15 # A bit to the left of the left edge 
+    ax.text(text_x_position, highlight_day_index, display_event_date_str, 
+            color='black', fontsize=9, ha='right', va='center', 
+            bbox=dict(facecolor='white', alpha=0.7, edgecolor='none', pad=2), 
+zorder=8) 
+ 
+    ax.set_title(f"ZONAL WIND FILTERED KELVIN WAVES: 
+{display_event_date_str}\nShading: U200 Kelvin | Contours: U850 Kelvin (±1 
+m/s)", loc='left', fontweight='bold') 
+    ax.invert_yaxis() 
+    # Explicitly set y-limits to tightly fit the data after inversion 
+    ax.set_ylim(ntime - 0.5, -0.5) 
+    ax.set_xlim(0, 360) 
+    ax.set_xlabel("Bujur (°BT)") 
+ 
+    # Date ticks for the 60-day window 
+    tick_indices = np.linspace(0, ntime-1, 10).astype(int)
+
+===== HALAMAN 91 =====
+78 
+ 
+    tick_labels = [(start_date_of_plot + 
+datetime.timedelta(days=int(i))).strftime('%-d %b') for i in tick_indices] # 
+Changed format here 
+    ax.set_yticks(tick_indices) 
+    ax.set_yticklabels(tick_labels) 
+ 
+    cbar = plt.colorbar(cf, ax=ax, label='Zonal Wind 200hPa (m/s)', pad=0.02) 
+    cbar.set_ticks([-5, -2.5, 0, 2.5, 5]) 
+ 
+    # Add a legend to distinguish phase lines and Kalimantan boundaries 
+    handles, labels = ax.get_legend_handles_labels() 
+    by_label = dict(zip(labels, handles)) 
+    ax.legend(by_label.values(), by_label.keys(), loc='upper right', fontsize=8) 
+ 
+    if output_file: 
+        plt.savefig(output_file, dpi=150, bbox_inches='tight') 
+        plt.close() 
+        print(f"  ✓ Saved: {os.path.basename(output_file)}") 
+    else: 
+        plt.show() 
+    # Added a comment to force re-execution of this cell. 
+def plot_dual_wind_specific_dates(dates_list): 
+    print("="*65)
+
+===== HALAMAN 92 =====
+79 
+ 
+    print("GENERATING DUAL WIND HOVMOLLERS FOR SPECIFIC 
+DATES") 
+    print("="*65) 
+ 
+    # 1. Load Data 
+    olr_full, lats_o, lons_o = load_olr_local(OLR_FILE) 
+    u850_full, _, u200_full, _, lats_w, lons_w = load_wind_data(U850_FILE, 
+U200_FILE) 
+ 
+    # Preprocessing 
+    olr_full = np.where(np.isnan(olr_full), np.nanmean(olr_full), olr_full) 
+    ntime_full = min(olr_full.shape[0], u850_full.shape[0]) 
+    base_date = datetime.date(2015, 1, 1) # Corrected base_date 
+ 
+    print("  Menghitung Anomali dan Filter Kelvin...") 
+    u85_anom = remove_annual_cycle(u850_full[:ntime_full]) 
+    u20_anom = remove_annual_cycle(u200_full[:ntime_full]) 
+ 
+    # Average and Filter all levels 
+    u85_f = kelvin_wave_filter(lat_avg(u85_anom, lats_w, -5, 5), lons_w, 
+ntime_full) 
+    u20_f = kelvin_wave_filter(lat_avg(u20_anom, lats_w, -5, 5), lons_w, 
+ntime_full)
+
+===== HALAMAN 93 =====
+80 
+ 
+    half_window = 45 # Jendela 90 hari total 
+ 
+    for target_date in dates_list: 
+        idx = (target_date - base_date).days 
+ 
+        if idx < 0 or idx >= ntime_full: 
+            print(f"Skipping {target_date}: diluar jangkauan data.") 
+            continue 
+ 
+        start_p = max(0, idx - half_window) 
+        end_p = min(ntime_full - 1, idx + half_window) 
+        ntime_p = end_p - start_p + 1 
+ 
+        u20_slice = u20_f[start_p:end_p+1] 
+        u85_slice = u85_f[start_p:end_p+1] 
+        plot_start_date = base_date + datetime.timedelta(days=start_p) 
+ 
+        out_file = os.path.join(OUT_DIR, 
+f"hov_dual_wind_{target_date.strftime('%Y%m%d')}.png") 
+ 
+        # Reuse existing plot function for U200 shading and U850 contours
+
+===== HALAMAN 94 =====
+81 
+ 
+        plot_hovmoller_dual_level(u20_slice, u85_slice, lons_w, ntime_p, 
+plot_start_date, target_date.strftime('%Y-%m-%d'), output_file=out_file) # 
+Reverted format to YYYY-MM-DD 
+    print("\nSELESAI! File Dual Wind disimpan di folder output.") 
+ 
+# Daftar tanggal yang sama dengan sebelumnya 
+target_dates = [ 
+    datetime.date(2017, 1, 4), 
+    datetime.date(2016, 3, 23), 
+    datetime.date(2020, 7, 9), 
+    datetime.date(2020, 6, 6) 
+] 
+plot_dual_wind_specific_dates(target_dates)

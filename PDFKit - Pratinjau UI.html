@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDFKit — Alat PDF Online</title>
+<style>
+:root{--bg:#fff8fc;--cd:#fff;--tx:#2a1f3d;--mu:#7a6e92;--bd:#f0dff7;--ac:#7c3aed;--pk:#ec4899;--a2:#f5ebff;--g1:#ffe0f0;--g2:#dff1ff;--l:90%;--ok:#10b981;--er:#ef4444}
+@media(prefers-color-scheme:dark){:root{--bg:#150f24;--cd:#211836;--tx:#f5edff;--mu:#b4a6d4;--bd:#392a5c;--ac:#a78bfa;--pk:#f472b6;--a2:#33245a;--g1:#4a1d5c;--g2:#14355c;--l:30%}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx)}
+a{color:inherit;text-decoration:none}.mu{color:var(--mu)}
+header{position:sticky;top:0;z-index:5;height:60px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:var(--cd);border-bottom:1px solid var(--bd)}
+.logo{font-size:20px;font-weight:700}.logo b{color:var(--ac)}
+nav a{margin-left:8px;padding:8px 16px;border-radius:999px;color:var(--mu);font-weight:600}nav a:hover{background:var(--a2);color:var(--ac)}nav a.on{background:linear-gradient(135deg,var(--ac),var(--pk));color:#fff}
+main{max-width:1120px;margin:0 auto;padding:32px 20px 60px}
+.hero{text-align:center;padding:36px 0 28px}.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
+.hero p{color:var(--mu);margin:0 auto 22px;max-width:520px}
+#q{width:min(440px,100%);padding:13px 18px;border-radius:999px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.tc{display:block;padding:20px;background:var(--cd);border:1px solid var(--bd);border-radius:16px;transition:.15s}
+.tc:hover{transform:translateY(-3px);border-color:var(--ac);box-shadow:0 10px 24px #4f46e522}
+.tc i{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--a2);font-size:24px;font-style:normal;margin-bottom:12px}
+.tc h3{margin:0 0 4px;font-size:16px}.tc p{margin:0;font-size:13px;color:var(--mu)}
+.back{color:var(--ac);font-weight:600}#tn{font-size:30px;margin:14px 0 4px}
+.dz{margin:20px 0 12px;padding:38px 20px;text-align:center;border:2px dashed var(--bd);border-radius:16px;background:var(--cd);cursor:pointer;transition:.15s}
+.dz:hover,.dz.on{border-color:var(--ac);background:var(--a2)}
+ul{list-style:none;padding:0;margin:0 0 14px}
+li{display:flex;align-items:center;gap:10px;padding:9px 14px;margin-bottom:6px;background:var(--cd);border:1px solid var(--bd);border-radius:10px}
+li .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ic{border:0;background:var(--a2);color:var(--tx);border-radius:7px;width:30px;height:30px;cursor:pointer}.ic:hover{background:var(--ac);color:#fff}
+.card{padding:18px 20px;background:var(--cd);border:1px solid var(--bd);border-radius:14px;margin-bottom:16px}
+.row{display:flex;align-items:center;gap:12px;padding:7px 0}.row>span{flex:0 0 190px;font-weight:500}
+.row input:not([type=checkbox]):not([type=range]),.row select{flex:1;max-width:340px;padding:9px 12px;border:1px solid var(--bd);border-radius:9px;background:var(--bg);color:var(--tx);font:inherit}
+.row input[type=range]{flex:1;max-width:300px}.row em{font-style:normal;color:var(--mu);min-width:32px}
+.btn{display:inline-block;width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--pk));color:#fff;font:600 16px inherit;cursor:pointer;text-align:center}
+.btn:disabled{opacity:.45;cursor:not-allowed}.btn.ok{background:var(--ok);width:auto;padding:12px 22px;margin-top:6px}
+.done{display:flex;flex-direction:column;gap:4px;align-items:flex-start;border-color:var(--ok)}.err{border-color:var(--er);color:var(--er)}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.bar button{padding:8px 13px;border:1px solid var(--bd);border-radius:9px;background:var(--cd);color:var(--tx);cursor:pointer}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-bottom:16px}
+.th{position:relative;padding:8px;border:2px solid var(--bd);border-radius:12px;background:var(--cd);text-align:center;cursor:grab;user-select:none}
+.th img{width:100%;height:150px;object-fit:contain;background:#fff;border-radius:4px;pointer-events:none}
+.th span{display:block;font-size:12px;font-weight:600;padding-top:5px}
+.th.on{border-color:var(--ac);box-shadow:0 0 0 3px #7c3aed55}.th.on::after{content:"✓";position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:var(--ac);color:#fff;font-size:13px;display:grid;place-items:center}
+.th.ov{background:var(--a2);border-color:var(--ac)}
+.logo b,.gr{background:linear-gradient(90deg,var(--ac),var(--pk));-webkit-background-clip:text;background-clip:text;color:transparent}
+body{background:radial-gradient(circle at 8% -5%,var(--g1),transparent 45%),radial-gradient(circle at 96% 0,var(--g2),transparent 40%),var(--bg);background-attachment:fixed}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b,#10b981,#3b82f6)}
+.tc{border-top:4px solid hsl(var(--h) 85% 62%)}.tc i{background:hsl(var(--h) 95% var(--l))}
+.tc:hover{border-color:hsl(var(--h) 85% 62%);box-shadow:0 10px 26px hsl(var(--h) 90% 60%/.3)}
+.dz{border-color:var(--ac);background:linear-gradient(135deg,var(--a2),var(--cd))}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.chip{padding:6px 13px;border:1px solid var(--bd);border-radius:999px;background:var(--cd);color:var(--tx);cursor:pointer;font:inherit;font-size:13px}.chip:hover{border-color:var(--ac);background:var(--a2)}
+.zm{position:absolute;right:6px;bottom:6px;border:0;border-radius:6px;background:var(--a2);cursor:pointer}
+.fn{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--mu)}
+.ovl{position:fixed;inset:0;z-index:99;background:#000c;display:grid;place-items:center;cursor:zoom-out}.ovl img{max-width:92vw;max-height:88vh;background:#fff;border-radius:8px}
+footer{text-align:center;padding:24px;color:var(--mu);font-size:13px;border-top:1px solid var(--bd)}
+@media(max-width:600px){.row{flex-wrap:wrap}.row>span{flex-basis:100%}.logo{display:none}nav a{padding:7px 11px;font-size:13px;margin-left:2px}}
+</style></head><body>
+<header><a class="logo" href="#">📄 PDF<b>Kit</b></a><nav><a href="#skripsi">Pemotong Skripsi</a><a href="#tools">PDF Tools</a><a href="#playfull">PDF Playfull</a></nav></header>
+
+<main id="home">
+  <section class="hero"><h1>Semua alat PDF,<br><span class="gr">dalam satu tempat</span></h1>
+  <p>Gabung, pisah, atur, kompres, dan konversi PDF. File diproses di server Anda sendiri.</p>
+  <input id="q" placeholder="🔍 Cari alat…" autocomplete="off"></section>
+  <div class="grid" id="grid"></div>
+</main>
+
+<main id="tool" hidden>
+  <a class="back" href="#tools">← Semua alat</a>
+  <h2 id="tn"></h2><p id="td" class="mu"></p>
+  <div class="dz" id="dz"><div style="font-size:38px">📂</div><b>Pilih file</b> atau seret ke sini</div>
+  <input type="file" id="fi" hidden>
+  <div class="chips" id="wsb" hidden></div><ul id="fl"></ul>
+  <div id="pv" hidden>
+    <div class="bar"><button id="b1">☑ Pilih semua</button><button id="b2">☐ Kosongkan</button><button id="b3">↩ Reset urutan</button><button id="b4">↻ Muat ulang</button><span class="mu" id="cnt"></span></div>
+    <div class="pg" id="pg"></div>
+  </div>
+  <div class="card" id="opts"></div>
+  <button class="btn" id="go" disabled>Proses</button>
+  <div id="res" style="margin-top:16px"></div>
+</main>
+<footer>PDFKit · dibangun dengan FastAPI + PyMuPDF</footer>
+
+<script>
+const $=s=>document.querySelector(s),E=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const PW={k:'password',l:'Password PDF (jika terkunci)',t:'password'};
+const SD={k:'sudut',l:'Sudut putar',t:'select',c:[['90','90°'],['180','180°'],['270','270°']]};
+const AK=[['susun','Susun ulang semua halaman'],['merge','Merge PDF'],['extract','Split / Extract (halaman dicentang)'],['split','Split PDF (per halaman)'],['hapus','Delete Pages (halaman dicentang)'],['putar','Rotate PDF'],['compress','Compress PDF'],['img','PDF → Image'],['txt','PDF → TXT'],['docx','PDF → DOCX'],['nomor','Page Numbers'],['protect','Protect PDF'],['unlock','Unlock PDF'],['duplikat','Duplikat halaman terpilih']];
+const POS=['Bawah tengah','Bawah kanan','Bawah kiri','Atas tengah','Atas kanan','Atas kiri'].map(x=>[x,x]);
+const T=[
+{id:'skripsi',top:1,i:'🎓',n:'Pemotong Skripsi',d:'Ambil cover berwarna, abstrak (INTISARI), jumlah halaman, dan kata kunci dari PDF skripsi.',multi:1,acc:'.pdf',o:[{k:'tahun',l:'Tahun',t:'text',v:'2026'}]},
+{id:'playfull',top:1,i:'😊',n:'PDF Playfull',d:'Edit halaman secara visual dari satu atau beberapa PDF. Seret thumbnail, centang halaman, lalu pilih tindakan.',multi:1,acc:'.pdf',visual:1,o:[{k:'aksi',l:'Tindakan',t:'select',c:AK},{...SD,w:['aksi','putar']},{k:'kompresi',l:'Tingkat kompresi',t:'select',c:[['aman','Lossless'],['kuat','Kuat (raster)']],w:['aksi','compress']},{k:'dpi',l:'Resolusi (DPI)',t:'range',min:72,max:200,v:120,w:['aksi',['compress','img']]},{k:'format',l:'Format gambar',t:'select',c:[['jpg','JPG'],['png','PNG']],w:['aksi','img']},{k:'posisi',l:'Posisi nomor',t:'select',c:POS,w:['aksi','nomor']},{k:'mulai',l:'Mulai nomor dari',t:'number',v:1,w:['aksi','nomor']},{k:'baru',l:'Password baru',t:'password',w:['aksi','protect']},{k:'only',l:'Hanya halaman yang dicentang',t:'checkbox',w:['aksi',['susun','merge','split','putar','compress','img','txt','docx','nomor','protect','unlock']]},{k:'nama',l:'Nama file hasil (opsional)',t:'text'},PW]},
+{id:'merge',i:'🔗',n:'Gabung PDF',d:'Satukan beberapa PDF jadi satu. Atur urutan dengan tombol ↑ ↓.',multi:1,acc:'.pdf'},
+{id:'organize',i:'🧩',n:'Arrange PDF',d:'Seret thumbnail untuk mengurutkan halaman, lalu buat PDF barunya.',acc:'.pdf',visual:1,o:[PW]},
+{id:'split',i:'✂️',n:'Pisah / Ekstrak',d:'Ambil halaman tertentu atau bagi PDF menjadi beberapa file.',acc:'.pdf',o:[{k:'mode',l:'Mode',t:'select',c:[['extract','Ekstrak halaman tertentu'],['per_halaman','Satu file per halaman'],['setiap_n','Bagi setiap N halaman'],['grup_custom','Grup custom']]},{k:'halaman',l:'Halaman (mis. 1-3,5)',t:'text',v:'1-3',w:['mode','extract']},{k:'n',l:'Halaman per file',t:'number',v:5,w:['mode','setiap_n']},{k:'grup',l:'Grup (mis. 1-3;4-6)',t:'text',v:'1-3;4-6',w:['mode','grup_custom']},PW]},
+{id:'delete',i:'🗑️',n:'Hapus Halaman',d:'Buang halaman yang tidak diperlukan.',acc:'.pdf',o:[{k:'halaman',l:'Halaman yang dihapus',t:'text',v:'1'},PW]},
+{id:'rotate',i:'🔄',n:'Putar PDF',d:'Putar semua atau sebagian halaman.',acc:'.pdf',o:[{k:'halaman',l:'Halaman',t:'text',v:'semua'},SD,PW]},
+{id:'compress',i:'🗜️',n:'Kompres PDF',d:'Perkecil ukuran file PDF.',acc:'.pdf',o:[{k:'mode',l:'Metode',t:'select',c:[['aman','Lossless / aman'],['kuat','Kuat (teks jadi gambar)']]},{k:'dpi',l:'Resolusi (DPI)',t:'range',min:72,max:180,v:120,w:['mode','kuat']},{k:'kualitas',l:'Kualitas JPG',t:'range',min:35,max:95,v:70,w:['mode','kuat']},PW]},
+{id:'pdf_image',i:'🖼️',n:'PDF → Gambar',d:'Ubah tiap halaman menjadi JPG atau PNG (ZIP).',acc:'.pdf',o:[{k:'format',l:'Format',t:'select',c:[['jpg','JPG'],['png','PNG']]},{k:'dpi',l:'Resolusi (DPI)',t:'range',min:72,max:300,v:150},{k:'kualitas',l:'Kualitas JPG',t:'range',min:40,max:100,v:90,w:['format','jpg']},PW]},
+{id:'image_pdf',i:'🌄',n:'Gambar → PDF',d:'Gabungkan JPG, PNG, atau WEBP menjadi satu PDF.',multi:1,acc:'.jpg,.jpeg,.png,.webp'},
+{id:'pdf_text',i:'📝',n:'PDF → TXT',d:'Ekstrak teks dari PDF (harus punya text layer).',acc:'.pdf',o:[PW]},
+{id:'pdf_docx',i:'📘',n:'PDF → DOCX',d:'Konversi teks PDF ke dokumen Word.',acc:'.pdf',o:[PW]},
+{id:'word_pdf',i:'📄',n:'Word → PDF',d:'Ubah .docx menjadi PDF dengan layout terjaga (via LibreOffice).',acc:'.docx'},
+{id:'number',i:'🔢',n:'Nomor Halaman',d:'Tambahkan nomor halaman ke PDF.',acc:'.pdf',o:[{k:'posisi',l:'Posisi',t:'select',c:['Bawah tengah','Bawah kanan','Bawah kiri','Atas tengah','Atas kanan','Atas kiri'].map(x=>[x,x])},{k:'mulai',l:'Nomor awal',t:'number',v:1},{k:'ukuran',l:'Ukuran font',t:'range',min:7,max:18,v:10},PW]},
+{id:'protect',i:'🔐',n:'Kunci PDF',d:'Lindungi PDF dengan password (AES-256).',acc:'.pdf',o:[{k:'password',l:'Password untuk membuka',t:'password'},{k:'owner',l:'Owner password (opsional)',t:'password'},{k:'print',l:'Izinkan print',t:'checkbox',v:true},{k:'copy',l:'Izinkan salin teks',t:'checkbox'}]},
+{id:'unlock',i:'🔓',n:'Buka Kunci PDF',d:'Hapus password dari PDF.',acc:'.pdf',o:[{k:'password',l:'Password PDF',t:'password'}]}];
+
+let ws=[],cur,files=[],order=[],sel=new Set(),pages=[],drag=null;
+const fi=$('#fi'),fmt=b=>b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';
+
+function grid(f=''){const g=$('#grid');g.replaceChildren();
+  T.filter(t=>!t.top&&(t.n+t.d).toLowerCase().includes(f.toLowerCase())).forEach((t,i)=>{
+    const a=E('a','tc');a.href='#tools/'+t.id;a.style.setProperty('--h',(i*43+270)%360);a.append(E('i','',t.i),E('h3','',t.n),E('p','',t.d));g.append(a)})}
+$('#q').oninput=e=>grid(e.target.value);
+
+function buildOpts(){const box=$('#opts');box.replaceChildren();box.hidden=!(cur.o||[]).length;
+  (cur.o||[]).forEach(p=>{const row=E('label','row');row.append(E('span','',p.l));let el;
+    if(p.t=='select'){el=E('select');p.c.forEach(([v,l])=>el.add(new Option(l,v)))}
+    else{el=E('input');el.type=p.t;if(p.min!=null){el.min=p.min;el.max=p.max}}
+    if(p.t=='checkbox')el.checked=!!p.v;else if(p.v!=null)el.value=p.v;
+    el.id='o_'+p.k;row.append(el);
+    if(p.t=='range'){const s=E('em','',el.value);el.addEventListener('input',()=>s.textContent=el.value);row.append(s)}
+    el.addEventListener('input',sync);el.addEventListener('change',sync);p.row=row;box.append(row)});sync()}
+const sync=()=>(cur.o||[]).forEach(p=>{if(p.w)p.row.hidden=![].concat(p.w[1]).includes($('#o_'+p.w[0]).value)});
+const collect=()=>Object.fromEntries((cur.o||[]).map(p=>{const e=$('#o_'+p.k);return[p.k,p.t=='checkbox'?e.checked:e.value]}));
+
+function drawFiles(){const ul=$('#fl');ul.replaceChildren();
+  files.forEach((f,i)=>{const li=E('li');li.append(E('span','nm',f.name),E('small','mu',fmt(f.size)));
+    const b=(t,fn)=>{const x=E('button','ic',t);x.onclick=fn;li.append(x)};
+    if(cur.multi){b('↑',()=>mv(i,-1));b('↓',()=>mv(i,1))}
+    b('✕',()=>{files.splice(i,1);after()});ul.append(li)});
+  $('#go').disabled=!files.length;drawWs()}
+function drawWs(){const b=$('#wsb'),l=ws.filter(w=>!files.includes(w));b.replaceChildren();b.hidden=!l.length||!/pdf/.test(cur.acc);if(b.hidden)return;
+  b.append(E('span','mu','📁 Ruang kerja:'));l.forEach(w=>{const x=E('button','chip','+ '+w.name);x.onclick=()=>{files=cur.multi?[...files,w]:[w];after()};b.append(x)});
+  const k=E('button','chip','Kosongkan');k.onclick=()=>{ws=[];drawWs()};b.append(k)}
+function mv(i,d){const j=i+d;if(j<0||j>=files.length)return;[files[i],files[j]]=[files[j],files[i]];drawFiles()}
+function after(){drawFiles();if(cur.visual){$('#pv').hidden=!files.length;if(files.length)loadPv()}}
+function add(l){l=[...l];if(/pdf/.test(cur.acc))l=l.map(f=>ws.find(w=>w.name==f.name&&w.size==f.size)||(ws.push(f),f));files=cur.multi?files.concat(l):l.slice(0,1);after()}
+const dz=$('#dz');dz.onclick=()=>fi.click();fi.onchange=()=>{add(fi.files);fi.value=''};
+dz.ondragover=e=>{e.preventDefault();dz.classList.add('on')};dz.ondragleave=()=>dz.classList.remove('on');
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove('on');add(e.dataTransfer.files)};
+
+async function loadPv(){const fd=new FormData();files.forEach(f=>fd.append('files',f));fd.append('password',$('#o_password').value);
+  $('#pg').replaceChildren(E('p','mu','Memuat halaman…'));
+  const r=await fetch('/preview',{method:'POST',body:fd}),j=await r.json();
+  if(!r.ok){$('#pg').replaceChildren(E('p','err',j.detail+' — isi password lalu klik Muat ulang.'));return}
+  pages=j.pages;order=pages.map((_,i)=>i+1);sel.clear();drawPv()}
+function zoom(P){const o=E('div','ovl'),i=E('img');i.src='data:image/jpeg;base64,'+P.img;o.append(i);o.onclick=()=>o.remove();document.body.append(o)}
+function drawPv(){const g=$('#pg');g.replaceChildren();
+  order.forEach(n=>{const c=E('div','th'+(sel.has(n)?' on':''));c.draggable=true;
+    const P=pages[n-1],im=E('img');im.src='data:image/jpeg;base64,'+P.img;const z=E('button','zm','🔍');z.onclick=e=>{e.stopPropagation();zoom(P)};c.append(im,E('span','','Hal. '+P.page),z);if(files.length>1)c.append(E('small','fn',P.file));
+    c.onclick=()=>{sel.has(n)?sel.delete(n):sel.add(n);drawPv()};
+    c.ondragstart=()=>drag=n;c.ondragover=e=>{e.preventDefault();c.classList.add('ov')};c.ondragleave=()=>c.classList.remove('ov');
+    c.ondrop=e=>{e.preventDefault();if(drag&&drag!=n){order=order.filter(x=>x!=drag);order.splice(order.indexOf(n),0,drag)}drag=null;drawPv()};
+    g.append(c)});
+  $('#cnt').textContent=sel.size+' / '+order.length+' dipilih'}
+$('#b1').onclick=()=>{sel=new Set(order);drawPv()};$('#b2').onclick=()=>{sel.clear();drawPv()};
+$('#b3').onclick=()=>{order=pages.map((_,i)=>i+1);drawPv()};$('#b4').onclick=loadPv;
+
+$('#go').onclick=async()=>{const b=$('#go'),res=$('#res');res.replaceChildren();b.disabled=true;b.textContent='Memproses…';
+  try{const fd=new FormData();files.forEach(f=>fd.append('files',f));const o=collect();
+    if(cur.visual){o.order=order;o.selected=order.filter(n=>sel.has(n))}
+    fd.append('opts',JSON.stringify(o));
+    const r=await fetch('/api/'+cur.id,{method:'POST',body:fd});
+    if(!r.ok){let m='Terjadi kesalahan';try{m=(await r.json()).detail}catch{}throw new Error(String(m))}
+    const name=(r.headers.get('Content-Disposition')||'').match(/filename="(.+)"/)?.[1]||'hasil';
+    const bl=await r.blob(),a=E('a','btn ok','⬇️ Unduh '+name);a.href=URL.createObjectURL(bl);a.download=name;
+    const c=E('div','card done');c.append(E('b','','✅ Selesai'),E('span','mu',r.headers.get('X-Info')||''),a);if(bl.type=='application/pdf'){const s=E('button','chip','📁 Simpan ke ruang kerja');s.onclick=()=>{ws.push(new File([bl],name,{type:bl.type}));s.textContent='✓ Tersimpan';s.disabled=true};c.append(s)}res.append(c)
+  }catch(e){res.append(E('div','card err','⚠️ '+e.message))}
+  b.disabled=!files.length;b.textContent='Proses'};
+
+function route(){const h=location.hash.slice(1);if(!h){location.hash='skripsi';return}
+  const top=h=='skripsi'||h=='playfull',t=h!='tools'&&T.find(x=>x.id==(h.startsWith('tools/')?h.slice(6):h));
+  $('#home').hidden=!!t;$('#tool').hidden=!t;scrollTo(0,0);$('.back').hidden=top;
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+(top?h:'tools')));if(!t)return;
+  cur=t;files=[];$('#tn').textContent=t.i+' '+t.n;$('#td').textContent=t.d;fi.accept=t.acc;fi.multiple=!!t.multi;
+  $('#res').replaceChildren();$('#pv').hidden=true;buildOpts();drawFiles()}
+addEventListener('hashchange',route);grid();route();
+</script></body></html>

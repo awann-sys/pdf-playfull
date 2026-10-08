@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: pdf-toolkit
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /healthz
+    envVars:
+      - key: MAX_UPLOAD_MB
+        value: "25"
