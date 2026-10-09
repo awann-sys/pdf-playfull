@@ -52,7 +52,7 @@ input[type=checkbox]{accent-color:#0d9488}
 .export-help{font-size:12px;color:#436c7d;background:#eff8fc;padding:10px;border-radius:8px}.how{background:#f1f9fd;padding:12px;border-radius:10px;font-size:13px;color:#4a6575}.panel-scroll{max-height:62vh;overflow-y:auto;overscroll-behavior:contain}.camera-preview{width:100%;max-height:280px;object-fit:contain;border:1px solid #c9dce6;border-radius:10px;background:#f6fbfe}.sigpad-wrap{border:1px dashed #b7d0dd;border-radius:10px;background:#fff;padding:8px}.sigpad-wrap canvas{width:100%;height:150px;border-radius:8px;border:1px solid #dce9f0;background:#fff;touch-action:none;cursor:crosshair}.sigpad-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.sign-mode #editbar button:not(#delobj){display:none}
 @media(max-width:1180px){.layout{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}#exportAside{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}}@media(max-width:820px){#exportAside{display:block}.layout{grid-template-columns:1fr}.viewer{max-height:57vh}header{position:relative}}
 #resetPage:hover{border-color:#e5a0a0;color:#a33c3c;background:#fff1f1}</style></head><body>
-<header><a href="/">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
+<header><a href="./">← PDF Playfull</a><b>✏️ Edit PDF Bebas + Tools Lanjutan</b><span class="pill">Tanpa AI</span></header>
 <main><h1>Editor PDF & Alat Profesional</h1><p class="lead">Edit objek visual, konversi dokumen, lindungi PDF, OCR dan buat formulir. Semua diproses di server aplikasi.</p>
 <div class="layout"><aside>
 <div class="panel"><h2>📂 Dokumen kerja</h2><label for="upload">PDF atau dokumen sumber</label><input id="upload" type="file" multiple accept=".pdf,.docx,.doc,.ppt,.pptx,.xls,.xlsx,.odt,.odp,.ods,.html,.htm"/>
@@ -106,7 +106,11 @@ input[type=checkbox]{accent-color:#0d9488}
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/konva@9.3.20/konva.min.js"></script>
-<script>
+<script>// Kompatibilitas: akses langsung Render tetap normal; akses Cloudflare memakai /pdf.
+const PDF_SUBPATH = /^(?:\/pdf)(?:\/|$)/.test(window.location.pathname) ? '/pdf' : '';
+const pdfPath = (path) => PDF_SUBPATH + path;
+const pdfFetch = (url, options) => fetch(typeof url === 'string' && url.startsWith('/') ? pdfPath(url) : url, options);
+
 'use strict';
 const $=q=>document.querySelector(q);
 const TOOLS=[
@@ -214,7 +218,7 @@ async function downloadExtract(){const btn=$('#extractDownload');if(!extractEntr
  const opt={items:extractEntries.map(x=>({...x,fileIndex:ixMap.get(x.fileIndex)})),format:$('#extractFormat').value,quality:$('#extractQuality').value,dpi:Number($('#extractQuality').value)||300,
  transparent:$('#extractTransparent').checked,zipName:$('#extractZip').value,passwords:pdfIndices.map(i=>documents[i].password||'')};
  const form=new FormData();for(const i of pdfIndices)form.append('files',documents[i].file);form.append('opts',JSON.stringify(opt));
- const r=await fetch('/advanced/extract-objects',{method:'POST',body:form});if(!r.ok){const err=await r.json().catch(()=>({}));throw Error(err.detail||'Ekstraksi gagal.')}
+ const r=await pdfFetch('/advanced/extract-objects',{method:'POST',body:form});if(!r.ok){const err=await r.json().catch(()=>({}));throw Error(err.detail||'Ekstraksi gagal.')}
  const blob=await r.blob(),disp=r.headers.get('Content-Disposition')||'';const utf=/filename\*=UTF-8''([^;]+)/i.exec(disp)?.[1];const name=utf?decodeURIComponent(utf):/filename="([^"]+)"/.exec(disp)?.[1]||'ekstrak.png';
  $('#result').replaceChildren();const message=document.createElement('div');message.className='msg';message.textContent='✅ Ekstraksi selesai: '+name;const link=document.createElement('a');link.className='download';link.href=URL.createObjectURL(blob);link.download=name;link.textContent='⬇ Unduh '+name;$('#result').append(message,link);link.click();
  }catch(e){error(e.message)}finally{btn.disabled=false;btn.textContent='⬇ Ekstrak & Unduh'}}
@@ -394,7 +398,7 @@ async function drawPage(){if(!pdfDoc)return;const seq=++readVersion;
  const viewport=pg.getViewport({scale});const canvas=$('#pdfCanvas');canvas.width=Math.round(viewport.width);canvas.height=Math.round(viewport.height);extractRect=null;updateExtractOverlay();$('#paper').style.width=canvas.width+'px';$('#paper').style.height=canvas.height+'px';
  await pg.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
  const fd=new FormData();fd.append('file',pdfFile);fd.append('page',page);fd.append('password',$('#password').value);
- const r=await fetch('/advanced/inspect',{method:'POST',body:fd});const info=await r.json();if(!r.ok)throw new Error(info.detail||'Gagal membaca objek.');if(seq!==readVersion)return;
+ const r=await pdfFetch('/advanced/inspect',{method:'POST',body:fd});const info=await r.json();if(!r.ok)throw new Error(info.detail||'Gagal membaca objek.');if(seq!==readVersion)return;
  loadOverlay(info);
  if(pageOps.has(page)){
    for(const op of pageOps.get(page)){
@@ -527,7 +531,7 @@ async function submit(tool,overrideFile=null){const active=currentDoc();const fs
  if(tool==='compare'){const other=$('#upload2').files[0];if(!other)throw new Error('Pilih dokumen kedua untuk dibandingkan.');fs.push(other)}
  const fd=new FormData();for(const f of fs)fd.append('files',f);fd.append('opts',JSON.stringify(opts));
  const route=tool==='edit'?'/advanced/batch-edit':'/advanced/process/'+tool;
- const r=await fetch(route,{method:'POST',body:fd});if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.detail||'Pemrosesan gagal')}
+ const r=await pdfFetch(route,{method:'POST',body:fd});if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.detail||'Pemrosesan gagal')}
  const blob=await r.blob();const dispo=r.headers.get('Content-Disposition')||'';const nameUtf=/filename\*=UTF-8''([^;]+)/i.exec(dispo)?.[1];const filename=nameUtf?decodeURIComponent(nameUtf):/filename="([^"]+)"/.exec(dispo)?.[1]||'hasil.pdf';
  $('#result').replaceChildren();const msg=document.createElement('div');msg.className='msg';msg.textContent='✅ Berhasil: '+filename;
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.textContent='⬇ Unduh '+filename;a.className='download';$('#result').append(msg,a);
@@ -551,7 +555,7 @@ $('#camera').onclick=async()=>{try{resetCameraPreview();camStream=await navigato
 $('#shot').onclick=async()=>{const v=$('#vid');const can=document.createElement('canvas');can.width=v.videoWidth;can.height=v.videoHeight;can.getContext('2d').drawImage(v,0,0);const blob=await new Promise(resolve=>can.toBlob(resolve,'image/jpeg',0.88));stopCamera();$('#vid').classList.add('hide');$('#shot').classList.add('hide');if(!blob){error('Foto tidak tersedia');return}cameraBlob=blob;cameraDataUrl=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(blob)});$('#cameraStill').src=cameraDataUrl;$('#cameraStill').classList.remove('hide');$('#cameraActions').classList.remove('hide');setInfo('Foto kamera siap. Kamu bisa menempelkannya ke halaman aktif atau menjadikannya PDF baru.')};
 $('#cameraRetake').onclick=()=>{$('#vid').classList.add('hide');$('#shot').classList.add('hide');resetCameraPreview();$('#camera').click()};
 $('#cameraPaste').onclick=async()=>{if(!cameraDataUrl){error('Ambil foto dulu.');return}if(!layer||!currentDoc()||!pdfDoc){error('Buka halaman PDF aktif terlebih dahulu.');return}checkpoint();selectNode(makeRect({x:40,y:40,w:180,h:120},{kind:'image',image:cameraDataUrl,changed:true,page}));saveCurrentPage();setInfo('Foto kamera ditempel ke halaman aktif sebagai gambar draft. Kamu bisa memindahkan atau mengubah ukurannya sebelum ekspor.');};
-$('#cameraPdf').onclick=async()=>{if(!cameraBlob){error('Ambil foto dulu.');return}const fd=new FormData();fd.append('files',new File([cameraBlob],'hasil_scan.jpg',{type:'image/jpeg'}));fd.append('opts','{}');const r=await fetch('/api/image_pdf',{method:'POST',body:fd});if(!r.ok){error('Konversi foto gagal');return}const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scan_kamera.pdf';a.textContent='⬇ Unduh scan_kamera.pdf';a.className='download';$('#result').replaceChildren(a)};
+$('#cameraPdf').onclick=async()=>{if(!cameraBlob){error('Ambil foto dulu.');return}const fd=new FormData();fd.append('files',new File([cameraBlob],'hasil_scan.jpg',{type:'image/jpeg'}));fd.append('opts','{}');const r=await pdfFetch('/api/image_pdf',{method:'POST',body:fd});if(!r.ok){error('Konversi foto gagal');return}const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='scan_kamera.pdf';a.textContent='⬇ Unduh scan_kamera.pdf';a.className='download';$('#result').replaceChildren(a)};
 
 // Universal per-page draft actions. Export basket remains separate.
 function targetScope(){return $('#targetScope').value}
@@ -617,7 +621,7 @@ async function refreshDraftPreview(seq=readVersion){
  const visible=actions.filter(a=>!['crop','rotate_page'].includes(a.tool));if(!visible.length)return;
  const my=++draftPreviewVersion;
  const fd=new FormData();fd.append('file',d.file);fd.append('page',String(page));fd.append('password',d.password||'');fd.append('actions',JSON.stringify(visible));
- try{const r=await fetch('/advanced/draft-preview',{method:'POST',body:fd});if(!r.ok){const j=await r.json();throw Error(j.detail||'Preview tindakan gagal')}
+ try{const r=await pdfFetch('/advanced/draft-preview',{method:'POST',body:fd});if(!r.ok){const j=await r.json();throw Error(j.detail||'Preview tindakan gagal')}
   const image=await createImageBitmap(await r.blob());if(my!==draftPreviewVersion||seq!==readVersion){image.close();return}
   const canvas=$('#pdfCanvas'),ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0,canvas.width,canvas.height);image.close();
  }catch(e){if(seq===readVersion)setInfo('Preview tindakan belum tersedia: '+e.message)}

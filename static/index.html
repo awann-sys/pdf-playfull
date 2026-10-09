@@ -54,13 +54,13 @@ header::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px
 footer{text-align:center;padding:24px;color:var(--mu);font-size:13px;border-top:1px solid var(--bd)}
 @media(max-width:600px){.row{flex-wrap:wrap}.row>span{flex-basis:100%}.logo{display:none}nav a{padding:7px 11px;font-size:13px;margin-left:2px}}
 </style></head><body>
-<header><a class="logo" href="#">📄 PDF<b>Kit</b></a><nav><a href="#skripsi">Pemotong Skripsi</a><a href="#tools">PDF Tools</a><a href="#playfull">PDF Playfull</a><a href="/advanced.html">✏️ Edit Bebas + Pro</a></nav></header>
+<header><a class="logo" href="#">📄 PDF<b>Kit</b></a><nav><a href="#skripsi">Pemotong Skripsi</a><a href="#tools">PDF Tools</a><a href="#playfull">PDF Playfull</a><a href="./advanced.html">✏️ Edit Bebas + Pro</a></nav></header>
 
 <main id="home">
   <section class="hero"><h1>Semua alat PDF,<br><span class="gr">dalam satu tempat</span></h1>
   <p>Gabung, pisah, atur, kompres, dan konversi PDF. File diproses di server Anda sendiri.</p>
   <input id="q" placeholder="🔍 Cari alat…" autocomplete="off"></section>
-  <div style="margin:0 0 20px; padding:20px;border:1px solid #93c5fd;border-radius:14px;background:#e0f2fe"><strong>✏️ Edit PDF Bebas & Tools Lanjutan</strong><p>Editor teks dan gambar, konversi Office, OCR, redaksi, watermark, tanda tangan, formulir, dan lainnya.</p><a href="/advanced.html" class="btn" style="width:auto;padding:10px 20px">Buka Editor Lanjutan →</a></div><div class="grid" id="grid"></div>
+  <div style="margin:0 0 20px; padding:20px;border:1px solid #93c5fd;border-radius:14px;background:#e0f2fe"><strong>✏️ Edit PDF Bebas & Tools Lanjutan</strong><p>Editor teks dan gambar, konversi Office, OCR, redaksi, watermark, tanda tangan, formulir, dan lainnya.</p><a href="./advanced.html" class="btn" style="width:auto;padding:10px 20px">Buka Editor Lanjutan →</a></div><div class="grid" id="grid"></div>
 </main>
 
 <main id="tool" hidden>
@@ -79,7 +79,11 @@ footer{text-align:center;padding:24px;color:var(--mu);font-size:13px;border-top:
 </main>
 <footer>PDFKit · dibangun dengan FastAPI + PyMuPDF</footer>
 
-<script>
+<script>// Kompatibilitas: akses langsung Render tetap normal; akses Cloudflare memakai /pdf.
+const PDF_SUBPATH = /^(?:\/pdf)(?:\/|$)/.test(window.location.pathname) ? '/pdf' : '';
+const pdfPath = (path) => PDF_SUBPATH + path;
+const pdfFetch = (url, options) => fetch(typeof url === 'string' && url.startsWith('/') ? pdfPath(url) : url, options);
+
 const $=s=>document.querySelector(s),E=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const PW={k:'password',l:'Password PDF (jika terkunci)',t:'password'};
 const SD={k:'sudut',l:'Sudut putar',t:'select',c:[['90','90°'],['180','180°'],['270','270°']]};
@@ -143,7 +147,7 @@ function clearPreview(){
   previewVersion++;
   if(previewAbort){previewAbort.abort();previewAbort=null}
   if(previewObserver){previewObserver.disconnect();previewObserver=null}
-  if(previewToken){const old=previewToken;previewToken=null;fetch('/preview/session/'+old,{method:'DELETE'}).catch(()=>{})}
+  if(previewToken){const old=previewToken;previewToken=null;pdfFetch('/preview/session/'+old,{method:'DELETE'}).catch(()=>{})}
   pages=[];order=[];sel.clear();previewCards.clear();$('#pg').replaceChildren();updateCount();
 }
 function updateCount(){
@@ -157,9 +161,9 @@ async function loadPv(){
   const controller=new AbortController();previewAbort=controller;
   $('#pg').replaceChildren(E('p','mu','Membaca daftar halaman…'));
   try{
-    const r=await fetch('/preview/init',{method:'POST',body:fd,signal:controller.signal});
+    const r=await pdfFetch('/preview/init',{method:'POST',body:fd,signal:controller.signal});
     const j=await r.json();
-    if(version!==previewVersion){if(j.session)fetch('/preview/session/'+j.session,{method:'DELETE'}).catch(()=>{});return}
+    if(version!==previewVersion){if(j.session)pdfFetch('/preview/session/'+j.session,{method:'DELETE'}).catch(()=>{});return}
     if(!r.ok)throw new Error(j.detail||'Gagal memuat PDF');
     previewToken=j.session;pages=j.pages;order=pages.map((_,i)=>i+1);sel.clear();drawPv();
     $('#go').disabled=!files.length;
@@ -169,14 +173,14 @@ async function loadPv(){
 }
 function zoom(n){if(!previewToken)return;const o=E('div','ovl'),i=E('img');
   i.alt='Preview halaman '+pages[n-1].page;
-  i.src='/preview/page/'+previewToken+'/'+(n-1);
+  i.src=pdfPath('/preview/page/'+previewToken+'/'+(n-1));
   o.append(i);o.onclick=()=>o.remove();document.body.append(o)
 }
 function drawPv(){const g=$('#pg');g.replaceChildren();previewCards.clear();if(previewObserver)previewObserver.disconnect();
   previewObserver=new IntersectionObserver(entries=>{
     for(const entry of entries){if(!entry.isIntersecting)continue;
       const im=entry.target;if(im.dataset.loaded)continue;
-      im.dataset.loaded='1';im.src='/preview/thumb/'+previewToken+'/'+im.dataset.index;
+      im.dataset.loaded='1';im.src=pdfPath('/preview/thumb/'+previewToken+'/'+im.dataset.index);
       previewObserver.unobserve(im);
     }
   },{root:g,rootMargin:'130px 0px',threshold:0.01});
@@ -208,7 +212,7 @@ $('#go').onclick=async()=>{const b=$('#go'),res=$('#res');res.replaceChildren();
   try{const fd=new FormData();files.forEach(f=>fd.append('files',f));const o=collect();
     if(cur.visual){o.order=order;o.selected=order.filter(n=>sel.has(n))}
     fd.append('opts',JSON.stringify(o));
-    const r=await fetch('/api/'+cur.id,{method:'POST',body:fd});
+    const r=await pdfFetch('/api/'+cur.id,{method:'POST',body:fd});
     if(!r.ok){let m='Terjadi kesalahan';try{m=(await r.json()).detail}catch{}throw new Error(String(m))}
     const name=(r.headers.get('Content-Disposition')||'').match(/filename="(.+)"/)?.[1]||'hasil';
     const bl=await r.blob(),a=E('a','btn ok','⬇️ Unduh '+name);a.href=URL.createObjectURL(bl);a.download=name;
