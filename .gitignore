@@ -1,0 +1,26 @@
+# Workspace lokal: jangan dipush ke GitHub
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+*.log
+*.bak
+*.tmp
+*.zip
+*.rar
+*.7z
+*.mp4
+*.mov
+*.avi
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+node_modules/
+.vscode/
+.idea/
